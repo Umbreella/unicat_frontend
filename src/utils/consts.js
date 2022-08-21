@@ -1,0 +1,8 @@
+export const ABOUT_ROUTE = '/about'
+export const ADMIN_ROUTE = '/admin'
+export const BLOG_ROUTE = '/blog'
+export const CONTACTS_ROUTE = '/contacts'
+export const COURSES_ROUTE = '/courses'
+export const HOME_ROUTE = '/'
+export const LOGIN_ROUTE = '/login'
+export const REGISTER_ROUTE = '/register'
