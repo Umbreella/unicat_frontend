@@ -5,13 +5,13 @@ import NewsSection from "../components/news/NewsSection";
 import TutorsSection from "../components/tutors/TutorsSection";
 import EventsSection from "../components/events/EventsSection";
 import CoursesSection from "../components/courses/CoursesSection";
-import Slider from "../components/others/Slider";
+import LargeHomeSlider from "../components/sliders/LargeHomeSlider";
 import CounterSection from "../components/counter/CounterSection";
 
 const Home = () => {
     return (
         <>
-            <Slider />
+            <LargeHomeSlider />
             <CoursesSection />
             <CounterSection />
             <EventsSection />

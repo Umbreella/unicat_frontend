@@ -1,9 +1,10 @@
 import React from 'react';
-import {Button, Carousel, Form} from "react-bootstrap";
+import {Carousel} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleLeft, faAngleRight} from "@fortawesome/free-solid-svg-icons";
+import SliderSearchForm from "../forms/SliderSearchForm";
 
-const Slider = () => {
+const LargeHomeSlider = () => {
     const intervalForSwap = 2500;
 
     return (
@@ -28,22 +29,7 @@ const Slider = () => {
                                 <div className="home_slider_title">The Premium System Education</div>
                                 <div className="home_slider_subtitle">Будущее образовательных технологий</div>
                                 <div className="home_slider_form_container">
-                                    <Form className="home_search_form d-flex flex-lg-row flex-column align-items-center justify-content-between">
-                                        <div className="d-flex flex-row align-items-center justify-content-start">
-                                            <Form.Control className="home_search_input"
-                                                          type="search" placeholder="Поиск"/>
-                                            <Form.Select className="dropdown_item_select home_search_input">
-                                                <option></option>
-                                            </Form.Select>
-                                            <Form.Select className="dropdown_item_select home_search_input">
-                                                <option></option>
-                                            </Form.Select>
-                                        </div>
-                                        <Button className="home_search_button"
-                                                type="submit" variant="light">
-                                            Найти
-                                        </Button>
-                                    </Form>
+                                    <SliderSearchForm />
                                 </div>
                             </div>
                         </div>
@@ -54,4 +40,4 @@ const Slider = () => {
     );
 };
 
-export default Slider;
+export default LargeHomeSlider;

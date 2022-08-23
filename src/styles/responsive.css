@@ -110,6 +110,18 @@
 
 @media only screen and (max-width: 991px)
 {
+	.about_col:not(:last-child)
+	{
+		margin-bottom: 40px;
+	}
+	.about_row
+	{
+		flex-direction: column;
+	}
+	.about_col_left
+	{
+		padding-right: 15px;
+	}
 	.main_nav,
 	.search_button
 	{
@@ -152,10 +164,10 @@
 	}
 	.counter_form
 	{
-	    position: relative;
-	    top: 0;
-	    right: auto;
-	    width: 100%;
+	    position: relative !important;
+	    top: 0 !important;
+	    right: auto !important;
+	    width: 100% !important;
 	    height: auto;
 	    padding-left: 40px;
 	    padding-right: 40px;
@@ -206,6 +218,10 @@
 	{
 		padding-left: 6px;
 	}
+	.top_bar
+	{
+		display: none;
+	}
 	.navbar-nav {
 		display: flex !important;
 		align-items: flex-end;
@@ -216,8 +232,7 @@
 		margin-bottom: 15px;
 	}
 	.navbar-nav .fa-magnifying-glass,
-	.navbar-nav .fa-cart-shopping,
-	.navbar-nav .fa-user
+	.navbar-nav .fa-cart-shopping
 	{
 		display: none;
 	}
@@ -312,10 +327,6 @@
 
 @media only screen and (max-width: 767px)
 {
-	.top_bar
-	{
-		display: none;
-	}
 	.home_slider_nav
 	{
 		display: none;

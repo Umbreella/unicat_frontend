@@ -1,6 +1,5 @@
 import React from 'react';
-import {Col, Container, Image, Row} from "react-bootstrap";
-import TitleSection from "../others/TitleSection";
+import {Image} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faClock, faMapMarker} from "@fortawesome/free-solid-svg-icons";
 import {NavLink} from "react-router-dom";

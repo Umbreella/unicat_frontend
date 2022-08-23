@@ -36,11 +36,6 @@ const SmallTutor = () => {
                                 </NavLink>
                             </li>
                         </ul>
-                        <ul>
-                            <li><a href="#"><i className="fa fa-facebook" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i className="fa fa-twitter" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i className="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                        </ul>
                     </div>
                 </div>
             </div>
