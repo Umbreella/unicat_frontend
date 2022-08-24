@@ -20,8 +20,8 @@ const CoursesSection = () => {
                 <TitleSection section={section} />
                 <Row className="courses_row">
                     {
-                        [...Array(3)].map(() =>
-                            <LargeCourse />
+                        [...Array(3)].map((value, index, array) =>
+                            <LargeCourse key={index} style={{col: "col-lg-4"}} />
                         )
                     }
                 </Row>

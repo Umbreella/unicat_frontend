@@ -4,9 +4,9 @@ import {NavLink} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faStar, faUserGraduate} from "@fortawesome/free-solid-svg-icons";
 
-const LargeCourse = () => {
+const LargeCourse = (props) => {
     return (
-        <div className="col-lg-4 course_col">
+        <div className={props.style.col + " course_col "}>
             <div className="course">
                 <div className="course_image">
                     <Image />

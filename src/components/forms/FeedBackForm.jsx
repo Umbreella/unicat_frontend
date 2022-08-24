@@ -3,7 +3,8 @@ import {Button, Form} from "react-bootstrap";
 
 const FeedBackForm = () => {
     return (
-        <Form className="counter_form_content d-flex flex-column align-items-center justify-content-center"
+        <Form className="counter_form_content d-flex flex-column
+                align-items-center justify-content-center"
               action="#">
             <div className="counter_form_title">
                 Оставить заявку

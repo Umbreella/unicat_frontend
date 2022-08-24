@@ -26,8 +26,8 @@ const NewsSection = () => {
                     <Col className="col-lg-5 news_col">
                         <div className="news_posts_small">
                             {
-                                [...Array(4)].map(() =>
-                                    <SmallNews />
+                                [...Array(4)].map((value, index, array) =>
+                                    <SmallNews key={index}/>
                                 )
                             }
                         </div>

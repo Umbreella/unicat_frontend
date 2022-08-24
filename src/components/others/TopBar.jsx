@@ -35,7 +35,7 @@ const TopBar = () => {
                                 <div className="top_bar_login ml-auto">
                                     <div className="login_button">
                                         <NavLink to="/">
-                                            Register or Login
+                                            Войти
                                         </NavLink>
                                     </div>
                                 </div>

@@ -19,8 +19,8 @@ const TutorsSection = (props) => {
                 <TitleSection section={section}/>
                 <Row className="team_row">
                     {
-                        [...Array(4)].map(() =>
-                            <SmallTutor />
+                        [...Array(4)].map((value, index, array) =>
+                            <SmallTutor key={index}/>
                         )
                     }
                 </Row>

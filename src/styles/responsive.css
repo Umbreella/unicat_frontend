@@ -75,6 +75,23 @@
 	{
 		margin-right: 12px;
 	}
+	.course_col:nth-child(odd)
+	{
+		padding-right: 15px !important;
+	}
+	.course_col:nth-child(even)
+	{
+		padding-left: 15px !important;
+	}
+	.sidebar
+	{
+		padding-left: 20px;
+	}
+	.gallery_item
+	{
+		width: calc((100% - 24px) / 3);
+		margin-bottom: 12px;
+	}
 	.milestone:not(:last-child)::after
 	{
 		display: none;
@@ -187,6 +204,14 @@
 	{
 		margin: auto;
 	}
+	.courses_search_input
+	{
+		width: 240px;
+	}
+	.course_col:not(:last-child)
+	{
+		margin-bottom: 40px;
+	}
 	.event_col:not(:last-child)
 	{
 		margin-bottom: 20px;
@@ -194,6 +219,11 @@
 	.home_search_form div
 	{
 		width: 100%;
+	}
+	.sidebar
+	{
+		margin-top: 100px;
+		padding-left: 0 !important;
 	}
 	.team_col .team_item
 	{

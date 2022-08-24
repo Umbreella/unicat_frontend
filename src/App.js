@@ -4,6 +4,7 @@ import Header from "./components/others/Header";
 import Footer from "./components/others/Footer";
 import TopBar from "./components/others/TopBar";
 import {useEffect} from "react";
+import Breadcrumbs from "./components/others/Breadcrumbs";
 
 function App() {
     return (
@@ -11,6 +12,7 @@ function App() {
             <ScrollToTop />
             <TopBar />
             <Header />
+            <Breadcrumbs />
             <AppRouter />
             <Footer />
         </BrowserRouter>

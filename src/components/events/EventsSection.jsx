@@ -17,8 +17,8 @@ const EventsSection = () => {
                 <TitleSection section={section}/>
                 <Row className="events_row">
                     {
-                        [...Array(3)].map(() =>
-                            <LargeEvent />
+                        [...Array(3)].map((value, index, array) =>
+                            <LargeEvent key={index}/>
                         )
                     }
                 </Row>
