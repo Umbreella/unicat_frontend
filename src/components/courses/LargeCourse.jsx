@@ -3,6 +3,7 @@ import {Image} from "react-bootstrap";
 import {NavLink} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faStar, faUserGraduate} from "@fortawesome/free-solid-svg-icons";
+import {SINGLE_COURSES_ROUTE} from "../../utils/consts";
 
 const LargeCourse = (props) => {
     return (
@@ -13,7 +14,7 @@ const LargeCourse = (props) => {
                 </div>
                 <div className="course_body">
                     <h3 className="course_title">
-                        <NavLink to="/">
+                        <NavLink to={SINGLE_COURSES_ROUTE}>
                             Software Training
                         </NavLink>
                     </h3>

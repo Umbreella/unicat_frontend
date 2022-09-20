@@ -1,5 +1,4 @@
 import React from 'react';
-import NewsLetterSection from "../components/others/NewsLetterSection";
 import {Col, Container, Pagination, Row} from "react-bootstrap";
 import CoursesSearchForm from "../components/forms/CoursesSearchForm";
 import LargeCourse from "../components/courses/LargeCourse";
@@ -50,7 +49,6 @@ const Courses = () => {
                 </div>
         }
     ]
-
 
     return (
         <>
@@ -106,8 +104,6 @@ const Courses = () => {
                     </Row>
                 </Container>
             </div>
-
-            <NewsLetterSection />
         </>
     );
 };

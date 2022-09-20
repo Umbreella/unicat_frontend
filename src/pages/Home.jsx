@@ -1,6 +1,5 @@
 import React from 'react';
 import '../styles/responsive.css'
-import NewsLetterSection from "../components/others/NewsLetterSection";
 import NewsSection from "../components/news/NewsSection";
 import TutorsSection from "../components/tutors/TutorsSection";
 import EventsSection from "../components/events/EventsSection";
@@ -17,7 +16,6 @@ const Home = () => {
             <EventsSection />
             <TutorsSection />
             <NewsSection />
-            <NewsLetterSection />
         </>
     );
 };

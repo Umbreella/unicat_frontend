@@ -9,7 +9,12 @@ import {
 } from "react-bootstrap";
 import {ABOUT_ROUTE, BLOG_ROUTE, CONTACTS_ROUTE, COURSES_ROUTE, HOME_ROUTE} from "../../utils/consts";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faBars, faSearch, faShoppingCart} from "@fortawesome/free-solid-svg-icons";
+import {
+    faBars,
+    faSearch,
+    faShoppingCart,
+    faUser
+} from "@fortawesome/free-solid-svg-icons";
 import {NavLink} from "react-router-dom";
 import HeaderSearchForm from "../forms/HeaderSearchForm";
 
@@ -42,6 +47,7 @@ const Header = () => {
                                             <NavLink to={CONTACTS_ROUTE} >Контакты</NavLink>
                                             <FontAwesomeIcon icon={faSearch} />
                                             <FontAwesomeIcon icon={faShoppingCart} />
+                                            <FontAwesomeIcon icon={faUser} />
                                         </Nav>
                                     </OffcanvasBody>
                                 </Navbar.Offcanvas>

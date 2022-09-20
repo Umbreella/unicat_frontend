@@ -40,11 +40,12 @@ const FeaturesSection = () => {
                         <div className="feature_content">
                             <Accordion
                                 className="accordions"
-                                defaultActiveKey={1}>
-                                <SmallAccordion item={accordions[0]}/>
-                                <SmallAccordion item={accordions[1]}/>
-                                <SmallAccordion item={accordions[0]}/>
-                                <SmallAccordion item={accordions[0]}/>
+                                defaultActiveKey={0}>
+                                {
+                                    accordions.map((value, index, array) =>
+                                        <SmallAccordion key={index} item={value}/>
+                                    )
+                                }
                             </Accordion>
                         </div>
                     </Col>

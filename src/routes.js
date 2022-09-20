@@ -4,7 +4,7 @@ import {
     CONTACTS_ROUTE, COURSES_ROUTE,
     HOME_ROUTE,
     LOGIN_ROUTE,
-    REGISTER_ROUTE
+    REGISTER_ROUTE, SINGLE_COURSES_ROUTE
 } from "./utils/consts";
 import Home from "./pages/Home";
 import Auth from "./pages/Auth";
@@ -12,6 +12,7 @@ import Blog from "./pages/Blog";
 import About from "./pages/About";
 import Contacts from "./pages/Contacts";
 import Courses from "./pages/Courses";
+import CurrentCourse from "./pages/CurrentCourse";
 
 export const authRoutes = [
     {
@@ -36,6 +37,10 @@ export const publicRoutes = [
     {
         path: COURSES_ROUTE,
         Component: Courses
+    },
+    {
+        path: SINGLE_COURSES_ROUTE,
+        Component: CurrentCourse
     },
     {
         path: HOME_ROUTE,
