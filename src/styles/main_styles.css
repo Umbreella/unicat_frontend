@@ -32,6 +32,7 @@
 20. Sidebar
 21. Breadcrumbs
 22. Blog
+23. Contact
 
 
 ******************************/
@@ -335,14 +336,12 @@ section
 	height: 100%;
 	background: #f3f3f3;
 	text-align: center;
-}
-.login_button a
-{
 	display: block;
 	font-size: 14px;
 	font-weight: 500;
 	line-height: 40px;
 	color: #384158;
+	cursor: pointer;
 }
 
 /*********************************
@@ -374,7 +373,7 @@ section
 *********************************/
 
 .logo,
-.logo_text
+.navbar-brand
 {
 	display: inline-block;
 }
@@ -392,10 +391,14 @@ section
 {
 	max-width: 100%;
 }
-.logo_text,
-.logo_text:active,
-.logo_text:focus,
-.logo_text:hover
+.navbar-brand a,
+.navbar-brand a:active,
+.navbar-brand a:focus,
+.navbar-brand a:hover,
+.navbar-brand,
+.navbar-brand:active,
+.navbar-brand:focus,
+.navbar-brand:hover
 {
 	font-family: 'Roboto Slab', serif;
 	font-size: 36px;
@@ -409,7 +412,8 @@ section
 	-o-transition: all 200ms ease;
 	transition: all 200ms ease;
 }
-.logo_text span
+.navbar-brand a span,
+.navbar-brand span
 {
 	color: #14bdee;
 }
@@ -418,7 +422,7 @@ section
 	width: 40px;
 	height: 40px;
 }
-.header.scrolled .logo_text
+.header.scrolled .navbar-brand
 {
 	font-size: 24px;
 }
@@ -520,6 +524,7 @@ section
 	bottom: 0px;
 	left: 0px;
 	width: 100%;
+	height: 80px;
 	background: #14bdee;
 	z-index: -1;
 	opacity: 0;
@@ -531,13 +536,13 @@ section
 }
 .header_search_container.active
 {
-	bottom: -73px;
+	bottom: -80px;
 	opacity: 1;
 }
 .header_search_content
 {
 	width: 100%;
-	height: 73px;
+	height: 80px;
 }
 .search_input
 {
@@ -711,6 +716,13 @@ section
 .search form
 {
 	position: relative;
+}
+.header_search_content .header_search_form .search_input,
+.header_search_content .header_search_form .search_input:active,
+.header_search_content .header_search_form .search_input:focus,
+.header_search_content .header_search_form .search_input:hover
+{
+	background-color: #fff !important;
 }
 .header_search_form .search_input,
 .header_search_form .search_input:active,
@@ -1813,7 +1825,7 @@ section
 .newsletter_input:focus,
 .newsletter_input:hover
 {
-	width: calc(100% - 143px);
+	width: calc(100% - 200px);
 	height: 40px;
 	background: rgba(255,255,255,0.4);
 	border: none;
@@ -3731,6 +3743,7 @@ section
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 30px;
+	text-align: center;
 }
 .load_more:hover
 {
@@ -3744,4 +3757,155 @@ section
 	color: #FFFFFF;
 	text-transform: uppercase;
 	font-weight: 500;
+}
+
+/*********************************
+23. Contact
+*********************************/
+
+.contact
+{
+	width: 100%;
+	padding-bottom: 100px;
+}
+.contact_map
+{
+	width: 100%;
+}
+.map
+{
+	width: 100%;
+}
+.google_map
+{
+	width: 100%;
+	height: 500px;
+}
+.map_container
+{
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+#map
+{
+	width: 100%;
+	height: calc(100% + 30px);
+}
+#content
+{
+	width: 180px;
+	padding-left: 20px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	font-family: 'Roboto', sans-serif;
+	font-size: 14px;
+	color: #76777a;
+	line-height: 1.71;
+}
+.contact_info_container
+{
+	margin-top: 100px;
+}
+.contact_info_title
+{
+	font-family: 'Roboto Slab', serif;
+	font-size: 36px;
+	font-weight: 700;
+	color: #384158;
+}
+.contact_form
+{
+	padding-right: 10px;
+}
+.comment_form
+{
+	margin-top: 35px;
+}
+.comment_input
+{
+	width: 100%;
+	height: 46px;
+	border: solid 1px #d9d9d9;
+	border-radius: 3px;
+	padding-left: 19px;
+	font-size: 16px;
+	font-weight: 400;
+	color: #2c3145;
+}
+.comment_form > div:not(:last-child)
+{
+	margin-bottom: 25px;
+}
+.comment_input:focus
+{
+	border: solid 1px #14bdee;
+	outline: none;
+}
+.comment_textarea
+{
+	width: 100%;
+	height: 150px;
+	padding-top: 15px;
+}
+.form_title
+{
+	font-size: 16px;
+	font-weight: 400;
+	color: #384158;
+	margin-bottom: 12px;
+}
+.comment_button
+{
+	width: 150px;
+	height: 46px;
+	background: #14bdee;
+	text-transform: uppercase;
+	font-size: 14px;
+	font-weight: 500;
+	color: #FFFFFF;
+	cursor: pointer;
+	border: none;
+	outline: none;
+	border-radius: 3px;
+	margin-top: 15px;
+}
+.comment_button:hover,
+.comment_button:focus
+{
+	box-shadow: 0px 5px 40px rgba(0,0,0,0.25);
+	background: #14bdee !important;
+}
+.contact_info
+{
+	padding-left: 45px;
+}
+.contact_info_text
+{
+	margin-top: 27px;
+}
+.contact_info_location
+{
+	margin-top: 28px;
+}
+.contact_info_location_title
+{
+	font-family: 'Roboto Slab', serif;
+	font-size: 18px;
+	font-weight: 700;
+	color: #384158;
+}
+.location_list
+{
+	margin-top: 14px;
+	padding-left: 0;
+}
+.location_list li
+{
+	font-size: 14px;
+	color: #5e6271;
+}
+.location_list li:not(:last-child)
+{
+	margin-bottom: 9px;
 }

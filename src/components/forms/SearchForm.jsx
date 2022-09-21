@@ -3,7 +3,7 @@ import {Button, Form} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSearch} from "@fortawesome/free-solid-svg-icons";
 
-const HeaderSearchForm = () => {
+const SearchForm = () => {
     return (
         <Form className="header_search_form">
             <Form.Control className="search_input"
@@ -16,4 +16,4 @@ const HeaderSearchForm = () => {
     );
 };
 
-export default HeaderSearchForm;
+export default SearchForm;

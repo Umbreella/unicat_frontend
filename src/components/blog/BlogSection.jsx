@@ -1,6 +1,8 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {WaterfallGrid} from 'react-waterfall-grid'
 import LargeBlog from "./LargeBlog";
+import {NavLink} from "react-router-dom";
+import {Col, Row} from "react-bootstrap";
 
 const BlogSection = () => {
     const [size, setSize] = useState(300);
@@ -86,6 +88,15 @@ const BlogSection = () => {
                 }
                 childWidth={getColumnWidth()}
                 />
+            <Row>
+                <Col>
+                    <div className="load_more">
+                        <NavLink to="#">
+                            показать еще
+                        </NavLink>
+                    </div>
+                </Col>
+            </Row>
         </div>
     );
 };

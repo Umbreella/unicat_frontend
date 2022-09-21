@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Col, Container, Row} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEnvelopeOpen, faPhone} from "@fortawesome/free-solid-svg-icons";
-import {NavLink} from "react-router-dom";
+import AuthModal from "../modal/AuthModal";
 
 const TopBar = () => {
+    const [is_showAuthForm, setIsShowAuthForm] = useState(false);
+
     return (
         <div className="top_bar">
             <div className="top_bar_container">
@@ -34,9 +36,11 @@ const TopBar = () => {
                                 </ul>
                                 <div className="top_bar_login ml-auto">
                                     <div className="login_button">
-                                        <NavLink to="/">
+                                        <div onClick={() => setIsShowAuthForm(true)}>
                                             Войти
-                                        </NavLink>
+                                        </div>
+                                        <AuthModal show={is_showAuthForm}
+                                                   onHide={() => setIsShowAuthForm(false)} />
                                     </div>
                                 </div>
                             </div>

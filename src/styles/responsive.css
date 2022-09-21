@@ -341,6 +341,15 @@
 	{
 		font-size: 13px;
 	}
+	.contact_form
+	{
+		padding-right: 0 !important;
+	}
+	.contact_info
+	{
+		padding-left: 0 !important;
+		margin-top: 80px;
+	}
 }
 
 /************
