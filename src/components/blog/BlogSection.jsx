@@ -1,25 +1,24 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {CSSGrid, makeResponsive, measureItems, layout} from "react-stonecutter";
+import {WaterfallGrid} from 'react-waterfall-grid'
 import LargeBlog from "./LargeBlog";
 
 const BlogSection = () => {
-    const [size, setSize] = useState(null);
+    const [size, setSize] = useState(300);
     const ref = useRef();
     const news = [
         {
             image: 1,
-            body: "1 Policy analysts generally agree on a need for reform, " +
-                "but not on which path policymakers should take..."
+            body: "1 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna."
         },
         {
-            image: 1,
+            image: 2,
             body: "2 Policy analysts generally agree on a need for reform, " +
                 "but not on which path policymakers should take... Policy" +
                 " analysts generally agree on a need for reform, " +
                 "but not on which path policymakers should take..."
         },
         {
-            image: 1,
+            image: 3,
             body: "3 qwerqwerqwerqwer"
         },
         {
@@ -53,10 +52,6 @@ const BlogSection = () => {
         }
     ];
 
-    const Grid = makeResponsive(measureItems(CSSGrid), {
-        maxWidth: 1346,
-    });
-
     useEffect(() => {
         window.addEventListener("resize", updateDimensions);
         setSize(ref.current.clientWidth);
@@ -78,29 +73,19 @@ const BlogSection = () => {
         if (size >= 696)
             return size / 2 - 20;
 
-        return size;
+        return size < 50 ? size : size - 50;
     }
 
     return (
         <div ref={ref}>
-            <Grid
-                component="div"
-                columnWidth={getColumnWidth()}
-                gutterWidth={30}
-                gutterHeight={30}
-                duration={0}
-                layout={layout.pinterest}
-                easing="ease-out"
-            >
-                {
+            <WaterfallGrid
+                children={
                     news.map((value, index, array) =>
-                        <div key={index}>
-                            <LargeBlog columnWidth={getColumnWidth}
-                                       news={value}/>
-                        </div>
+                        <LargeBlog key={index} news={value} width={getColumnWidth()}/>
                     )
                 }
-            </Grid>
+                childWidth={getColumnWidth()}
+                />
         </div>
     );
 };

@@ -3616,7 +3616,7 @@ section
 	border-radius: 6px;
 	overflow: hidden;
 	box-shadow: 0px 1px 10px rgba(29,34,47,0.1);
-	margin-bottom: 30px;
+	margin: 10px;
 }
 .blog_post:hover
 {

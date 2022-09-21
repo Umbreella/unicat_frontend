@@ -341,9 +341,6 @@
 	{
 		font-size: 13px;
 	}
-	.blog_post {
-		width: calc((100% - 30px) / 2);
-	}
 }
 
 /************
@@ -420,7 +417,7 @@
 	}
 	.blog_post
 	{
-		width: 100%;
+		/*width: 100%;*/
 	}
 }
 
