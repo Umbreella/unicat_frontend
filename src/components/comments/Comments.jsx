@@ -5,8 +5,8 @@ import {faHeart, faReply} from "@fortawesome/free-solid-svg-icons";
 import {Image} from "react-bootstrap";
 import avatar from "../../images/comment_1.jpg";
 
-const Review = (props) => {
-    const review = props.review;
+const Comments = (props) => {
+    const comment = props.comment;
 
     return (
         <li>
@@ -22,7 +22,7 @@ const Review = (props) => {
                         className="comment_title_container d-flex flex-row align-items-center justify-content-start">
                         <div className="comment_author">
                             <NavLink to="#">
-                                {review.author}
+                                {comment.author}
                             </NavLink>
                         </div>
                         <div className="comment_rating">
@@ -48,7 +48,7 @@ const Review = (props) => {
                             </NavLink>
                         </div>
                         {
-                            review.can_replay ?
+                            comment.can_replay ?
                                 <div className="comment_extra comment_reply">
                                     <NavLink to="#">
                                         <FontAwesomeIcon icon={faReply} />
@@ -60,11 +60,11 @@ const Review = (props) => {
                 </div>
             </div>
             {
-                review.childs ?
+                comment.childs ?
                     <ul className="ps-lg-5">
                         {
-                            review.childs.map((value, index, array) =>
-                                <Review key={index} review={value}/>
+                            comment.childs.map((value, index, array) =>
+                                <Comments key={index} comment={value}/>
                             )
                         }
                     </ul> : null
@@ -73,4 +73,4 @@ const Review = (props) => {
     );
 };
 
-export default Review;
+export default Comments;

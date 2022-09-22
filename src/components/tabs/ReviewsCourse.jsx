@@ -1,6 +1,6 @@
 import React from 'react';
 import StarDivBar from "../reviews/StarDivBar";
-import Review from "../reviews/Review";
+import Comments from "../comments/Comments";
 import {NavLink} from "react-router-dom";
 
 const ReviewsCourse = (props) => {
@@ -27,7 +27,7 @@ const ReviewsCourse = (props) => {
         }
     ]
 
-    const reviews = [
+    const comments = [
         {
             author: 'Mark',
             can_replay : true,
@@ -89,8 +89,8 @@ const ReviewsCourse = (props) => {
             <div className="comments_container">
                 <ul className="comments_list">
                     {
-                        reviews.map((value, index, array) =>
-                            <Review key={index} review={value}/>
+                        comments.map((value, index, array) =>
+                            <Comments key={index} comment={value}/>
                         )
                     }
                 </ul>

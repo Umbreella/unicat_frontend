@@ -1,6 +1,7 @@
 export const ABOUT_ROUTE = '/about'
 export const ADMIN_ROUTE = '/admin'
 export const BLOG_ROUTE = '/blog'
+export const SINGLE_BLOG_ROUTE = '/blog/1'
 export const CONTACTS_ROUTE = '/contacts'
 export const COURSES_ROUTE = '/courses'
 export const SINGLE_COURSES_ROUTE = '/courses/1'

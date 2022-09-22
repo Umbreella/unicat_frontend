@@ -2,6 +2,7 @@ import React from 'react'
 import {NavLink} from "react-router-dom";
 import {Image} from "react-bootstrap";
 import blog from "../../images/blog_1.jpg";
+import {SINGLE_BLOG_ROUTE} from "../../utils/consts";
 
 const LargeBlog = (props) => {
     const columnWidth = props.width;
@@ -16,7 +17,7 @@ const LargeBlog = (props) => {
             }
             <div className="blog_post_body">
                 <div className="blog_post_title">
-                    <NavLink to="#">
+                    <NavLink to={SINGLE_BLOG_ROUTE}>
                         With Changing Students and Times
                     </NavLink>
                 </div>

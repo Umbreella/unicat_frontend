@@ -102,7 +102,6 @@ const CurrentCourse = () => {
                             }
                         </div>
                     </div>
-
                 </Row>
             </Container>
         </div>

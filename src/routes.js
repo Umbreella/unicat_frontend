@@ -4,7 +4,7 @@ import {
     CONTACTS_ROUTE, COURSES_ROUTE,
     HOME_ROUTE,
     LOGIN_ROUTE,
-    REGISTER_ROUTE, SINGLE_COURSES_ROUTE
+    REGISTER_ROUTE, SINGLE_BLOG_ROUTE, SINGLE_COURSES_ROUTE
 } from "./utils/consts";
 import Home from "./pages/Home";
 import Auth from "./pages/Auth";
@@ -13,6 +13,7 @@ import About from "./pages/About";
 import Contacts from "./pages/Contacts";
 import Courses from "./pages/Courses";
 import CurrentCourse from "./pages/CurrentCourse";
+import CurrentBlog from "./pages/CurrentBlog";
 
 export const authRoutes = [
     {
@@ -29,6 +30,10 @@ export const publicRoutes = [
     {
         path: BLOG_ROUTE,
         Component: Blog
+    },
+    {
+        path: SINGLE_BLOG_ROUTE,
+        Component: CurrentBlog
     },
     {
         path: CONTACTS_ROUTE,
