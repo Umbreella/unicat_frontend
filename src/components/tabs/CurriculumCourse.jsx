@@ -107,7 +107,7 @@ const CurriculumCourse = () => {
 
                 {
                     curriculums.map((value, index, array) =>
-                        <CurriculumAccordion curriculum={value}/>
+                        <CurriculumAccordion key={index} curriculum={value}/>
                     )
                 }
             </div>

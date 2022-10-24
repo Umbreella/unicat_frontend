@@ -1,8 +1,12 @@
 import React from 'react';
-import {Breadcrumb, Col, Container, Row} from "react-bootstrap";
-import {useLocation} from "react-router-dom";
+import {Col, Container, Row} from "react-bootstrap";
+import {NavLink, useLocation} from "react-router-dom";
+import useBreadcrumbs from 'use-react-router-breadcrumbs';
+import {publicRoutes} from "../../utils/routes";
 
 const Breadcrumbs = () => {
+    const breadcrumbs = useBreadcrumbs(publicRoutes);
+
     if (useLocation().pathname === "/")
         return null;
 
@@ -12,14 +16,29 @@ const Breadcrumbs = () => {
                 <Container>
                     <Row>
                         <Col>
-                            <Breadcrumb>
-                                <Breadcrumb.Item href="/">
-                                    Главная
-                                </Breadcrumb.Item>
-                                <Breadcrumb.Item active>
-                                    О нас
-                                </Breadcrumb.Item>
-                            </Breadcrumb>
+                            <div className="breadcrumbs">
+                                <ul>
+                                    {
+                                        breadcrumbs.map(({ match, breadcrumb }, index) => (
+                                            <li key={match.pathname}>
+                                                {
+                                                    index !== breadcrumbs.length - 1 ?
+                                                        <>
+                                                            <NavLink to={match.pathname}>
+                                                                {breadcrumb}
+                                                            </NavLink>
+                                                            <span style={{ margin: "0 8px", color: "#384158"}}>
+                                                                /
+                                                            </span>
+                                                        </> :
+                                                        <>{breadcrumb}</>
+                                                }
+
+                                            </li>
+                                        ))
+                                    }
+                                </ul>
+                            </div>
                         </Col>
                     </Row>
                 </Container>

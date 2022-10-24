@@ -1,6 +1,7 @@
 import React from 'react';
-import { Modal } from "react-bootstrap";
+import {Modal, Tab, Tabs} from "react-bootstrap";
 import AuthForm from "../forms/AuthForm";
+import RegForm from "../forms/RegForm";
 
 const AuthModal = (props) => {
     return (
@@ -17,7 +18,19 @@ const AuthModal = (props) => {
                 </div>
             </Modal.Header>
             <Modal.Body >
-                <AuthForm />
+                <div className="tabs_auth_container">
+                    <Tabs
+                        defaultActiveKey="authForm"
+                        fill={true}
+                    >
+                        <Tab eventKey="authForm" title="Вход">
+                            <AuthForm />
+                        </Tab>
+                        <Tab eventKey="regForm" title="Регистрация">
+                            <RegForm />
+                        </Tab>
+                    </Tabs>
+                </div>
             </Modal.Body>
         </Modal>
     );

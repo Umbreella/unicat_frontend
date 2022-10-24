@@ -7,9 +7,9 @@
 
 1. Fonts
 2. Body and some general stuff
-3. Header
+3. MainHeader
 	3.1 Top Bar
-	3.2 Header Content
+	3.2 MainHeader Content
 	3.3 Logo
 	3.4 Main Nav
 	3.5 Hamburger
@@ -23,7 +23,7 @@
 11. Team
 12. News
 13. Newsletter
-14. Footer
+14. MainFooter
 15. Partners
 16. About
 17. Feature
@@ -34,6 +34,7 @@
 22. Blog_page
 23. Single_Blog_page
 24. Contact
+25. ProfileHeader
 
 
 ******************************/
@@ -252,7 +253,7 @@ section
 }
 
 /*********************************
-3. Header
+3. MainHeader
 *********************************/
 
 .header
@@ -346,7 +347,7 @@ section
 }
 
 /*********************************
-3.2 Header Content
+3.2 MainHeader Content
 *********************************/
 
 .header_container
@@ -447,7 +448,12 @@ section
 {
 	display: inline-block;
 }
-.navbar-nav a
+.profile_link
+{
+	cursor: pointer;
+}
+.navbar-nav a,
+.profile_link
 {
 	display: inline-block;
 	position: relative;
@@ -456,7 +462,8 @@ section
 {
 	margin-right: 44px;
 }
-.navbar-nav a
+.navbar-nav a,
+.profile_link
 {
 	font-size: 18px;
 	font-weight: 500;
@@ -468,7 +475,8 @@ section
 	transition: all 200ms ease;
 }
 .navbar-nav a:hover,
-.navbar-nav .active
+.navbar-nav .active,
+.profile_link:hover
 {
 	color: #14bdee;
 }
@@ -485,7 +493,6 @@ section
 }
 .fa-magnifying-glass
 {
-	margin-left: 46px;
 	cursor: pointer;
 }
 .fa-cart-shopping,
@@ -496,7 +503,8 @@ section
 }
 .fa-magnifying-glass,
 .fa-cart-shopping,
-.fa-user
+.fa-user,
+.fa-arrow-right-from-bracket
 {
 	font-size: 18px;
 	color: #181818;
@@ -509,6 +517,10 @@ section
 .navbar-nav > .fa-magnifying-glass:hover,
 .navbar-nav > .fa-cart-shopping:hover,
 .navbar-nav > .fa-user:hover
+{
+	/*font-size: 24px !important;*/
+}
+.fa-arrow-right-from-bracket:hover
 {
 	color: #14bdee;
 }
@@ -775,6 +787,10 @@ section
 	font-weight: 400 !important;
 	color: rgba(0,0,0,0.4) !important;
 }
+.sc-dPyBCJ.kTwPWZ
+{
+	height: 100vh;
+}
 
 /*********************************
 5. Section
@@ -802,6 +818,12 @@ section
 	width: 100%;
 	height: 100%;
 	background-image: url("../images/courses_background.jpg");
+}
+.navbar-toggler,
+.navbar-toggler:focus
+{
+	border: none !important;
+	box-shadow: none !important;
 }
 
 /*********************************
@@ -880,15 +902,18 @@ section
 .home_search_input:hover,
 .home_search_input:focus
 {
+	border-radius: 0 !important;
+	height: 46px !important;
 	width: 33.33333333%;
 	border: none;
 	outline: none;
 	height: 25px;
 	padding-left: 20px;
+	box-shadow: none !important;
 }
 .home_search_input:not(:last-child)
 {
-	border-right: solid 1px #e5e5e5;
+	margin-right: 2px;
 }
 .home_search_input::-webkit-input-placeholder
 {
@@ -1164,6 +1189,7 @@ section
 	text-transform: uppercase;
 	line-height: 46px;
 	color: #FFFFFF;
+	cursor: pointer;
 }
 
 /*********************************
@@ -1887,7 +1913,7 @@ section
 }
 
 /*********************************
-14. Footer
+14. MainFooter
 *********************************/
 
 .footer
@@ -2410,12 +2436,6 @@ section
 18. Courses_page
 *********************************/
 
-.courses
-{
-	width: 100%;
-	padding-top: 100px;
-	padding-bottom: 100px;
-}
 .courses_search_container
 {
 	padding-left: 20px;
@@ -2433,12 +2453,12 @@ section
 	height: 46px;
 	border: solid 1px #d9d9d9;
 	background: #FFFFFF;
-	padding-left: 20px;
 	border-radius: 3px 0 0 3px;
 }
 .courses_search_input:focus
 {
-	outline: solid 1px #14bdee;
+	box-shadow: none;
+	border: solid 1px #d9d9d9;
 }
 .courses_search_select
 {
@@ -2457,9 +2477,11 @@ section
 	border-radius: 0;
 	min-width: 0;
 }
-.courses_search_button
+.courses_search_button,
+.courses_search_button:active,
+.courses_search_button:hover,
+.courses_search_button:focus
 {
-	width: 161px;
 	height: 46px;
 	background: #14bdee;
 	color: #FFFFFF;
@@ -2469,11 +2491,8 @@ section
 	border: none;
 	outline: none;
 	border-radius: 3px;
+	box-shadow: none !important;
 	cursor: pointer;
-}
-.courses_row
-{
-	margin-top: 25px;
 }
 .course_col
 {
@@ -2494,111 +2513,13 @@ section
 {
 	padding-left: 30px;
 }
-.course_image
-{
-	width: 100%;
-	border-top-left-radius: 6px;
-	border-top-right-radius: 6px;
-	overflow: hidden;
-}
-.course_image img
-{
-	max-width: 100%;
-}
-.course_body
-{
-	padding-top: 22px;
-	padding-left: 30px;
-	padding-right: 30px;
-	padding-bottom: 23px;
-}
 .course_title
 {
 
 }
-.course_title a
-{
-	font-family: 'Roboto Slab', serif;
-	font-size: 20px;
-	color: #384158;
-	-webkit-transition: all 200ms ease;
-	-moz-transition: all 200ms ease;
-	-ms-transition: all 200ms ease;
-	-o-transition: all 200ms ease;
-	transition: all 200ms ease;
-}
-.course_title a:hover
-{
-	color: #14bdee;
-}
-.course_teacher
-{
-	font-size: 15px;
-	font-weight: 400;
-	color: #384158;
-	margin-top: 6px;
-}
-.course_text
-{
-	margin-top: 13px;
-}
-.course_footer
-{
-	padding-left: 30px;
-	padding-right: 30px;
-}
-.course_footer_content
-{
-	width: 100%;
-	border-top: solid 1px #e5e5e5;
-	padding-top: 9px;
-	padding-bottom: 11px;
-}
-.course_info
-{
-	display: inline-block;
-	font-size: 14px;
-	font-weight: 400;
-	color: #55555a;
-}
-.course_info:first-child
-{
-	margin-right: 18px;
-}
 .course_info i
 {
 	color: #ffc80a;
-}
-.course_price
-{
-	font-family: 'Roboto Slab', serif;
-	font-size: 20px;
-	font-weight: 700;
-	color: #14bdee;
-}
-.course_price span
-{
-	font-family: 'Roboto Slab', serif;
-	font-size: 14px;
-	font-weight: 400;
-	text-decoration: line-through;
-	color: #b5b8be;
-	margin-right: 10px;
-}
-.courses_button
-{
-	width: 210px;
-	height: 46px;
-	border-radius: 3px;
-	background: #14bdee;
-	text-align: center;
-	margin: 0 auto;
-	margin-top: 41px;
-	box-shadow: 0px 5px 40px rgba(29,34,47,0.15);
-}
-.courses_button:hover
-{
-	box-shadow: 0px 5px 40px rgba(29,34,47,0.45);
 }
 .courses_button a
 {
@@ -2822,6 +2743,23 @@ section
 {
 	width: 100%;
 	margin-top: 30px;
+}
+.auth_form
+{
+	margin-top: 0 !important;
+}
+.tabs_auth_container ul
+{
+	display: flex;
+	flex-direction: row;
+}
+.tabs_auth_container ul li
+{
+	width: 50%;
+}
+.tabs_auth_container .nav-link
+{
+	border-radius: 0;
 }
 .nav-link
 {
@@ -3590,12 +3528,15 @@ section
 {
 	padding: 15px 0;
 }
-/*.breadcrumb ul li*/
-/*{*/
-/*	display: inline-block;*/
-/*	position: relative;*/
-/*}*/
-.breadcrumb-item a
+.breadcrumbs ul
+{
+	padding-left: 0 !important;
+}
+.breadcrumbs ul li
+{
+	display: inline-block;
+}
+.breadcrumbs ul li a
 {
 	font-size: 14px;
 	font-weight: 400;
@@ -3606,7 +3547,7 @@ section
 	-o-transition: all 200ms ease;
 	transition: all 200ms ease;
 }
-.breadcrumb-item a:hover
+.breadcrumbs ul li a:hover
 {
 	color: #14bdee;
 }
@@ -4242,10 +4183,6 @@ section
 {
 	padding-right: 10px;
 }
-.comment_form
-{
-	margin-top: 35px;
-}
 .comment_input
 {
 	width: 100%;
@@ -4332,4 +4269,94 @@ section
 .location_list li:not(:last-child)
 {
 	margin-bottom: 9px;
+}
+
+/*********************************
+25. ProfileHeader
+*********************************/
+
+.pro-sidebar
+{
+	padding-left: 0;
+}
+.pro-sidebar > .pro-sidebar-inner
+{
+	color: #384158;
+	background: rgb(242, 244, 245);
+}
+.pro-sidebar .pro-menu > ul > .pro-sub-menu > .pro-inner-list-item
+{
+	color: #dcdcdc;
+	background: #384158;
+}
+.pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item:hover,
+.pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item:focus,
+.pro-sidebar.collapsed .pro-menu > ul > .pro-menu-item.pro-sub-menu:hover
+{
+	color: #384158;
+	background: #dcdcdc;
+}
+.pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item a,
+.pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item a:hover
+{
+	color: #384158;
+}
+.pro-sub-menu ul .pro-item-content a
+{
+	color: #dcdcdc !important;
+}
+.pro-sub-menu ul .pro-item-content a:hover
+{
+	color: #384158 !important;
+}
+.popper-inner .pro-menu-item
+{
+	padding-right: 20px !important;
+}
+.profile_page,
+.pro-sidebar > .pro-sidebar-inner > .pro-sidebar-layout .pro-sidebar-content
+{
+	overflow-y: scroll !important;
+}
+.profile_page::-webkit-scrollbar
+{
+	width: 5px;
+}
+.pro-sidebar > .pro-sidebar-inner > .pro-sidebar-layout .pro-sidebar-content::-webkit-scrollbar
+{
+	width: 2px;
+}
+.profile_page::-webkit-scrollbar-thumb,
+.pro-sidebar > .pro-sidebar-inner > .pro-sidebar-layout .pro-sidebar-content::-webkit-scrollbar-thumb
+{
+	background: #384158;
+}
+.progress-bar
+{
+	background-color: #14bdee;
+}
+.card-body
+{
+	color: #384158 !important;
+}
+.lesson p
+{
+	font-size: 18px;
+}
+
+
+.fade-enter
+{
+	opacity: 0;
+}
+.fade-enter.fade-enter-active {
+	opacity: 1;
+	transition: opacity 0.5s ease-in-out;
+}
+.fade-leave {
+	opacity: 1;
+}
+.fade-leave.fade-leave-active {
+	opacity: 0;
+	transition: opacity 0.5s ease-in-out;
 }

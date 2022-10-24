@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button, Form} from "react-bootstrap";
-import {PROFILE, RESET_PASSWORD} from "../../utils/consts";
-import {NavLink, useNavigate} from "react-router-dom";
+import {PROFILE} from "../../utils/consts";
+import {useNavigate} from "react-router-dom";
 
 const AuthForm = (props) => {
     const navigate = useNavigate();
@@ -26,16 +26,19 @@ const AuthForm = (props) => {
                               placeholder="Введите пароль"/>
             </Form.Group>
 
+            <Form.Group>
+                <Form.Label className="form_title">
+                    Пароль (еще раз):
+                </Form.Label>
+                <Form.Control className="comment_input"
+                              type="password"
+                              placeholder="Введите пароль (еще раз)"/>
+            </Form.Group>
+
             <Button className="comment_button w-100"
                     onClick={() => navigate(PROFILE)}>
                 Войти
             </Button>
-
-            <Form.Label>
-                <NavLink to={RESET_PASSWORD}>
-                    Забыли пароль?
-                </NavLink>
-            </Form.Label>
         </Form>
     );
 };

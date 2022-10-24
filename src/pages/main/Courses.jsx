@@ -1,14 +1,13 @@
 import React from 'react';
 import {Col, Container, Pagination, Row} from "react-bootstrap";
-import CoursesSearchForm from "../components/forms/CoursesSearchForm";
-import LargeCourse from "../components/courses/LargeCourse";
-import SidebarSection from "../components/sidebar/SidebarSection";
-import CoursesSidebar from "../components/sidebar/CoursesSidebar";
-import GallerySidebar from "../components/sidebar/GallerySidebar";
-import TagsSidebar from "../components/sidebar/TagsSidebar";
-import CategoriesSidebar from "../components/sidebar/CategoriesSidebar";
-import {NavLink} from "react-router-dom";
-import DownloadSidebar from "../components/sidebar/DownloadSidebar";
+import CoursesSearchForm from "../../components/forms/CoursesSearchForm";
+import LargeCourse from "../../components/courses/LargeCourse";
+import SidebarSection from "../../components/sidebar/SidebarSection";
+import CoursesSidebar from "../../components/sidebar/CoursesSidebar";
+import GallerySidebar from "../../components/sidebar/GallerySidebar";
+import TagsSidebar from "../../components/sidebar/TagsSidebar";
+import CategoriesSidebar from "../../components/sidebar/CategoriesSidebar";
+import DownloadSidebar from "../../components/sidebar/DownloadSidebar";
 
 const Courses = () => {
     const sidebar_sections = [

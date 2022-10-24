@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 import {Col, Container, Image, Row} from "react-bootstrap";
-import SidebarSection from "../components/sidebar/SidebarSection";
-import CoursesSidebar from "../components/sidebar/CoursesSidebar";
-import GallerySidebar from "../components/sidebar/GallerySidebar";
-import TagsSidebar from "../components/sidebar/TagsSidebar";
-import DownloadSidebar from "../components/sidebar/DownloadSidebar";
-import CategoriesSidebar from "../components/sidebar/CategoriesSidebar";
-import image from "../images/blog_single.jpg";
+import SidebarSection from "../../components/sidebar/SidebarSection";
+import CoursesSidebar from "../../components/sidebar/CoursesSidebar";
+import GallerySidebar from "../../components/sidebar/GallerySidebar";
+import TagsSidebar from "../../components/sidebar/TagsSidebar";
+import DownloadSidebar from "../../components/sidebar/DownloadSidebar";
+import CategoriesSidebar from "../../components/sidebar/CategoriesSidebar";
+import image from "../../images/blog_single.jpg";
 import {NavLink} from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -15,9 +15,9 @@ import {
     faGoogle,
     faTwitter
 } from "@fortawesome/free-brands-svg-icons";
-import Comments from "../components/comments/Comments";
-import CommentForm from "../components/forms/CommentForm";
-import AuthModal from "../components/modal/AuthModal";
+import Comments from "../../components/comments/Comments";
+import CommentForm from "../../components/forms/CommentForm";
+import AuthModal from "../../components/modal/AuthModal";
 
 const CurrentBlog = () => {
     const [is_authUser, setIsAuthUser] = useState(false);

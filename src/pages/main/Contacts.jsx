@@ -1,6 +1,6 @@
 import React from 'react';
 import { YMaps, Map } from "react-yandex-maps";
-import ContactForm from "../components/forms/ContactForm";
+import ContactForm from "../../components/forms/ContactForm";
 
 const Contacts = () => {
     return (

@@ -1,14 +1,14 @@
 import React from 'react';
 import {Col, Container, Image, Row, Tab, Tabs} from "react-bootstrap";
-import FeatureSidebar from "../components/sidebar/FeatureSidebar";
+import FeatureSidebar from "../../components/sidebar/FeatureSidebar";
 import {NavLink} from "react-router-dom";
-import image_course from "../images/course_image.jpg"
-import DescriptionCourse from "../components/tabs/DescriptionCourse";
-import CurriculumCourse from "../components/tabs/CurriculumCourse";
-import ReviewsCourse from "../components/tabs/ReviewsCourse";
-import SidebarSection from "../components/sidebar/SidebarSection";
-import TutorSidebar from "../components/sidebar/TutorSidebar";
-import CoursesSidebar from "../components/sidebar/CoursesSidebar";
+import image_course from "../../images/course_image.jpg"
+import DescriptionCourse from "../../components/tabs/DescriptionCourse";
+import CurriculumCourse from "../../components/tabs/CurriculumCourse";
+import ReviewsCourse from "../../components/tabs/ReviewsCourse";
+import SidebarSection from "../../components/sidebar/SidebarSection";
+import TutorSidebar from "../../components/sidebar/TutorSidebar";
+import CoursesSidebar from "../../components/sidebar/CoursesSidebar";
 
 const CurrentCourse = () => {
     const sidebar = [

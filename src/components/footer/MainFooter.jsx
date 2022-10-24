@@ -7,15 +7,15 @@ import googleStore_app from "../../images/mobile_1.png";
 import appStore_app from "../../images/mobile_2.png";
 import galaxyStore_app from "../../images/mobile_3.png";
 import {ABOUT_ROUTE} from "../../utils/consts";
-import NewsLetterSection from "./NewsLetterSection";
+import NewsLetterSection from "../others/NewsLetterSection";
 
-const Footer = () => {
+const MainFooter = () => {
+    const url = useLocation().pathname;
+
     return (
         <>
             {
-                useLocation().pathname === ABOUT_ROUTE ?
-                    <></> :
-                    <NewsLetterSection />
+                url !== ABOUT_ROUTE ? <NewsLetterSection /> : null
             }
             <div className="footer" >
                 <div className="footer_background"/>
@@ -110,4 +110,4 @@ const Footer = () => {
     );
 };
 
-export default Footer;
+export default MainFooter;

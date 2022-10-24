@@ -1,20 +1,14 @@
-import AppRouter from "./components/others/AppRouter";
 import {BrowserRouter, useLocation} from "react-router-dom";
-import Header from "./components/others/Header";
-import Footer from "./components/others/Footer";
-import TopBar from "./components/others/TopBar";
 import {useEffect} from "react";
-import Breadcrumbs from "./components/others/Breadcrumbs";
+import IndexMain from "./pages/main/IndexMain";
+import IndexProfile from "./pages/profile/IndexProfile";
 
 function App() {
     return (
         <BrowserRouter>
             <ScrollToTop />
-            <TopBar />
-            <Header />
-            <Breadcrumbs />
-            <AppRouter />
-            <Footer />
+            <IndexMain />
+            <IndexProfile />
         </BrowserRouter>
     );
 }

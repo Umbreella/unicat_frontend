@@ -1,5 +1,6 @@
 import {Col, Container, Row} from "react-bootstrap";
-import BlogSection from "../components/blog/BlogSection";
+import BlogSection from "../../components/blog/BlogSection";
+import React from "react";
 
 const Blog = () => {
     return (

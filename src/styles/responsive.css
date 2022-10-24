@@ -212,7 +212,11 @@
 	}
 	.courses_search_input
 	{
-		width: 240px;
+		/*width: 240px;*/
+	}
+	.profile_link
+	{
+		margin-bottom: 50px;
 	}
 	.course_col:not(:last-child)
 	{
@@ -281,8 +285,7 @@
 		margin-right: 0 !important;
 		margin-bottom: 15px;
 	}
-	.navbar-nav .fa-magnifying-glass,
-	.navbar-nav .fa-cart-shopping
+	.navbar-nav .fa-magnifying-glass
 	{
 		display: none;
 	}
@@ -521,4 +524,21 @@
 @media only screen and (max-width: 400px)
 {
 	
+}
+
+/************
+15. 270px
+************/
+
+@media only screen and (max-width: 270px)
+{
+	.pro-sidebar {
+		width: 100% !important;
+		min-width: 0px !important;
+	}
+	.pro-sidebar.collapsed
+	{
+		width: 80px !important;
+		min-width: 80px !important;
+	}
 }
