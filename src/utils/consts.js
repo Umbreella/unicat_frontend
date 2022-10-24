@@ -15,5 +15,6 @@ export const CERTIFICATES = '/user/certificates'
 export const SETTINGS = '/user/settings'
 export const MY_COURSES = '/user/mycourses'
 export const RESET_PASSWORD = '/reset'
+export const ENTER_EMAIL = '/email'
 
 export const LESSON_COURSE = '/course/1/lesson/1'

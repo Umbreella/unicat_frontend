@@ -9,7 +9,6 @@ import {
 } from "react-bootstrap";
 import {
     ABOUT_ROUTE,
-    PROFILE,
     BLOG_ROUTE,
     CONTACTS_ROUTE,
     COURSES_ROUTE,
@@ -19,7 +18,6 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
     faBars,
     faSearch,
-    faShoppingCart,
     faUser, faXmark
 } from "@fortawesome/free-solid-svg-icons";
 import {NavLink} from "react-router-dom";
@@ -29,7 +27,7 @@ import AuthModal from "../modal/AuthModal";
 import {useMediaQuery} from "react-responsive";
 
 const MainHeader = () => {
-    const [isVisibleToggleMenu, setVisibleToggleMenu] = useState(false);
+    const [isVisibleMenu, setVisibleMenu] = useState(false);
     const [isVisibleAuthForm, setVisibleAuthForm] = useState(false);
     const isLargeScreen = useMediaQuery({ query: '(min-width: 992px)' })
 
@@ -45,11 +43,10 @@ const MainHeader = () => {
         searchContainer.classList.remove("active");
     }
 
-    const visibleToggleMenu = () => {
+    const toggleMenu = () => {
         if (!isLargeScreen)
-            setVisibleToggleMenu(!isVisibleToggleMenu)
+            setVisibleMenu(!isVisibleMenu);
     }
-
 
     return (
         <ResizeObserver onResize={() => closeSearchContainer(null)}>
@@ -59,46 +56,52 @@ const MainHeader = () => {
                         <Row>
                             <Col>
                                 <div className="header_content d-flex flex-row align-items-center justify-content-start">
-                                    <Navbar expand="lg" expanded={isVisibleToggleMenu}>
+                                    <Navbar expand="lg">
                                         <Navbar.Brand>
                                             <NavLink to="/">
                                                 Unic<span>at</span>
                                             </NavLink>
                                         </Navbar.Brand>
 
-                                        <Navbar.Toggle onClick={visibleToggleMenu}>
+                                        <Navbar.Toggle onClick={toggleMenu}>
                                             <FontAwesomeIcon icon={faBars} />
                                         </Navbar.Toggle>
-                                        <Navbar.Offcanvas placement="end">
+
+                                        <Navbar.Offcanvas placement="end"
+                                                          restoreFocus={false}
+                                                          show={isVisibleMenu}
+                                                          onHide={() => setVisibleMenu(false)}>
                                             <OffcanvasHeader className="ms-auto">
                                                 <FontAwesomeIcon icon={faXmark}
-                                                                 onClick={visibleToggleMenu} />
+                                                                 onClick={toggleMenu}/>
                                             </OffcanvasHeader>
+
                                             <OffcanvasBody className="">
                                                 <div className="search">
                                                     <SearchForm />
                                                 </div>
                                                 <Nav className="ms-auto">
                                                     <NavLink to={HOME_ROUTE}
-                                                             onClick={visibleToggleMenu}>
+                                                             onClick={toggleMenu}>
                                                         Главная
                                                     </NavLink>
                                                     <NavLink to={ABOUT_ROUTE}
-                                                             onClick={visibleToggleMenu}>
+                                                             onClick={toggleMenu}>
                                                         О нас
                                                     </NavLink>
                                                     <NavLink to={COURSES_ROUTE}
-                                                             onClick={visibleToggleMenu}>
+                                                             onClick={toggleMenu}>
                                                         Курсы
                                                     </NavLink>
                                                     <NavLink to={BLOG_ROUTE}
-                                                             onClick={visibleToggleMenu}>
+                                                             onClick={toggleMenu}>
                                                         Блог
                                                     </NavLink>
                                                     <NavLink to={CONTACTS_ROUTE}
-                                                             onClick={visibleToggleMenu}>
+                                                             onClick={toggleMenu}>
                                                         Контакты
                                                     </NavLink>
+
                                                     <FontAwesomeIcon icon={faSearch} onClick={showSearchContainer}/>
 
                                                     <div className="profile_link"

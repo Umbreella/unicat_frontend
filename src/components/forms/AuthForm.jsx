@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button, Form} from "react-bootstrap";
-import {PROFILE, RESET_PASSWORD} from "../../utils/consts";
+import {ENTER_EMAIL, PROFILE, RESET_PASSWORD} from "../../utils/consts";
 import {NavLink, useNavigate} from "react-router-dom";
 
 const AuthForm = (props) => {
@@ -32,7 +32,7 @@ const AuthForm = (props) => {
             </Button>
 
             <Form.Label>
-                <NavLink to={RESET_PASSWORD}>
+                <NavLink to={ENTER_EMAIL}>
                     Забыли пароль?
                 </NavLink>
             </Form.Label>

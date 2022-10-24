@@ -4,6 +4,7 @@ import App from './App';
 import UserStore from "./store/UserStore";
 import './styles/main_styles.css';
 import './styles/responsive.css';
+import {BrowserRouter} from "react-router-dom";
 
 export const Context = createContext(null);
 
@@ -13,7 +14,9 @@ root.render(
         <Context.Provider value={{
             user: new UserStore()
         }}>
-            <App />
+            <BrowserRouter>
+                <App />
+            </BrowserRouter>
         </Context.Provider>
     </React.StrictMode>
 );

@@ -2,7 +2,7 @@ import React, {useEffect, useRef} from 'react';
 import {Route, Routes} from "react-router-dom";
 import {authRoutes} from "../../utils/routes";
 
-const ProfileRoutes = () => {
+const ProfileRouter = () => {
     const ref = useRef(null)
 
     useEffect(() => {
@@ -22,4 +22,4 @@ const ProfileRoutes = () => {
     );
 };
 
-export default ProfileRoutes;
+export default ProfileRouter;

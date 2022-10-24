@@ -8,7 +8,7 @@ import {
     SINGLE_BLOG_ROUTE,
     SINGLE_COURSES_ROUTE,
     CERTIFICATES,
-    MY_COURSES, LESSON_COURSE, SETTINGS, RESET_PASSWORD
+    MY_COURSES, LESSON_COURSE, SETTINGS, RESET_PASSWORD, ENTER_EMAIL
 } from "./consts";
 import Home from "../pages/main/Home";
 import Blog from "../pages/main/Blog";
@@ -22,7 +22,9 @@ import MyCertificates from "../pages/profile/MyCertificates";
 import MyCourses from "../pages/profile/MyCourses";
 import LessonCourse from "../pages/profile/LessonCourse";
 import Settings from "../pages/profile/Settings";
-import ResetPassword from "../pages/main/ResetPassword";
+import NewPasswordForm from "../components/forms/NewPasswordForm";
+import ResetPassword from "../pages/technical/ResetPassword";
+import EnterEmail from "../pages/technical/EnterEmail";
 
 export const authRoutes = [
     {
@@ -82,11 +84,16 @@ export const publicRoutes = [
         path: HOME_ROUTE,
         Component: Home,
         breadcrumb: "Главная"
-    },
-    {
-        path: RESET_PASSWORD,
-        Component: ResetPassword
     }
 ]
 
-// export const
+export const technicalRoutes = [
+    {
+        path: RESET_PASSWORD,
+        Component: ResetPassword
+    },
+    {
+        path: ENTER_EMAIL,
+        Component: EnterEmail
+    }
+]

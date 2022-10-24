@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {NavLink, useLocation} from "react-router-dom";
 import ProfileMenuSidebar from "../../components/header/ProfileMenuSidebar";
 import ResizeObserver from "rc-resize-observer";
-import ProfileRoutes from "../../components/routes/ProfileRoutes";
+import ProfileRouter from "../../components/routes/ProfileRouter";
 import {Col, Container, Row} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
@@ -53,7 +53,7 @@ const IndexProfile = () => {
 
                         <div className="profile_page"
                              style={{ height: "calc(100% - 55px)" }}>
-                            <ProfileRoutes />
+                            <ProfileRouter />
                         </div>
                     </div>
                 </div>
