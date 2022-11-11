@@ -216,7 +216,10 @@
 	}
 	.profile_link
 	{
+		width: 100%;
+		padding-top: 15px;
 		margin-bottom: 50px;
+		border-top: 2px solid #14bdee;
 	}
 	.course_col:not(:last-child)
 	{

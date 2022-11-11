@@ -1,11 +1,16 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {Col, Container, Row} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEnvelopeOpen, faPhone} from "@fortawesome/free-solid-svg-icons";
 import AuthModal from "../modal/AuthModal";
+import {Context} from "../../index";
 
 const TopBar = () => {
+    const {user} = useContext(Context);
     const [is_showAuthForm, setIsShowAuthForm] = useState(false);
+
+    if (user.isAuth)
+        return null;
 
     return (
         <div className="top_bar">

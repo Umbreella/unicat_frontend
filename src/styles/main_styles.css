@@ -476,9 +476,18 @@ section
 }
 .navbar-nav a:hover,
 .navbar-nav .active,
-.profile_link:hover
+.profile_link div:hover
 {
 	color: #14bdee;
+}
+.profile_link div
+{
+	text-align: right;
+	margin-bottom: 15px;
+}
+.dropdown-menu-end
+{
+	margin-right: 2px;
 }
 .navbar-nav .active::after
 {
@@ -790,6 +799,14 @@ section
 .sc-dPyBCJ.kTwPWZ
 {
 	height: 100vh;
+}
+.dropdown
+{
+	cursor: pointer;
+}
+.dropdown-toggle::after
+{
+	display: none !important;
 }
 
 /*********************************

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {
     Col,
     Container,
@@ -12,7 +12,7 @@ import {
     BLOG_ROUTE,
     CONTACTS_ROUTE,
     COURSES_ROUTE,
-    HOME_ROUTE
+    HOME_ROUTE, PROFILE
 } from "../../utils/consts";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
@@ -20,13 +20,18 @@ import {
     faSearch,
     faUser, faXmark
 } from "@fortawesome/free-solid-svg-icons";
-import {NavLink} from "react-router-dom";
+import Dropdown from 'react-bootstrap/Dropdown';
+import {NavLink, useNavigate} from "react-router-dom";
 import SearchForm from "../forms/SearchForm";
 import ResizeObserver from "rc-resize-observer";
 import AuthModal from "../modal/AuthModal";
 import {useMediaQuery} from "react-responsive";
+import {Context} from "../../index";
+import {logoutUser} from "../../http/UserApi";
 
 const MainHeader = () => {
+    const {user} = useContext(Context);
+    const navigate = useNavigate();
     const [isVisibleMenu, setVisibleMenu] = useState(false);
     const [isVisibleAuthForm, setVisibleAuthForm] = useState(false);
     const isLargeScreen = useMediaQuery({ query: '(min-width: 992px)' })
@@ -102,14 +107,44 @@ const MainHeader = () => {
                                                         Контакты
                                                     </NavLink>
 
-                                                    <FontAwesomeIcon icon={faSearch} onClick={showSearchContainer}/>
+                                                    <FontAwesomeIcon icon={faSearch}
+                                                                     onClick={showSearchContainer}/>
 
-                                                    <div className="profile_link"
-                                                         onClick={() => setVisibleAuthForm(true)}>
+                                                    <div className="profile_link">
                                                         {
                                                             isLargeScreen ?
-                                                                <FontAwesomeIcon icon={faUser}/> :
-                                                                "Профиль"
+                                                                user.isAuth ?
+                                                                    <Dropdown as='span' align="end">
+                                                                        <Dropdown.Toggle as='span'>
+                                                                            <FontAwesomeIcon icon={faUser}/>
+                                                                        </Dropdown.Toggle>
+
+                                                                        <Dropdown.Menu>
+                                                                            <Dropdown.Item as="a">
+                                                                                <span onClick={() => navigate(PROFILE)}>
+                                                                                    Профиль
+                                                                                </span>
+                                                                            </Dropdown.Item>
+                                                                            <Dropdown.Item href="#">
+                                                                                Выйти
+                                                                            </Dropdown.Item>
+                                                                        </Dropdown.Menu>
+                                                                    </Dropdown> :
+                                                                    <FontAwesomeIcon icon={faUser}
+                                                                                     onClick={() => setVisibleAuthForm(true)}/>
+                                                                :
+                                                                user.isAuth ?
+                                                                    <>
+                                                                        <div>
+                                                                            Профиль
+                                                                        </div>
+                                                                        <div>
+                                                                            Выйти
+                                                                        </div>
+                                                                    </> :
+                                                                    <div>
+                                                                        Войти
+                                                                    </div>
                                                         }
                                                     </div>
 

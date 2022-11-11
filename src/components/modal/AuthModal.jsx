@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Modal, Tab, Tabs} from "react-bootstrap";
 import AuthForm from "../forms/AuthForm";
 import RegForm from "../forms/RegForm";
@@ -7,7 +7,7 @@ const AuthModal = (props) => {
     return (
         <Modal
             {...props}
-            size="lg"
+            size="md"
             fullscreen="sm-down"
             aria-labelledby="contained-modal-title-vcenter"
             centered
@@ -17,7 +17,7 @@ const AuthModal = (props) => {
                     Unic<span>at</span>
                 </div>
             </Modal.Header>
-            <Modal.Body >
+            <Modal.Body>
                 <div className="tabs_auth_container">
                     <Tabs
                         defaultActiveKey="authForm"
