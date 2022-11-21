@@ -5,8 +5,15 @@ import UserStore from "./store/UserStore";
 import './styles/main_styles.css';
 import './styles/responsive.css';
 import {BrowserRouter} from "react-router-dom";
+import {CookiesProvider} from "react-cookie";
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+
 
 export const Context = createContext(null);
+export const GraphQLClient = new ApolloClient({
+    uri: process.env.REACT_APP_GRAPHQL_BASE_URL,
+    cache: new InMemoryCache(),
+})
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -15,7 +22,11 @@ root.render(
             user: new UserStore()
         }}>
             <BrowserRouter>
-                <App />
+                <CookiesProvider>
+                    <ApolloProvider client={GraphQLClient}>
+                        <App />
+                    </ApolloProvider>
+                </CookiesProvider>
             </BrowserRouter>
         </Context.Provider>
     </React.StrictMode>

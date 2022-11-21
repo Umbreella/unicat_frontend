@@ -5,23 +5,25 @@ import LargeCourse from "./LargeCourse";
 import {NavLink} from "react-router-dom";
 import {COURSES_ROUTE} from "../../utils/consts";
 
-const CoursesSection = () => {
-    const section= {
+const CoursesSection = (props) => {
+    const section = {
         title: "Популярные курсы",
         subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing" +
             "elit. Donec vel gravida arcu. Vestibulum feugiat, sapien " +
             "ultrices fermentum congue, quam velit venenatis sem"
     }
+    const data = props.data;
 
     return (
         <div className="courses">
-            <div className="section_background parallax-window" />
+            <div className="section_background parallax-window"/>
             <Container>
-                <TitleSection section={section} />
+                <TitleSection section={section}/>
                 <Row className="courses_row">
                     {
-                        [...Array(3)].map((value, index, array) =>
-                            <LargeCourse key={index} style={{col: "col-lg-4"}} />
+                        data?.edges?.map(({node}, index, array) =>
+                            <LargeCourse key={node.id} item={node}
+                                         style={{col: "col-lg-4"}}/>
                         )
                     }
                 </Row>

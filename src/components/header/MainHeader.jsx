@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {
     Col,
     Container,
@@ -51,6 +51,11 @@ const MainHeader = () => {
     const toggleMenu = () => {
         if (!isLargeScreen)
             setVisibleMenu(!isVisibleMenu);
+    }
+
+    const logout = async () => {
+        // const response = await logoutUser();
+        user.setIsAuth(false);
     }
 
     return (
@@ -113,37 +118,47 @@ const MainHeader = () => {
                                                     <div className="profile_link">
                                                         {
                                                             isLargeScreen ?
-                                                                user.isAuth ?
-                                                                    <Dropdown as='span' align="end">
-                                                                        <Dropdown.Toggle as='span'>
-                                                                            <FontAwesomeIcon icon={faUser}/>
-                                                                        </Dropdown.Toggle>
-
-                                                                        <Dropdown.Menu>
-                                                                            <Dropdown.Item as="a">
-                                                                                <span onClick={() => navigate(PROFILE)}>
-                                                                                    Профиль
-                                                                                </span>
-                                                                            </Dropdown.Item>
-                                                                            <Dropdown.Item href="#">
-                                                                                Выйти
-                                                                            </Dropdown.Item>
-                                                                        </Dropdown.Menu>
-                                                                    </Dropdown> :
-                                                                    <FontAwesomeIcon icon={faUser}
-                                                                                     onClick={() => setVisibleAuthForm(true)}/>
-                                                                :
+                                                                <Dropdown as='span' align="end">
+                                                                    <Dropdown.Toggle as='span'>
+                                                                        <FontAwesomeIcon icon={faUser} onClick={() => {
+                                                                            if (!user.isAuth){
+                                                                                setVisibleAuthForm(true);
+                                                                            }
+                                                                        }}/>
+                                                                    </Dropdown.Toggle>
+                                                                    {
+                                                                        user.isAuth ?
+                                                                            <Dropdown.Menu>
+                                                                                <Dropdown.Item as="a">
+                                                                                    <span onClick={() => navigate(PROFILE)}>
+                                                                                        Профиль
+                                                                                    </span>
+                                                                                </Dropdown.Item>
+                                                                                <Dropdown.Item href="#">
+                                                                                        <span onClick={() => logout()}>
+                                                                                            Выйти
+                                                                                        </span>
+                                                                                </Dropdown.Item>
+                                                                            </Dropdown.Menu> : <></>
+                                                                    }
+                                                                </Dropdown> :
                                                                 user.isAuth ?
                                                                     <>
                                                                         <div>
-                                                                            Профиль
+                                                                            <span onClick={() => navigate(PROFILE)}>
+                                                                                Профиль
+                                                                            </span>
                                                                         </div>
                                                                         <div>
-                                                                            Выйти
+                                                                            <span onClick={() => logout()}>
+                                                                                Выйти
+                                                                            </span>
                                                                         </div>
                                                                     </> :
                                                                     <div>
-                                                                        Войти
+                                                                        <span onClick={() => setVisibleAuthForm(true)}>
+                                                                            Войти
+                                                                        </span>
                                                                     </div>
                                                         }
                                                     </div>

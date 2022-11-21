@@ -3,6 +3,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const TutorMetaLine = (props) => {
     const tutorMeta = props.tutorMeta;
+
     return (
         <div
             className="teacher_meta d-flex flex-row align-items-center justify-content-between">

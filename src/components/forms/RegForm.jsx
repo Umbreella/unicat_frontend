@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import {Button, Form} from "react-bootstrap";
-import {ENTER_EMAIL, PROFILE} from "../../utils/consts";
-import {NavLink, useNavigate} from "react-router-dom";
+import {PROFILE} from "../../utils/consts";
+import {useNavigate} from "react-router-dom";
 import {Context} from "../../index";
 import {object, string} from "yup";
 import {Formik} from "formik";
@@ -129,12 +129,6 @@ const AuthForm = (props) => {
                         <Button type="submit" className="comment_button w-100">
                             Войти
                         </Button>
-
-                        <Form.Label>
-                            <NavLink to={ENTER_EMAIL}>
-                                Забыли пароль?
-                            </NavLink>
-                        </Form.Label>
                     </Form>
                 )
             }

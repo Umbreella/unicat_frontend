@@ -1,4 +1,19 @@
 import axios from 'axios'
+import {gql} from "@apollo/client";
+
+
+export const createQuery = (data) => {
+    let query = "";
+    data.forEach((value) => {
+        query += value
+    });
+
+    return gql`
+        query {
+            ${query}
+        }
+    `;
+}
 
 const publicHost = axios.create({
     baseURL: process.env.REACT_APP_API_BASE_URL,

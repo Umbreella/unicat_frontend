@@ -6,18 +6,23 @@ import {loginUser} from "../../http/UserApi";
 import {Context} from "../../index";
 import {Formik} from "formik";
 import { object, string } from 'yup';
+import {useCookies} from "react-cookie";
 
 
 const AuthForm = (props) => {
     const {user} = useContext(Context);
     const navigate = useNavigate();
+    const [cookies, setCookie] = useCookies(['user']);
 
     const signIn = async (data) => {
         const response = await loginUser(data);
 
         if (response.status === 200){
-            localStorage.setItem('access', response.data.access);
             user.setIsAuth(true);
+
+            localStorage.setItem('access', response.data.access);
+            setCookie('refresh', response.data.refresh);
+
             navigate(PROFILE);
         }
     }

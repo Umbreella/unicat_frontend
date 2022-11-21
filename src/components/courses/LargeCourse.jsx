@@ -6,25 +6,26 @@ import {faStar, faUserGraduate} from "@fortawesome/free-solid-svg-icons";
 import {SINGLE_COURSES_ROUTE} from "../../utils/consts";
 
 const LargeCourse = (props) => {
+    const item = props.item;
+
     return (
         <div className={props.style.col + " course_col "}>
             <div className="course">
                 <div className="course_image">
-                    <Image />
+                    <Image src={item.preview}/>
                 </div>
                 <div className="course_body">
                     <h3 className="course_title">
                         <NavLink to={SINGLE_COURSES_ROUTE}>
-                            Software Training
+                            {item.title}
                         </NavLink>
                     </h3>
                     <div className="course_teacher">
-                        Mr. John Taylor
+                        {item.teacher.fullName}
                     </div>
                     <div className="course_text">
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipi
-                            elitsed do eiusmod tempor
+                            {item.shortDescription}
                         </p>
                     </div>
                 </div>
@@ -33,7 +34,7 @@ const LargeCourse = (props) => {
                         align-items-center justify-content-start">
                         <div className="course_info">
                             <FontAwesomeIcon icon={faUserGraduate} style={{marginRight: 6}}/>
-                            <span>20 Student</span>
+                            <span>{item.countIndependents} Студентов</span>
                         </div>
                         <div className="course_info">
                             <FontAwesomeIcon icon={faStar} style={{marginRight: 6}}/>
@@ -41,7 +42,7 @@ const LargeCourse = (props) => {
                         </div>
                         <div className="course_price ms-auto">
                             <span>$150</span>
-                            $130
+                            {item.price}
                         </div>
                     </div>
                 </div>

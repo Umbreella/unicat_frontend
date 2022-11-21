@@ -4,12 +4,13 @@ import {Container, Row} from "react-bootstrap";
 import TitleSection from "../others/TitleSection";
 
 const TutorsSection = (props) => {
-    const section= {
+    const section = {
         title: "Наши преподаватели",
         subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing" +
             "elit. Donec vel gravida arcu. Vestibulum feugiat, sapien " +
             "ultrices fermentum congue, quam velit venenatis sem"
     }
+    const data = props.data;
 
     return (
         <div className="team">
@@ -19,8 +20,8 @@ const TutorsSection = (props) => {
                 <TitleSection section={section}/>
                 <Row className="team_row">
                     {
-                        [...Array(4)].map((value, index, array) =>
-                            <SmallTutor key={index}/>
+                        data?.edges?.map(({node}, index, array) =>
+                            <SmallTutor key={node.id} item={node}/>
                         )
                     }
                 </Row>
