@@ -9,7 +9,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import TutorMetaLine from "../tutors/TutorMetaLine";
 
-const TutorSidebar = () => {
+const TutorSidebar = (props) => {
+    const data = props.data;
+
     const metaParams = [
         {
             title: "Средний рейтинг",
@@ -34,12 +36,12 @@ const TutorSidebar = () => {
                 className="teacher_title_container d-flex flex-row align-items-center justify-content-start"
                 >
                 <div className="teacher_image">
-                    <Image src={teacher} />
+                    <Image src={data.photo} />
                 </div>
                 <div className="teacher_title">
                     <div className="teacher_name">
                         <NavLink to="#">
-                            Jacke Masito
+                            {data.fullName}
                         </NavLink>
                     </div>
                     <div className="teacher_position">
@@ -55,10 +57,9 @@ const TutorSidebar = () => {
                 }
             </div>
             <div className="teacher_info">
-                <p>Hi! I am Masion, I’m a marketing & management eros pulvinar
-                    velit laoreet, sit amet egestas erat dignissim. Sed quis
-                    rutrum tellus, sit amet viverra felis. Cras sagittis sem
-                    sit amet urna feugiat rutrum nam nulla ipsum.</p>
+                <p>
+                    {data.description}
+                </p>
             </div>
         </div>
     );

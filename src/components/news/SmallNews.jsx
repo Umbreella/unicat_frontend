@@ -1,18 +1,20 @@
 import React from 'react';
 import {NavLink} from "react-router-dom";
 
-const SmallNews = () => {
+const SmallNews = (props) => {
+    const data = props.data;
+
     return (
         <div className="news_post_small">
             <NavLink className="news_post_small_title" to="/">
-                Home-based business insurance issue (Spring 2017 - 2018)
+                {data.title}
             </NavLink>
             <div className="news_post_meta">
                 <NavLink to="/">
                     admin
                 </NavLink>
                 <NavLink to="/">
-                    november 11, 2017
+                    {data.createdAt}
                 </NavLink>
             </div>
         </div>

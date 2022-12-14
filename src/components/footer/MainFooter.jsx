@@ -24,7 +24,7 @@ const MainFooter = () => {
                         <Col>
                             <div className="footer_content">
                                 <Row>
-                                    <Col className="col-lg-4 footer_col">
+                                    <div className="col-lg-4 footer_col">
                                         <NavLink className="footer_logo_text" to="/">
                                             Unic<span>at</span>
                                         </NavLink>
@@ -55,8 +55,8 @@ const MainFooter = () => {
                                                 </li>
                                             </ul>
                                         </div>
-                                    </Col>
-                                    <Col className="col-lg-4 footer_col">
+                                    </div>
+                                    <div className="col-lg-4 footer_col">
                                         <div className="footer_title">
                                             Свяжитесь с нами
                                         </div>
@@ -67,8 +67,8 @@ const MainFooter = () => {
                                                 <li>40 Baria Sreet 133/2 New York City, United States</li>
                                             </ul>
                                         </div>
-                                    </Col>
-                                    <Col className="col-lg-4 footer_col clearfix">
+                                    </div>
+                                    <div className="col-lg-4 footer_col clearfix">
                                         <div className="footer_mobile_content">
                                             <NavLink className="footer_image" to="/">
                                                 <Image src={googleStore_app} />
@@ -80,7 +80,7 @@ const MainFooter = () => {
                                                 <Image src={galaxyStore_app} />
                                             </NavLink>
                                         </div>
-                                    </Col>
+                                    </div>
                                 </Row>
                             </div>
                         </Col>

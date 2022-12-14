@@ -1,12 +1,16 @@
 import React from 'react';
 import SmallCourse from "../courses/SmallCourse";
 
-const CoursesSidebar = () => {
+const CoursesSidebar = (props) => {
+    const data = props.data;
+
     return (
         <div className="sidebar_latest">
-            <SmallCourse />
-            <SmallCourse />
-            <SmallCourse />
+            {
+                data?.edges.map(({node}, index, array) =>
+                    <SmallCourse key={node.id} item={node}/>
+                )
+            }
         </div>
     );
 };

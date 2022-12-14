@@ -1,35 +1,24 @@
 import React from 'react';
 import {NavLink} from "react-router-dom";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faChevronRight} from "@fortawesome/free-solid-svg-icons";
 
-const CategoriesSidebar = () => {
+const CategoriesSidebar = (props) => {
+    const data = props.data;
+
     return (
         <div className="sidebar_categories">
             <ul>
-                <li>
-                    <NavLink to="#">
-                        Art & Design
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink to="#">
-                        Business
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink to="#">
-                        IT & Software
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink to="#">
-                        Languages
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink to="#">
-                        Programming
-                    </NavLink>
-                </li>
+                {
+                    data?.edges.map(({node}, index, array) =>
+                        <li key={node.id}>
+                            <NavLink to="#">
+                                <FontAwesomeIcon icon={faChevronRight} />
+                                {node.title}
+                            </NavLink>
+                        </li>
+                    )
+                }
             </ul>
         </div>
     );

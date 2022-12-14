@@ -1,8 +1,12 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { YMaps, Map } from "react-yandex-maps";
 import ContactForm from "../../components/forms/ContactForm";
 
 const Contacts = () => {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    });
+
     return (
         <div className="contact">
             <div className="contact_map">

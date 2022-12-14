@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {Routes, Route} from 'react-router-dom'
 import {publicRoutes} from "../../utils/routes";
 
@@ -10,7 +10,7 @@ function MainRouter() {
                     <Route exact
                            key={path}
                            path={path}
-                           element={<Component />} />
+                           element={<Component/>}/>
                 )
             }
         </Routes>

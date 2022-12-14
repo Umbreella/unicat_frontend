@@ -5,8 +5,6 @@ import {
     CONTACTS_ROUTE,
     COURSES_ROUTE,
     HOME_ROUTE,
-    SINGLE_BLOG_ROUTE,
-    SINGLE_COURSES_ROUTE,
     CERTIFICATES,
     MY_COURSES, LESSON_COURSE, SETTINGS, RESET_PASSWORD, ENTER_EMAIL
 } from "./consts";
@@ -22,7 +20,6 @@ import MyCertificates from "../pages/profile/MyCertificates";
 import MyCourses from "../pages/profile/MyCourses";
 import LessonCourse from "../pages/profile/LessonCourse";
 import Settings from "../pages/profile/Settings";
-import NewPasswordForm from "../components/forms/NewPasswordForm";
 import ResetPassword from "../pages/technical/ResetPassword";
 import EnterEmail from "../pages/technical/EnterEmail";
 
@@ -51,6 +48,11 @@ export const authRoutes = [
 
 export const publicRoutes = [
     {
+        path: HOME_ROUTE,
+        Component: Home,
+        breadcrumb: "Главная"
+    },
+    {
         path: ABOUT_ROUTE,
         Component: About,
         breadcrumb: "О нас"
@@ -61,7 +63,7 @@ export const publicRoutes = [
         breadcrumb: "Блог"
     },
     {
-        path: SINGLE_BLOG_ROUTE,
+        path: BLOG_ROUTE + "/:id",
         Component: CurrentBlog,
         breadcrumb: "Новость 1"
     },
@@ -76,14 +78,9 @@ export const publicRoutes = [
         breadcrumb: "Курсы"
     },
     {
-        path: SINGLE_COURSES_ROUTE,
+        path: COURSES_ROUTE + "/:id",
         Component: CurrentCourse,
         breadcrumb: "Курс 1"
-    },
-    {
-        path: HOME_ROUTE,
-        Component: Home,
-        breadcrumb: "Главная"
     }
 ]
 

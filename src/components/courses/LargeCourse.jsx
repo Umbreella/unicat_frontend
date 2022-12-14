@@ -1,12 +1,13 @@
 import React from 'react';
 import {Image} from "react-bootstrap";
-import {NavLink} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faStar, faUserGraduate} from "@fortawesome/free-solid-svg-icons";
-import {SINGLE_COURSES_ROUTE} from "../../utils/consts";
+import {COURSES_ROUTE} from "../../utils/consts";
 
 const LargeCourse = (props) => {
     const item = props.item;
+    const navigate = useNavigate();
 
     return (
         <div className={props.style.col + " course_col "}>
@@ -16,7 +17,7 @@ const LargeCourse = (props) => {
                 </div>
                 <div className="course_body">
                     <h3 className="course_title">
-                        <NavLink to={SINGLE_COURSES_ROUTE}>
+                        <NavLink to={COURSES_ROUTE + "/" + item.id}>
                             {item.title}
                         </NavLink>
                     </h3>
@@ -41,8 +42,17 @@ const LargeCourse = (props) => {
                             <span>5 Ratings</span>
                         </div>
                         <div className="course_price ms-auto">
-                            <span>$150</span>
-                            {item.price}
+                            {
+                                item.discount ?
+                                    <>
+                                        <span>{item.price}</span>
+                                        {item.discount}₽
+                                    </> :
+                                    <>
+                                        {item.price}₽
+                                    </>
+                            }
+
                         </div>
                     </div>
                 </div>

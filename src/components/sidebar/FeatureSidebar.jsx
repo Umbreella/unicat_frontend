@@ -6,40 +6,42 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import FeaturesSidebarLine from "../features/FeaturesSidebarLine";
 
-const FeatureSidebar = () => {
+const FeatureSidebar = (props) => {
+    const data = props.data;
+
     const features = [
         {
             title: 'Длительность',
-            value: '2 недели',
+            value: data.duration,
             icon: faClock
         },
         {
             title: 'Кол-во лекций',
-            value: '10',
+            value: data.countLectures,
             icon: faFileText
         },
         {
             title: 'Кол-во самостоятельных работ',
-            value: '6',
+            value: data.countIndependents,
             icon: faQuestionCircle
         },
         {
             title: 'Формат обучения',
-            value: 'Дистанционно',
+            value: data.learningFormat,
             icon: faListAlt
         },
-        {
-            title: 'Кол-во в группе',
-            value: '35',
-            icon: faUsers
-        }
+        // {
+        //     title: 'Кол-во в группе',
+        //     value: '35',
+        //     icon: faUsers
+        // }
     ]
 
     return (
         <div className="sidebar_feature">
             <div className="course_price"
                  style={{marginTop: 30, fontSize: 24}}>
-                $180
+                {data.price}₽
             </div>
             <div className="feature_list">
                 {

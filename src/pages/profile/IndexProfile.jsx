@@ -9,14 +9,14 @@ import {
     faArrowRightFromBracket,
     faBars
 } from "@fortawesome/free-solid-svg-icons";
-import {HOME_ROUTE} from "../../utils/consts";
+import {HOME_ROUTE, PROFILE} from "../../utils/consts";
 
 const IndexProfile = () => {
     const [isToggle, setIsToggle] = useState(false);
 
     const url = useLocation().pathname;
 
-    if (!(url.includes("/user") || url.includes("/lesson")))
+    if (!(url.includes(PROFILE) || url.includes("/lesson")))
         return null;
 
     return (

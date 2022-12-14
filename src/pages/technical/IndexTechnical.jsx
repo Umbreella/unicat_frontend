@@ -1,10 +1,20 @@
 import React from 'react';
 import TechnicalRouter from "../../components/routes/TechnicalRouter";
 import {Col, Container, Row} from "react-bootstrap";
-import {NavLink} from "react-router-dom";
-import {HOME_ROUTE} from "../../utils/consts";
+import {NavLink, useLocation} from "react-router-dom";
+import {
+    ENTER_EMAIL,
+    HOME_ROUTE,
+    PROFILE,
+    RESET_PASSWORD
+} from "../../utils/consts";
 
 const IndexTechnical = () => {
+    const url = useLocation().pathname;
+
+    if (!(url.includes(ENTER_EMAIL) || url.includes(RESET_PASSWORD)))
+        return null;
+
     return (
         <Container>
             <Row className="vh-100">

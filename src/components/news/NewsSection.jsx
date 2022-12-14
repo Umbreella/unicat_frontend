@@ -1,8 +1,11 @@
 import React from 'react';
-import {Col, Container, Row} from "react-bootstrap";
+import {Container, Row} from "react-bootstrap";
 import SmallNews from "./SmallNews";
 import LargeNews from "./LargeNews";
 import TitleSection from "../others/TitleSection";
+import {createQuery} from "../../http";
+import {useQuery} from "@apollo/client";
+import {getFirstNews} from "../../http/NewsApi";
 
 const NewsSection = () => {
     const section= {
@@ -12,26 +15,39 @@ const NewsSection = () => {
             "ultrices fermentum congue, quam velit venenatis sem"
     }
 
+    const newsQuery = getFirstNews(5, null);
+    const query = createQuery([newsQuery]);
+    const {data} = useQuery(query);
+
+    if (data === undefined){
+        return <></>;
+    }
+
+    const {node: firstNews} = data.allNews.edges[0];
+    const allNews = data.allNews.edges.slice(1);
+
+    console.log(allNews)
+
     return (
         <div className="news">
             <Container>
                 <TitleSection section={section}/>
                 <Row className="news_row">
-                    <Col className="col-lg-7 news_col">
+                    <div className="col-lg-7 news_col">
                         {
-                            <LargeNews />
+                            <LargeNews data={firstNews}/>
                         }
-                    </Col>
+                    </div>
 
-                    <Col className="col-lg-5 news_col">
+                    <div className="col-lg-5 news_col">
                         <div className="news_posts_small">
                             {
-                                [...Array(4)].map((value, index, array) =>
-                                    <SmallNews key={index}/>
+                                allNews.map(({node}, index, array) =>
+                                    <SmallNews key={node.id} data={node}/>
                                 )
                             }
                         </div>
-                    </Col>
+                    </div>
                 </Row>
             </Container>
         </div>

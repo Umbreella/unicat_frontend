@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Col, Container, Image, Row} from "react-bootstrap";
 import SidebarSection from "../../components/sidebar/SidebarSection";
 import CoursesSidebar from "../../components/sidebar/CoursesSidebar";
@@ -106,6 +106,10 @@ const CurrentBlog = () => {
             ]
         }
     ]
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    });
 
     return (
         <div className="blog">
