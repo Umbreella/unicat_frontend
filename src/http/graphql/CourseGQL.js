@@ -1,7 +1,9 @@
 
-export const getFirstCourses = (take, last) => {
+export const getCourses = () => {
     return `
-        allCourses (first: ${take}, after: "${last}") {
+        allCourses (first: $firstCourse, after: $afterCourse, 
+                    search: $searchCourse,
+                    category: $categoryIdFilter, orderBy: $orderByCourse) {
             edges {
                 node {
                     id
@@ -15,22 +17,22 @@ export const getFirstCourses = (take, last) => {
                         id
                         fullName
                     }
+                    statistic {
+                        avgRating
+                    }
                 }
             }
-            ${last !== null ? 
-                `pageInfo {
-                    startCursor
-                    endCursor
-                    hasNextPage
-                    hasPreviousPage
-                }`: ``}
+            pageInfo {
+                endCursor
+                hasNextPage
+            }
         }
     `;
 }
 
-export const getNewCourses = () => {
+export const getLatestCourses = () => {
     return `
-        newCourses: allCourses (first: 3) {
+        latestCourses (first: $firstLatestCourse) {
             edges {
                 node {
                     id
@@ -43,9 +45,9 @@ export const getNewCourses = () => {
     `;
 }
 
-export const getCurrentCourses = (id) => {
+export const getCurrentCourses = () => {
     return `
-        course (id: "${id}") {
+        course (id: $currentCourseId) {
             id
             title
             price
@@ -64,6 +66,15 @@ export const getCurrentCourses = (id) => {
             category {
                 id
                 title
+            }
+            statistic {
+                avgRating
+                countComments
+                countFiveRating
+                countFourRating
+                countThreeRating
+                countTwoRating
+                countOneRating
             }
         }
     `;

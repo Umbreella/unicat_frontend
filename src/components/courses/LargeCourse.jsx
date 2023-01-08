@@ -1,13 +1,13 @@
-import React from 'react';
+import React, {useContext, useEffect} from 'react';
 import {Image} from "react-bootstrap";
 import {NavLink, useNavigate} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faStar, faUserGraduate} from "@fortawesome/free-solid-svg-icons";
 import {COURSES_ROUTE} from "../../utils/consts";
+import {Context} from "../../index";
 
 const LargeCourse = (props) => {
     const item = props.item;
-    const navigate = useNavigate();
 
     return (
         <div className={props.style.col + " course_col "}>
@@ -34,12 +34,14 @@ const LargeCourse = (props) => {
                     <div className="course_footer_content d-flex flex-row
                         align-items-center justify-content-start">
                         <div className="course_info">
-                            <FontAwesomeIcon icon={faUserGraduate} style={{marginRight: 6}}/>
-                            <span>{item.countIndependents} Студентов</span>
+                            <FontAwesomeIcon icon={faUserGraduate}
+                                             style={{marginRight: 6}}/>
+                            <span>{item.countIndependents}</span>
                         </div>
                         <div className="course_info">
-                            <FontAwesomeIcon icon={faStar} style={{marginRight: 6}}/>
-                            <span>5 Ratings</span>
+                            <FontAwesomeIcon icon={faStar}
+                                             style={{marginRight: 6}}/>
+                            <span>{item.statistic.avgRating}</span>
                         </div>
                         <div className="course_price ms-auto">
                             {

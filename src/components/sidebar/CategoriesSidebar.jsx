@@ -10,7 +10,7 @@ const CategoriesSidebar = (props) => {
         <div className="sidebar_categories">
             <ul>
                 {
-                    data?.edges.map(({node}, index, array) =>
+                    data.map(({node}) =>
                         <li key={node.id}>
                             <NavLink to="#">
                                 <FontAwesomeIcon icon={faChevronRight} />

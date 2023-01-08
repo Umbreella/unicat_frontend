@@ -7,10 +7,10 @@ function MainRouter() {
         <Routes>
             {
                 publicRoutes.map(({path, Component, breadcrumb}) =>
-                    <Route exact
-                           key={path}
-                           path={path}
-                           element={<Component/>}/>
+                    Component && <Route exact
+                                        key={path}
+                                        path={path}
+                                        element={<Component/>}/>
                 )
             }
         </Routes>

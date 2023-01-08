@@ -6,7 +6,12 @@ import {
     COURSES_ROUTE,
     HOME_ROUTE,
     CERTIFICATES,
-    MY_COURSES, LESSON_COURSE, SETTINGS, RESET_PASSWORD, ENTER_EMAIL
+    MY_COURSES,
+    LESSON_COURSE,
+    SETTINGS,
+    RESET_PASSWORD,
+    ENTER_EMAIL,
+    NEWS_ROUTE, LAST_COURSE_BREADCRUMBS, LAST_BREADCRUMBS, EVENTS_ROUTE
 } from "./consts";
 import Home from "../pages/main/Home";
 import Blog from "../pages/main/Blog";
@@ -14,7 +19,7 @@ import About from "../pages/main/About";
 import Contacts from "../pages/main/Contacts";
 import Courses from "../pages/main/Courses";
 import CurrentCourse from "../pages/main/CurrentCourse";
-import CurrentBlog from "../pages/main/CurrentBlog";
+import CurrentNews from "../pages/main/CurrentNews";
 import MyEducation from "../pages/profile/MyEducation";
 import MyCertificates from "../pages/profile/MyCertificates";
 import MyCourses from "../pages/profile/MyCourses";
@@ -22,6 +27,7 @@ import LessonCourse from "../pages/profile/LessonCourse";
 import Settings from "../pages/profile/Settings";
 import ResetPassword from "../pages/technical/ResetPassword";
 import EnterEmail from "../pages/technical/EnterEmail";
+import CurrentEvent from "../pages/main/CurrentEvent";
 
 export const authRoutes = [
     {
@@ -63,9 +69,22 @@ export const publicRoutes = [
         breadcrumb: "Блог"
     },
     {
-        path: BLOG_ROUTE + "/:id",
-        Component: CurrentBlog,
-        breadcrumb: "Новость 1"
+        path: NEWS_ROUTE,
+        breadcrumb: "Новости"
+    },
+    {
+        path: NEWS_ROUTE + "/:id",
+        Component: CurrentNews,
+        breadcrumb: LAST_BREADCRUMBS
+    },
+    {
+        path: EVENTS_ROUTE,
+        breadcrumb: "Мероприятия"
+    },
+    {
+        path: EVENTS_ROUTE + "/:id",
+        Component: CurrentEvent,
+        breadcrumb: LAST_BREADCRUMBS
     },
     {
         path: CONTACTS_ROUTE,
@@ -80,7 +99,7 @@ export const publicRoutes = [
     {
         path: COURSES_ROUTE + "/:id",
         Component: CurrentCourse,
-        breadcrumb: "Курс 1"
+        breadcrumb: LAST_BREADCRUMBS
     }
 ]
 

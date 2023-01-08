@@ -1,9 +1,11 @@
 import React from 'react';
 import {Image} from "react-bootstrap";
 import {NavLink} from "react-router-dom";
+import {BLOG_ROUTE} from "../../utils/consts";
 
 const LargeNews = (props) => {
     const data = props.data;
+    const full_news_url = BLOG_ROUTE + "/news/" + data.id;
 
     return (
         <div className="news_post_large_container">
@@ -11,7 +13,7 @@ const LargeNews = (props) => {
                 <div className="news_post_image" style={{marginBottom: 23}}>
                     <Image src={data.preview}/>
                 </div>
-                <NavLink className="news_post_large_title" to="/">
+                <NavLink className="news_post_large_title" to={full_news_url}>
                     {data.title}
                 </NavLink>
                 <div className="news_post_meta">
@@ -26,7 +28,7 @@ const LargeNews = (props) => {
                     {data.shortDescription}
                 </div>
                 <div className="news_post_link">
-                    <NavLink to="">
+                    <NavLink to={full_news_url}>
                         read more
                     </NavLink>
                 </div>

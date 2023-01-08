@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useReducer, useState} from 'react';
 import {Col, Container, Row} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEnvelopeOpen, faPhone} from "@fortawesome/free-solid-svg-icons";
@@ -10,7 +10,7 @@ const TopBar = () => {
     const [is_showAuthForm, setIsShowAuthForm] = useState(false);
 
     if (user.isAuth)
-        return null;
+        return <></>
 
     return (
         <div className="top_bar">

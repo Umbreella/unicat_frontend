@@ -6,20 +6,22 @@ import './styles/main_styles.css';
 import './styles/responsive.css';
 import {BrowserRouter} from "react-router-dom";
 import {CookiesProvider} from "react-cookie";
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { ApolloClient, ApolloProvider } from '@apollo/client';
+import {cacheGraphQL} from "./http/graphql/cache";
 
 
 export const Context = createContext(null);
 export const GraphQLClient = new ApolloClient({
     uri: process.env.REACT_APP_GRAPHQL_BASE_URL,
-    cache: new InMemoryCache(),
+    cache: cacheGraphQL,
 })
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
         <Context.Provider value={{
-            user: new UserStore()
+            user: new UserStore(),
+            setLastBreadcrumbs: null,
         }}>
             <BrowserRouter>
                 <CookiesProvider>

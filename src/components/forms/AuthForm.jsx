@@ -2,26 +2,26 @@ import React, {useContext} from 'react';
 import {Button, Form} from "react-bootstrap";
 import {ENTER_EMAIL, PROFILE} from "../../utils/consts";
 import {NavLink, useNavigate} from "react-router-dom";
-import {loginUser} from "../../http/UserApi";
+import {loginUser} from "../../http/api/UserApi";
 import {Context} from "../../index";
 import {Formik} from "formik";
-import { object, string } from 'yup';
+import {object, string} from 'yup';
 import {useCookies} from "react-cookie";
 
 
 const AuthForm = (props) => {
     const {user} = useContext(Context);
     const navigate = useNavigate();
-    const [cookies, setCookie] = useCookies(['user']);
+    const [cookies, setCookie] = useCookies(["user"]);
 
     const signIn = async (data) => {
         const response = await loginUser(data);
 
-        if (response.status === 200){
+        if (response.status === 200) {
             user.setIsAuth(true);
 
-            localStorage.setItem('access', response.data.access);
-            setCookie('refresh', response.data.refresh);
+            localStorage.setItem("access", response.data.access);
+            setCookie("refresh", response.data.refresh);
 
             navigate(PROFILE);
         }
@@ -29,17 +29,17 @@ const AuthForm = (props) => {
 
     const schema = object().shape({
         email: string()
-            .email('Неверный email')
-            .max(128, 'Email должен быть не больше 128 символов')
-            .required('Email является обязательным полем'),
+            .email("Неверный email")
+            .max(128, "Email должен быть не больше 128 символов")
+            .required("Email является обязательным полем"),
         password: string()
-            .min(8, 'Пароль должен содержать не менее 8 символов')
-            .max(128, 'Пароль должен быть не больше 128 символов')
-            .required('Пароль является обязательным полем'),
+            .min(8, "Пароль должен содержать не менее 8 символов")
+            .max(128, "Пароль должен быть не больше 128 символов")
+            .required("Пароль является обязательным полем"),
     });
 
     return (
-        <Formik initialValues={{ email: '', password: '' }}
+        <Formik initialValues={{email: '', password: ''}}
                 onSubmit={signIn}
                 validationSchema={schema}>
             {
@@ -48,8 +48,8 @@ const AuthForm = (props) => {
                      handleChange,
                      values,
                      touched,
-                     isValid,
-                     errors, }) => (
+                     errors,
+                 }) => (
                     <Form className="auth_form comment_form"
                           validated={false}
                           onSubmit={handleSubmit}>

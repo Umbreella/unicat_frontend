@@ -1,14 +1,25 @@
-import React from 'react';
+import React, {useContext, useReducer} from 'react';
 import {Col, Container, Row} from "react-bootstrap";
-import {NavLink, useLocation} from "react-router-dom";
+import {Link, NavLink, useLocation} from "react-router-dom";
 import useBreadcrumbs from 'use-react-router-breadcrumbs';
 import {publicRoutes} from "../../utils/routes";
+import {Context} from "../../index";
+import {
+    BLOG_ROUTE,
+    EVENTS_ROUTE,
+    LAST_BREADCRUMBS,
+    NEWS_ROUTE
+} from "../../utils/consts";
+import {HashLink} from "react-router-hash-link";
 
 const Breadcrumbs = () => {
     const breadcrumbs = useBreadcrumbs(publicRoutes);
+    const context = useContext(Context);
+    const [lastBreadcrumb, changeLastBreadcrumb] = useReducer((state, action) => action, null);
+    context.setLastBreadcrumbs = changeLastBreadcrumb;
 
     if (useLocation().pathname === "/")
-        return null;
+        return <></>
 
     return (
         <div className="home">
@@ -19,21 +30,48 @@ const Breadcrumbs = () => {
                             <div className="breadcrumbs">
                                 <ul>
                                     {
-                                        breadcrumbs.map(({ match, breadcrumb }, index) => (
-                                            <li key={match.pathname}>
-                                                {
-                                                    index !== breadcrumbs.length - 1 ?
-                                                        <>
-                                                            <NavLink to={match.pathname}>
-                                                                {breadcrumb}
-                                                            </NavLink>
-                                                            <span style={{ margin: "0 8px", color: "#384158"}}>
-                                                                /
-                                                            </span>
-                                                        </> :
-                                                        <>{breadcrumb}</>
-                                                }
-
+                                        breadcrumbs.map(({
+                                                             match: {pathname},
+                                                             breadcrumb
+                                                         }, index) => (
+                                            <li key={pathname}>
+                                                <>
+                                                    {
+                                                        breadcrumb.props.children === LAST_BREADCRUMBS ?
+                                                            <>
+                                                                {lastBreadcrumb}
+                                                            </> :
+                                                            index === breadcrumbs.length - 1 ?
+                                                                <>{breadcrumb}</> :
+                                                                <>
+                                                                    {
+                                                                        pathname === EVENTS_ROUTE ?
+                                                                            <HashLink
+                                                                                to={BLOG_ROUTE + "#events"}
+                                                                                scroll={(el) => el.scrollIntoView({
+                                                                                    behavior: 'auto',
+                                                                                    block: 'start'
+                                                                                })}>
+                                                                                {breadcrumb}
+                                                                            </HashLink> :
+                                                                            pathname === NEWS_ROUTE ?
+                                                                                <Link
+                                                                                    to={BLOG_ROUTE}>
+                                                                                    {breadcrumb}
+                                                                                </Link> :
+                                                                                <Link
+                                                                                    to={pathname}>
+                                                                                    {breadcrumb}
+                                                                                </Link>
+                                                                    }
+                                                                    <span
+                                                                        style={{
+                                                                            margin: "0 8px",
+                                                                            color: "#384158"
+                                                                        }}>/</span>
+                                                                </>
+                                                    }
+                                                </>
                                             </li>
                                         ))
                                     }

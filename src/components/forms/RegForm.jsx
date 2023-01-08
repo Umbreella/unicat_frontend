@@ -5,7 +5,7 @@ import {useNavigate} from "react-router-dom";
 import {Context} from "../../index";
 import {object, string} from "yup";
 import {Formik} from "formik";
-import {registerUser} from "../../http/UserApi";
+import {registerUser} from "../../http/api/UserApi";
 
 const AuthForm = (props) => {
     const {user} = useContext(Context);

@@ -1,28 +1,27 @@
 import React from 'react'
 import {NavLink} from "react-router-dom";
 import {Image} from "react-bootstrap";
-import blog from "../../images/blog_1.jpg";
+import {NEWS_ROUTE} from "../../utils/consts";
 
-const LargeBlog = (props) => {
+const MediumNews = (props) => {
     const columnWidth = props.width;
-    const currentNews = props.news;
+    const data = props.data;
 
     return (
         <div className="blog_post">
-            {
-                currentNews.image && <div className="blog_post_image">
-                    <Image src={blog} />
-                </div>
-            }
+            <div className="blog_post_image">
+                <Image src={data.preview} />
+            </div>
             <div className="blog_post_body">
                 <div className="blog_post_title">
-                    <NavLink to="#">
-                        With Changing Students and Times
+                    <NavLink to={NEWS_ROUTE + "/" + data.id}>
+                        {data.title}
                     </NavLink>
                 </div>
                 <div className="blog_post_meta">
                     <ul>
-                        <li>november 11, 2017</li>
+                        <li>{data.author}</li>
+                        <li>{data.createdAt}</li>
                     </ul>
                 </div>
                 <div className="blog_post_text"
@@ -30,7 +29,7 @@ const LargeBlog = (props) => {
                          maxWidth: columnWidth
                      }}>
                     <p>
-                        {currentNews.body}
+                        {data.shortDescription}
                     </p>
                 </div>
             </div>
@@ -38,4 +37,4 @@ const LargeBlog = (props) => {
     );
 };
 
-export default LargeBlog;
+export default MediumNews;

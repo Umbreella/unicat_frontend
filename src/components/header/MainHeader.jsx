@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {
     Col,
     Container,
@@ -27,7 +27,6 @@ import ResizeObserver from "rc-resize-observer";
 import AuthModal from "../modal/AuthModal";
 import {useMediaQuery} from "react-responsive";
 import {Context} from "../../index";
-import {logoutUser} from "../../http/UserApi";
 
 const MainHeader = () => {
     const {user} = useContext(Context);

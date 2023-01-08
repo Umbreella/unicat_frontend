@@ -1,7 +1,7 @@
 
-export const getFirstTeacher = (take) => {
+export const getTeacher = () => {
     return `
-        allTeachers (first: ${take}) {
+        allTeachers (first: $firstTeacher, after: $afterTeacher) {
             edges {
                 node {
                     id

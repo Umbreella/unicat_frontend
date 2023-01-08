@@ -1,7 +1,7 @@
 
 export const getCategories = () => {
     return `
-        allCategories (orderBy: "title") {
+        allCategories (first: $firstCategory, orderBy: "title") {
             edges {
                 node {
                     id

@@ -1,47 +1,87 @@
 import React, {useState} from 'react';
 import CoursesSearchForm from "../forms/CoursesSearchForm";
-import {Col, Pagination, Row} from "react-bootstrap";
+import {Row} from "react-bootstrap";
 import LargeCourse from "./LargeCourse";
+import HorizontalLoader from "../loader/HorizontalLoader";
 
 const CoursesWithFilters = (props) => {
-    const data = props.data;
-    const setEndCursor = props.setEndCursor;
+    const {allCategories, allCourses} = props.data;
+    const {loadMoreCourse, updateFilteredData} = props.func;
 
-    const [numberCurrentPage, setNumberCurrentPage] = useState(1)
+    const [isLoadingMore, setIsLoadingMore] = useState(false);
 
     return (
         <>
             <div className="courses_search_container">
-                <CoursesSearchForm/>
+                <CoursesSearchForm
+                    data={{
+                        categoriesFilter: allCategories.edges,
+                    }}
+                    func={{
+                        updateFilteredData: updateFilteredData,
+                    }}/>
             </div>
             <div className="courses_container">
                 <Row className="courses_row">
                     {
-                        data?.edges.map(({node}, index, array) =>
-                            <LargeCourse key={node.id}
-                                         item={node}
-                                         style={{col: "col-lg-6"}}/>
-                        )
+                        allCourses.edges.length === 0 ?
+                            <div className="d-flex justify-content-center">
+                                <div style={{textAlign: "center"}}>
+                                    <h6 className="m-2">
+                                        Не удалось найти подходящие курсы
+                                    </h6>
+                                    Попробуйте изменить критерии поиска
+                                </div>
+                            </div> :
+                            <>
+                                {
+                                    allCourses.edges.map(({node}) =>
+                                        <LargeCourse key={node.id} item={node}
+                                                     style={{col: "col-lg-6"}}/>
+                                    )
+                                }
+                            </>
                     }
                 </Row>
-                <Row className="pagination_row">
-                    <Col>
-                        <div
-                            className="pagination_container d-flex flex-row align-items-center justify-content-start">
-                            <Pagination className="mx-auto">
-                                <Pagination.Prev/>
-                                <Pagination.Item>
-                                    {numberCurrentPage}
-                                </Pagination.Item>
-                                {
-                                    data?.pageInfo.hasNextPage ?
-                                        <Pagination.Next onClick={() => setEndCursor(data?.pageInfo.endCursor)}/> :
-                                        <></>
-                                }
-                            </Pagination>
-                        </div>
-                    </Col>
-                </Row>
+                {
+                    isLoadingMore ?
+                        <>
+                            <HorizontalLoader/>
+                        </> :
+                        <>
+                            {
+                                allCourses.pageInfo.hasNextPage &&
+                                <div className="courses_button trans_200"
+                                     onClick={() => {
+                                         setIsLoadingMore(true);
+                                         loadMoreCourse(allCourses.pageInfo.endCursor);
+                                         setIsLoadingMore(false);
+                                     }}>
+                                    Загрузить ещё
+                                </div>
+                            }
+                        </>
+                }
+
+
+                {/*<Row className="pagination_row">*/}
+                {/*    <Col>*/}
+                {/*        <div*/}
+                {/*            className="pagination_container d-flex flex-row align-items-center justify-content-start">*/}
+                {/*            <Pagination className="mx-auto">*/}
+                {/*                <Pagination.Prev/>*/}
+                {/*                <Pagination.Item>*/}
+                {/*                    {numberCurrentPage}*/}
+                {/*                </Pagination.Item>*/}
+                {/*                {*/}
+                {/*                    data?.pageInfo.hasNextPage ?*/}
+                {/*                        <Pagination.Next onClick={() => setEndCursor(data?.pageInfo.endCursor)}/> :*/}
+                {/*                        <></>*/}
+                {/*                }*/}
+                {/*            </Pagination>*/}
+                {/*        </div>*/}
+                {/*    </Col>*/}
+                {/*</Row>*/}
             </div>
         </>
     );
