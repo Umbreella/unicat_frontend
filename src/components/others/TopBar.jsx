@@ -1,13 +1,12 @@
-import React, {useContext, useReducer, useState} from 'react';
+import React, {useContext} from 'react';
 import {Col, Container, Row} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEnvelopeOpen, faPhone} from "@fortawesome/free-solid-svg-icons";
-import AuthModal from "../modal/AuthModal";
 import {Context} from "../../index";
+import {observer} from "mobx-react-lite";
 
-const TopBar = () => {
-    const {user} = useContext(Context);
-    const [is_showAuthForm, setIsShowAuthForm] = useState(false);
+const TopBar = observer(() => {
+    const {user, setVisibleAuthForm} = useContext(Context);
 
     if (user.isAuth)
         return <></>
@@ -28,7 +27,7 @@ const TopBar = () => {
                                         </div>
                                     </li>
                                     <li>
-                                        <FontAwesomeIcon icon={faPhone} />
+                                        <FontAwesomeIcon icon={faPhone}/>
                                         <div>001-1234-88888</div>
                                     </li>
                                     <li>
@@ -41,11 +40,10 @@ const TopBar = () => {
                                 </ul>
                                 <div className="top_bar_login ml-auto">
                                     <div className="login_button">
-                                        <div onClick={() => setIsShowAuthForm(true)}>
+                                        <div
+                                            onClick={() => setVisibleAuthForm(true)}>
                                             Войти
                                         </div>
-                                        <AuthModal show={is_showAuthForm}
-                                                   onHide={() => setIsShowAuthForm(false)} />
                                     </div>
                                 </div>
                             </div>
@@ -55,6 +53,6 @@ const TopBar = () => {
             </div>
         </div>
     );
-};
+});
 
 export default TopBar;

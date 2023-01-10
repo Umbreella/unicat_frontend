@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {Container, Row} from "react-bootstrap";
 import SidebarSection from "../../components/sidebar/SidebarSection";
 import CoursesSidebar from "../../components/sidebar/CoursesSidebar";

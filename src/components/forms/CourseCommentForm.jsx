@@ -1,13 +1,15 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {Button, Form} from "react-bootstrap";
 import {Rating} from "react-simple-star-rating";
 import {object, string} from "yup";
 import {Formik} from "formik";
 import {postCourseComment} from "../../http/api/CommentsApi";
+import {Context} from "../../index";
 
 const CourseCommentForm = (props) => {
     const {commented_id} = props.data;
     const {refetchData} = props.func;
+    const {setVisibleAuthForm} = useContext(Context);
     const [rating, setRating] = useState(5);
     const [isPosted, setIsPosted] = useState(false);
 
@@ -23,6 +25,11 @@ const CourseCommentForm = (props) => {
         };
 
         const response = await postCourseComment(data);
+
+        if (response === null) {
+            setVisibleAuthForm(true);
+            return;
+        }
 
         if (response.status === 201) {
             setIsPosted(true);
@@ -82,7 +89,8 @@ const CourseCommentForm = (props) => {
                                                 allowTitleTag={false}/>
                                     </Form.Group>
 
-                                    <Button type="submit" className="comment_button">
+                                    <Button type="submit"
+                                            className="comment_button">
                                         Отправить
                                     </Button>
                                 </Form>

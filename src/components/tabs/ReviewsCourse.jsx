@@ -1,18 +1,18 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import StarDivBar from "../reviews/StarDivBar";
 import Comments from "../comments/Comments";
 import {Container, Row} from "react-bootstrap";
 import {Rating} from 'react-simple-star-rating'
-import AuthModal from "../modal/AuthModal";
 import CourseCommentForm from "../forms/CourseCommentForm";
 import HorizontalLoader from "../loader/HorizontalLoader";
 import CommentLoader from "../loader/CommentLoader";
+import {observer} from "mobx-react-lite";
+import {Context} from "../../index";
 
 
-const ReviewsCourse = (props) => {
+const ReviewsCourse = observer ((props) => {
     const {course, rating} = props.data;
-    const [isAuthUser, setIsAuthUser] = useState(false);
-    const [isShowAuthForm, setIsShowAuthForm] = useState(false);
+    const {user, setVisibleAuthForm} = useContext(Context);
 
     const {query: {loading, data, refetch, fetchMore}} = props.func;
     const [isLoadingMore, setIsLoadingMore] = useState(false);
@@ -130,7 +130,7 @@ const ReviewsCourse = (props) => {
             <div className="add_comment_container">
                 <div className="add_comment_title">Оставить отзыв</div>
                 {
-                    isAuthUser ?
+                    user.isAuth ?
                         <CourseCommentForm data={{
                                                commented_id: course.id,
                                            }}
@@ -143,21 +143,16 @@ const ReviewsCourse = (props) => {
                                 авторизованным.
                             </div>
                             <div className="courses_button trans_200"
-                                 onClick={() => setIsShowAuthForm(true)}>
+                                 onClick={() => setVisibleAuthForm(true)}>
                                 <div>
                                     Войти
                                 </div>
                             </div>
                         </>
                 }
-                <AuthModal show={isShowAuthForm}
-                           onHide={() => {
-                               setIsShowAuthForm(false);
-                               setIsAuthUser(true)
-                           }}/>
             </div>
         </>
     );
-};
+});
 
 export default ReviewsCourse;

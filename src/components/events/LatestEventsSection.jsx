@@ -1,5 +1,5 @@
 import React from 'react';
-import {Col, Container, Row} from "react-bootstrap";
+import {Container, Row} from "react-bootstrap";
 import TitleSection from "../others/TitleSection";
 import LargeEvent from "./LargeEvent";
 
@@ -20,8 +20,8 @@ const LatestEventsSection = (props) => {
                 <Row className="events_row">
                     {
                         data.edges.map(({node}) =>
-                            <div className="col-lg-4">
-                                <LargeEvent key={node.id} data={node}/>
+                            <div className="col-lg-4" key={node.id}>
+                                <LargeEvent data={node}/>
                             </div>
                         )
                     }

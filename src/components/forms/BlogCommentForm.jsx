@@ -1,18 +1,18 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {Button, Form} from "react-bootstrap";
-import {Rating} from "react-simple-star-rating";
 import {object, string} from "yup";
 import {Formik} from "formik";
 import {
-    postCourseComment,
     postEventComment,
     postNewsComment
 } from "../../http/api/CommentsApi";
 import {EVENT_TYPE} from "../../utils/consts";
+import {Context} from "../../index";
 
 const BlogCommentForm = (props) => {
     const {commented_id, type} = props.data;
     const {refetchData} = props.func;
+    const {setVisibleAuthForm} = useContext(Context);
     const [isPosted, setIsPosted] = useState(false);
 
     const postCommentData = async (data) => {
@@ -21,12 +21,17 @@ const BlogCommentForm = (props) => {
             commented_id: commented_id
         }
 
-        let response = null
+        let response = null;
         if (type === EVENT_TYPE) {
             response = await postEventComment(data);
         }
         else {
             response = await postNewsComment(data);
+        }
+
+        if (response === null) {
+            setVisibleAuthForm(true);
+            return;
         }
 
         if (response.status === 201) {

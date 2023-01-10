@@ -1,45 +1,45 @@
 import React, {useContext} from 'react';
 import {Button, Form} from "react-bootstrap";
-import {ENTER_EMAIL, PROFILE} from "../../utils/consts";
-import {NavLink, useNavigate} from "react-router-dom";
+import {ENTER_EMAIL} from "../../utils/consts";
+import {NavLink} from "react-router-dom";
 import {loginUser} from "../../http/api/UserApi";
 import {Context} from "../../index";
 import {Formik} from "formik";
 import {object, string} from 'yup';
-import {useCookies} from "react-cookie";
 
 
 const AuthForm = (props) => {
-    const {user} = useContext(Context);
-    const navigate = useNavigate();
-    const [cookies, setCookie] = useCookies(["user"]);
+    const {user, setVisibleAuthForm} = useContext(Context);
 
     const signIn = async (data) => {
-        const response = await loginUser(data);
-
-        if (response.status === 200) {
-            user.setIsAuth(true);
-
-            localStorage.setItem("access", response.data.access);
-            setCookie("refresh", response.data.refresh);
-
-            navigate(PROFILE);
+        const request_data = {
+            email: data.login_email,
+            password: data.login_password,
         }
+
+        await loginUser(request_data)
+            .then((response) => {
+                if (response.status === 200) {
+                    localStorage.setItem("access", response.data.access);
+                    user.setIsAuth(true);
+                    setVisibleAuthForm(false);
+                }
+            });
     }
 
     const schema = object().shape({
-        email: string()
+        login_email: string()
             .email("Неверный email")
             .max(128, "Email должен быть не больше 128 символов")
             .required("Email является обязательным полем"),
-        password: string()
+        login_password: string()
             .min(8, "Пароль должен содержать не менее 8 символов")
             .max(128, "Пароль должен быть не больше 128 символов")
             .required("Пароль является обязательным полем"),
     });
 
     return (
-        <Formik initialValues={{email: '', password: ''}}
+        <Formik initialValues={{login_email: '', login_password: ''}}
                 onSubmit={signIn}
                 validationSchema={schema}>
             {
@@ -59,14 +59,14 @@ const AuthForm = (props) => {
                             </Form.Label>
                             <Form.Control className="comment_input"
                                           type="email"
-                                          id="email"
+                                          id="login_email"
                                           placeholder="Введите email"
-                                          value={values.email}
+                                          value={values.login_email}
                                           onChange={handleChange}
-                                          isValid={touched.email && !errors.email}
-                                          isInvalid={!!errors.email}/>
+                                          isValid={touched.login_email && !errors.login_email}
+                                          isInvalid={!!errors.login_email}/>
                             <Form.Control.Feedback type="invalid">
-                                {errors.email}
+                                {errors.login_email}
                             </Form.Control.Feedback>
                         </Form.Group>
 
@@ -76,7 +76,7 @@ const AuthForm = (props) => {
                             </Form.Label>
                             <Form.Control className="comment_input"
                                           type="password"
-                                          id="password"
+                                          id="login_password"
                                           placeholder="Введите пароль"
                                           value={values.password}
                                           onChange={handleChange}

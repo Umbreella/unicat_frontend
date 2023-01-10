@@ -10,7 +10,6 @@ import {
     faTwitter
 } from "@fortawesome/free-brands-svg-icons";
 import Comments from "../../components/comments/Comments";
-import AuthModal from "../../components/modal/AuthModal";
 import {getLatestCourses} from "../../http/graphql/CourseGQL";
 import {gql, useQuery} from "@apollo/client";
 import {getCurrentNews} from "../../http/graphql/NewsGQL";
@@ -19,24 +18,22 @@ import {getNewsComments} from "../../http/graphql/CommentGQL";
 import PageLoader from "../../components/loader/PageLoader";
 import {Context} from "../../index";
 import BlogCommentForm from "../../components/forms/BlogCommentForm";
-import {EVENT_TYPE, NEWS_TYPE} from "../../utils/consts";
+import {NEWS_TYPE} from "../../utils/consts";
 import CommentLoader from "../../components/loader/CommentLoader";
 import GallerySidebar from "../../components/sidebar/GallerySidebar";
 import TagsSidebar from "../../components/sidebar/TagsSidebar";
 import DownloadSidebar from "../../components/sidebar/DownloadSidebar";
 
 const CurrentNews = () => {
-    const [isAuthUser, setIsAuthUser] = useState(false);
-    const [isShowAuthForm, setIsShowAuthForm] = useState(false);
-    const [isLoadingMore, setIsLoadingMore] = useState(false);
-
     const params = useParams();
     const context = useContext(Context);
+    const {user, setVisibleAuthForm} = context;
 
     const currentNewsQuery = getCurrentNews();
     const newCoursesQuery = getLatestCourses();
     const commentCourseQuery = getNewsComments();
 
+    const [isLoadingMore, setIsLoadingMore] = useState(false);
     const resultQuery = gql`
         query CurrentBlogPage($currentNewsId: ID!,
                               $newsId: String, $afterNewsComment: String,
@@ -56,6 +53,8 @@ const CurrentNews = () => {
     useEffect(() => {
         if (data !== undefined) {
             context.setLastBreadcrumbs(data.news.title);
+        } else {
+            context.setLastBreadcrumbs('');
         }
     });
 
@@ -134,7 +133,7 @@ const CurrentNews = () => {
                                             Написать комментарий
                                         </div>
                                         {
-                                            isAuthUser ?
+                                            user.isAuth ?
                                                 <BlogCommentForm
                                                     data={{
                                                         commented_id: params.id,
@@ -144,17 +143,12 @@ const CurrentNews = () => {
                                                         refetchData: updateNewsComments
                                                     }}/> :
                                                 <div className="courses_button trans_200"
-                                                     onClick={() => setIsShowAuthForm(true)}>
+                                                     onClick={() => setVisibleAuthForm(true)}>
                                                     <div>
                                                         Войти
                                                     </div>
                                                 </div>
                                         }
-                                        <AuthModal show={isShowAuthForm}
-                                                   onHide={() => {
-                                                       setIsShowAuthForm(false);
-                                                       setIsAuthUser(true)
-                                                   }}/>
                                     </div>
                                     <div className="comments_title">
                                         Комментариев: <span>30</span>

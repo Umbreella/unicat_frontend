@@ -11,7 +11,7 @@ import {
     SETTINGS,
     RESET_PASSWORD,
     ENTER_EMAIL,
-    NEWS_ROUTE, LAST_COURSE_BREADCRUMBS, LAST_BREADCRUMBS, EVENTS_ROUTE
+    NEWS_ROUTE, LAST_BREADCRUMBS, EVENTS_ROUTE
 } from "./consts";
 import Home from "../pages/main/Home";
 import Blog from "../pages/main/Blog";

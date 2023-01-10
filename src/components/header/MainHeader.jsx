@@ -17,35 +17,22 @@ import {
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
     faBars,
-    faSearch,
     faUser, faXmark
 } from "@fortawesome/free-solid-svg-icons";
 import Dropdown from 'react-bootstrap/Dropdown';
 import {NavLink, useNavigate} from "react-router-dom";
 import SearchForm from "../forms/SearchForm";
 import ResizeObserver from "rc-resize-observer";
-import AuthModal from "../modal/AuthModal";
 import {useMediaQuery} from "react-responsive";
 import {Context} from "../../index";
+import {logoutUser} from "../../http/api/UserApi";
+import {observer} from "mobx-react-lite";
 
-const MainHeader = () => {
-    const {user} = useContext(Context);
+const MainHeader = observer(() => {
+    const {user, setVisibleAuthForm} = useContext(Context);
     const navigate = useNavigate();
     const [isVisibleMenu, setVisibleMenu] = useState(false);
-    const [isVisibleAuthForm, setVisibleAuthForm] = useState(false);
-    const isLargeScreen = useMediaQuery({ query: '(min-width: 992px)' })
-
-    const showSearchContainer = (e) => {
-        e.preventDefault();
-        const searchContainer = document.getElementById("search_container");
-        searchContainer.classList.toggle("active");
-    }
-
-    const closeSearchContainer = (e) => {
-        e?.preventDefault();
-        const searchContainer = document.getElementById("search_container");
-        searchContainer.classList.remove("active");
-    }
+    const isLargeScreen = useMediaQuery({query: '(min-width: 992px)'});
 
     const toggleMenu = () => {
         if (!isLargeScreen)
@@ -53,18 +40,25 @@ const MainHeader = () => {
     }
 
     const logout = async () => {
-        // const response = await logoutUser();
-        user.setIsAuth(false);
+        await logoutUser()
+            .then((response) => {
+                if (response.status === 200) {
+                    user.setIsAuth(false);
+                    localStorage.removeItem("access");
+                    toggleMenu();
+                }
+            });
     }
 
     return (
-        <ResizeObserver onResize={() => closeSearchContainer(null)}>
+        <ResizeObserver>
             <div className="sticky-top">
                 <div className="header_container">
                     <Container>
                         <Row>
                             <Col>
-                                <div className="header_content d-flex flex-row align-items-center justify-content-start">
+                                <div
+                                    className="header_content d-flex flex-row align-items-center justify-content-start">
                                     <Navbar expand="lg">
                                         <Navbar.Brand>
                                             <NavLink to="/">
@@ -73,22 +67,20 @@ const MainHeader = () => {
                                         </Navbar.Brand>
 
                                         <Navbar.Toggle onClick={toggleMenu}>
-                                            <FontAwesomeIcon icon={faBars} />
+                                            <FontAwesomeIcon icon={faBars}/>
                                         </Navbar.Toggle>
 
                                         <Navbar.Offcanvas placement="end"
                                                           restoreFocus={false}
                                                           show={isVisibleMenu}
                                                           onHide={() => setVisibleMenu(false)}>
-                                            <OffcanvasHeader className="ms-auto">
+                                            <OffcanvasHeader
+                                                className="ms-auto">
                                                 <FontAwesomeIcon icon={faXmark}
                                                                  onClick={toggleMenu}/>
                                             </OffcanvasHeader>
 
-                                            <OffcanvasBody className="">
-                                                <div className="search">
-                                                    <SearchForm />
-                                                </div>
+                                            <OffcanvasBody>
                                                 <Nav className="ms-auto">
                                                     <NavLink to={HOME_ROUTE}
                                                              onClick={toggleMenu}>
@@ -106,64 +98,68 @@ const MainHeader = () => {
                                                              onClick={toggleMenu}>
                                                         Блог
                                                     </NavLink>
-                                                    <NavLink to={CONTACTS_ROUTE}
-                                                             onClick={toggleMenu}>
+                                                    <NavLink
+                                                        to={CONTACTS_ROUTE}
+                                                        onClick={toggleMenu}>
                                                         Контакты
                                                     </NavLink>
 
-                                                    <FontAwesomeIcon icon={faSearch}
-                                                                     onClick={showSearchContainer}/>
-
-                                                    <div className="profile_link">
+                                                    <div
+                                                        className="profile_link">
                                                         {
                                                             isLargeScreen ?
-                                                                <Dropdown as='span' align="end">
-                                                                    <Dropdown.Toggle as='span'>
-                                                                        <FontAwesomeIcon icon={faUser} onClick={() => {
-                                                                            if (!user.isAuth){
-                                                                                setVisibleAuthForm(true);
-                                                                            }
-                                                                        }}/>
+                                                                <Dropdown
+                                                                    as='span'
+                                                                    align="end">
+                                                                    <Dropdown.Toggle
+                                                                        as='span'>
+                                                                        <FontAwesomeIcon
+                                                                            icon={faUser}
+                                                                            onClick={() => {
+                                                                                if (!user.isAuth) {
+                                                                                    setVisibleAuthForm(true);
+                                                                                }
+                                                                            }}/>
                                                                     </Dropdown.Toggle>
                                                                     {
-                                                                        user.isAuth ?
-                                                                            <Dropdown.Menu>
-                                                                                <Dropdown.Item as="a">
-                                                                                    <span onClick={() => navigate(PROFILE)}>
-                                                                                        Профиль
-                                                                                    </span>
-                                                                                </Dropdown.Item>
-                                                                                <Dropdown.Item href="#">
-                                                                                        <span onClick={() => logout()}>
-                                                                                            Выйти
-                                                                                        </span>
-                                                                                </Dropdown.Item>
-                                                                            </Dropdown.Menu> : <></>
+                                                                        user.isAuth &&
+                                                                        <Dropdown.Menu>
+                                                                            <Dropdown.Item as="a">
+                                                                                <span onClick={() => navigate(PROFILE)}>
+                                                                                    Профиль
+                                                                                </span>
+                                                                            </Dropdown.Item>
+                                                                            <Dropdown.Item href="#">
+                                                                                <span onClick={() => logout()}>
+                                                                                    Выйти
+                                                                                </span>
+                                                                            </Dropdown.Item>
+                                                                        </Dropdown.Menu>
                                                                     }
                                                                 </Dropdown> :
                                                                 user.isAuth ?
                                                                     <>
                                                                         <div>
-                                                                            <span onClick={() => navigate(PROFILE)}>
+                                                                            <span
+                                                                                onClick={() => navigate(PROFILE)}>
                                                                                 Профиль
                                                                             </span>
                                                                         </div>
                                                                         <div>
-                                                                            <span onClick={() => logout()}>
+                                                                            <span
+                                                                                onClick={() => logout()}>
                                                                                 Выйти
                                                                             </span>
                                                                         </div>
                                                                     </> :
                                                                     <div>
-                                                                        <span onClick={() => setVisibleAuthForm(true)}>
+                                                                        <span
+                                                                            onClick={() => setVisibleAuthForm(true)}>
                                                                             Войти
                                                                         </span>
                                                                     </div>
                                                         }
                                                     </div>
-
-                                                    <AuthModal show={isVisibleAuthForm}
-                                                               onHide={() => setVisibleAuthForm(false)} />
                                                 </Nav>
                                             </OffcanvasBody>
                                         </Navbar.Offcanvas>
@@ -179,7 +175,7 @@ const MainHeader = () => {
                             <Col className="col-lg-5">
                                 <div
                                     className="header_search_content d-flex flex-row align-items-center justify-content-end">
-                                    <SearchForm />
+                                    <SearchForm/>
                                 </div>
                             </Col>
                         </Row>
@@ -188,6 +184,6 @@ const MainHeader = () => {
             </div>
         </ResizeObserver>
     );
-};
+});
 
 export default MainHeader;

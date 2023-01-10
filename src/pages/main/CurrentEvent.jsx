@@ -10,7 +10,6 @@ import {
     faTwitter
 } from "@fortawesome/free-brands-svg-icons";
 import Comments from "../../components/comments/Comments";
-import AuthModal from "../../components/modal/AuthModal";
 import {getLatestCourses} from "../../http/graphql/CourseGQL";
 import {gql, useQuery} from "@apollo/client";
 import {Interweave} from "interweave";
@@ -29,17 +28,15 @@ import {EVENT_TYPE} from "../../utils/consts";
 import {faClock, faMapMarker} from "@fortawesome/free-solid-svg-icons";
 
 const CurrentEvent = () => {
-    const [isAuthUser, setIsAuthUser] = useState(false);
-    const [isShowAuthForm, setIsShowAuthForm] = useState(false);
-    const [isLoadingMore, setIsLoadingMore] = useState(false);
-
     const params = useParams();
     const context = useContext(Context);
+    const {user, setVisibleAuthForm} = context;
 
     const currentEventQuery = getCurrentEvents();
     const newCoursesQuery = getLatestCourses();
     const commentCourseQuery = getEventComments();
 
+    const [isLoadingMore, setIsLoadingMore] = useState(false);
     const resultQuery = gql`
         query CurrentEventPage($currentEventId: ID!,
                                $eventId: String, $afterEventComment: String,
@@ -49,7 +46,6 @@ const CurrentEvent = () => {
             ${newCoursesQuery}
         }
     `;
-
     const {loading, data, refetch, fetchMore} = useQuery(resultQuery, {
         variables: {
             currentEventId: params.id,
@@ -61,6 +57,8 @@ const CurrentEvent = () => {
     useEffect(() => {
         if (data !== undefined) {
             context.setLastBreadcrumbs(data.event.title);
+        } else {
+            context.setLastBreadcrumbs('');
         }
     });
 
@@ -173,7 +171,7 @@ const CurrentEvent = () => {
                                             Написать комментарий
                                         </div>
                                         {
-                                            isAuthUser ?
+                                            user.isAuth ?
                                                 <BlogCommentForm
                                                     data={{
                                                         commented_id: params.id,
@@ -184,17 +182,12 @@ const CurrentEvent = () => {
                                                     }}/> :
                                                 <div
                                                     className="courses_button trans_200"
-                                                    onClick={() => setIsShowAuthForm(true)}>
+                                                    onClick={() => setVisibleAuthForm(true)}>
                                                     <div>
                                                         Войти
                                                     </div>
                                                 </div>
                                         }
-                                        <AuthModal show={isShowAuthForm}
-                                                   onHide={() => {
-                                                       setIsShowAuthForm(false);
-                                                       setIsAuthUser(true)
-                                                   }}/>
                                     </div>
                                     <div className="comments_title">
                                         Комментариев: <span>30</span>

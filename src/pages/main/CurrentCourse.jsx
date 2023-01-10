@@ -49,6 +49,8 @@ const CurrentCourse = () => {
     useEffect(() => {
         if (data !== undefined) {
             context.setLastBreadcrumbs(data.course.title);
+        } else {
+            context.setLastBreadcrumbs('');
         }
     })
 

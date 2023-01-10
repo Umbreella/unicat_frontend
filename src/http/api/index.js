@@ -2,18 +2,20 @@ import axios from "axios";
 
 const publicHost = axios.create({
     baseURL: process.env.REACT_APP_API_BASE_URL,
+    withCredentials: true,
 })
 
 const authHost = axios.create({
     baseURL: process.env.REACT_APP_API_BASE_URL,
+    withCredentials: true,
 })
 
 axios.defaults.withCredentials = true;
 authHost.interceptors.request.use(
     config => {
-        const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc0MDIxMjc3LCJpYXQiOjE2Njc5NzMyNzcsImp0aSI6IjMzNzdlYTY4MTYzYjRmYjk4MWUxOTViNzdiMWViNWJiIiwidXNlcl9pZCI6Mn0.5Tlkh74Y6Of2H-XDhO1r2DkM0Vh3lcEGKq-e0xv6H-0'
-        if (token) {
-            config.headers['Authorization'] = 'Bearer ' + token
+        const token = localStorage.getItem("access");
+        if (token !== null) {
+            config.headers['Authorization'] = 'Bearer ' + token;
         }
         return config
     },

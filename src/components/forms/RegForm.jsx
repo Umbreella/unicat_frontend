@@ -11,41 +11,51 @@ const AuthForm = (props) => {
     const {user} = useContext(Context);
     const navigate = useNavigate();
 
-    const signUp = async (validated_data) => {
-        const data = {
-            email: validated_data.email,
-            password: validated_data.password,
-            first_name: validated_data.first_name,
-            last_name: validated_data.last_name
+    const signUp = async (data) => {
+        const request_data = {
+            email: data.reg_email,
+            password: data.reg_password,
+            first_name: data.reg_first_name,
+            last_name: data.reg_last_name
         }
-        const response = await registerUser(data);
 
-        if (response.status === 201){
-            localStorage.setItem('access', response.data.access);
-            user.setIsAuth(true);
-            navigate(PROFILE);
-        }
+        await registerUser(request_data)
+            .then((response) => {
+                if (response.status === 201) {
+                    localStorage.setItem('access', response.data.access);
+                    user.setIsAuth(true);
+                    navigate(PROFILE);
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
 
     const schema = object().shape({
-        email: string()
+        reg_email: string()
             .email('Неверный email')
             .max(128, 'Email должен быть не больше 128 символов')
             .required('Email является обязательным полем'),
-        password: string()
+        reg_password: string()
             .min(8, 'Пароль должен содержать не менее 8 символов')
             .max(128, 'Пароль должен быть не больше 128 символов')
             .required('Пароль является обязательным полем'),
-        first_name: string()
+        reg_first_name: string()
             .max(128, 'Имя должно быть не больше 128 символов')
             .required('Имя является обязательным полем'),
-        last_name: string()
+        reg_last_name: string()
             .max(128, 'Фамилия должна быть не больше 128 символов')
             .required('Фамилия является обязательным полем'),
     });
 
     return (
-        <Formik initialValues={{ email: '', password: '', first_name: '', last_name: '' }}
+        <Formik initialValues={{
+            reg_email: '',
+            reg_password: '',
+            reg_first_name: '',
+            reg_last_name: ''
+        }}
                 onSubmit={signUp}
                 validationSchema={schema}>
             {
@@ -54,7 +64,8 @@ const AuthForm = (props) => {
                      handleChange,
                      values,
                      touched,
-                     errors, }) => (
+                     errors,
+                 }) => (
                     <Form className="auth_form comment_form"
                           validated={false}
                           onSubmit={handleSubmit}>
@@ -64,14 +75,14 @@ const AuthForm = (props) => {
                             </Form.Label>
                             <Form.Control className="comment_input"
                                           type="text"
-                                          id="first_name"
+                                          id="reg_first_name"
                                           placeholder="Введите ваше имя"
-                                          value={values.first_name}
+                                          value={values.reg_first_name}
                                           onChange={handleChange}
-                                          isValid={touched.first_name && !errors.first_name}
-                                          isInvalid={!!errors.first_name}/>
+                                          isValid={touched.reg_first_name && !errors.reg_first_name}
+                                          isInvalid={!!errors.reg_first_name}/>
                             <Form.Control.Feedback type="invalid">
-                                {errors.first_name}
+                                {errors.reg_first_name}
                             </Form.Control.Feedback>
                         </Form.Group>
 
@@ -81,14 +92,14 @@ const AuthForm = (props) => {
                             </Form.Label>
                             <Form.Control className="comment_input"
                                           type="text"
-                                          id="last_name"
+                                          id="reg_last_name"
                                           placeholder="Введите вашу фамилию"
-                                          value={values.last_name}
+                                          value={values.reg_last_name}
                                           onChange={handleChange}
-                                          isValid={touched.last_name && !errors.last_name}
-                                          isInvalid={!!errors.last_name}/>
+                                          isValid={touched.reg_last_name && !errors.reg_last_name}
+                                          isInvalid={!!errors.reg_last_name}/>
                             <Form.Control.Feedback type="invalid">
-                                {errors.last_name}
+                                {errors.reg_last_name}
                             </Form.Control.Feedback>
                         </Form.Group>
 
@@ -97,15 +108,15 @@ const AuthForm = (props) => {
                                 Email:
                             </Form.Label>
                             <Form.Control className="comment_input"
-                                          type="text"
-                                          id="email"
+                                          type="email"
+                                          id="reg_email"
                                           placeholder="Введите email"
-                                          value={values.email}
+                                          value={values.reg_email}
                                           onChange={handleChange}
-                                          isValid={touched.email && !errors.email}
-                                          isInvalid={!!errors.email}/>
+                                          isValid={touched.reg_email && !errors.reg_email}
+                                          isInvalid={!!errors.reg_email}/>
                             <Form.Control.Feedback type="invalid">
-                                {errors.email}
+                                {errors.reg_email}
                             </Form.Control.Feedback>
                         </Form.Group>
 
@@ -115,19 +126,19 @@ const AuthForm = (props) => {
                             </Form.Label>
                             <Form.Control className="comment_input"
                                           type="password"
-                                          id="password"
+                                          id="reg_password"
                                           placeholder="Введите пароль"
-                                          value={values.password}
+                                          value={values.reg_password}
                                           onChange={handleChange}
-                                          isValid={touched.password && !errors.password}
-                                          isInvalid={!!errors.password}/>
+                                          isValid={touched.reg_password && !errors.reg_password}
+                                          isInvalid={!!errors.reg_password}/>
                             <Form.Control.Feedback type="invalid">
-                                {errors.password}
+                                {errors.reg_password}
                             </Form.Control.Feedback>
                         </Form.Group>
 
                         <Button type="submit" className="comment_button w-100">
-                            Войти
+                            Зарегистрироваться
                         </Button>
                     </Form>
                 )
