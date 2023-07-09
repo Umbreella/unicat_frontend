@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {Button, Form} from "react-bootstrap";
 import {ENTER_EMAIL} from "../../utils/consts";
 import {NavLink} from "react-router-dom";
@@ -6,25 +6,35 @@ import {loginUser} from "../../http/api/UserApi";
 import {Context} from "../../index";
 import {Formik} from "formik";
 import {object, string} from 'yup';
+import HorizontalLoader from "../loader/HorizontalLoader";
 
 
 const AuthForm = (props) => {
     const {user, setVisibleAuthForm} = useContext(Context);
+    const [isLoading, setIsLoading] = useState(false);
 
-    const signIn = async (data) => {
+    const signIn = async (data, actions) => {
         const request_data = {
             email: data.login_email,
             password: data.login_password,
         }
 
-        await loginUser(request_data)
-            .then((response) => {
-                if (response.status === 200) {
-                    localStorage.setItem("access", response.data.access);
-                    user.setIsAuth(true);
-                    setVisibleAuthForm(false);
-                }
-            });
+        setIsLoading(true);
+
+        const response = await loginUser(request_data);
+
+        if (response.status === 200) {
+            localStorage.setItem("access", response.data.access);
+            user.setIsAuth(true);
+            setVisibleAuthForm(false);
+        } else {
+            actions.setFieldError(
+                "login_password",
+                "Неверные данные пользователя",
+            );
+        }
+
+        setIsLoading(false);
     }
 
     const schema = object().shape({
@@ -80,22 +90,31 @@ const AuthForm = (props) => {
                                           placeholder="Введите пароль"
                                           value={values.password}
                                           onChange={handleChange}
-                                          isValid={touched.password && !errors.password}
-                                          isInvalid={!!errors.password}/>
+                                          isValid={touched.login_password && !errors.login_password}
+                                          isInvalid={!!errors.login_password}/>
                             <Form.Control.Feedback type="invalid">
-                                {errors.password}
+                                {errors.login_password}
                             </Form.Control.Feedback>
+                            <div className="mt-2 d-flex flex-row-reverse">
+                                <span onClick={() => setVisibleAuthForm(false)}>
+                                    <NavLink to={ENTER_EMAIL}>
+                                        Забыли пароль?
+                                    </NavLink>
+                                </span>
+                            </div>
                         </Form.Group>
 
-                        <Button type="submit" className="comment_button w-100">
-                            Войти
-                        </Button>
-
-                        <Form.Label>
-                            <NavLink to={ENTER_EMAIL}>
-                                Забыли пароль?
-                            </NavLink>
-                        </Form.Label>
+                        {
+                            isLoading ?
+                                <div className="mt-5 mb-4">
+                                    <HorizontalLoader/>
+                                </div> :
+                                <Button type="submit"
+                                        className="comment_button w-100"
+                                        style={{marginTop: 0}}>
+                                    Войти
+                                </Button>
+                        }
                     </Form>
                 )
             }
