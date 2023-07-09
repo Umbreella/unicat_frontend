@@ -32,3 +32,22 @@ export const getCurrentNews = () => {
         }
     `;
 }
+
+export const getSmallNews = () => {
+    return `
+        allNews (first: $firstNews, after: $afterNews) {
+            edges {
+                node {
+                    id
+                    title
+                    author
+                    createdAt
+                }
+            }
+            pageInfo {
+                endCursor
+                hasNextPage
+            }
+        }
+    `;
+}

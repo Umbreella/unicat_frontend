@@ -10,6 +10,7 @@ export const getTeacher = () => {
                     facebook
                     twitter
                     googlePlus
+                    vk
                 }
             }
         }

@@ -1,25 +1,50 @@
+import {gql} from "@apollo/client";
 
 export const getCourses = () => {
     return `
         allCourses (first: $firstCourse, after: $afterCourse, 
                     search: $searchCourse,
-                    category: $categoryIdFilter, orderBy: $orderByCourse) {
+                    categoryId: $categoryIdFilter, orderBy: $orderByCourse,
+                    minRating: $minRatingCourse, maxRating: $maxRatingCourse,
+                    minPrice: $minPriceCourse, maxPrice: $maxPriceCourse,
+                    ) {
             edges {
                 node {
                     id
                     title
                     price
-                    discount
+                    discount {
+                        percent
+                        endDate
+                    }
                     preview
-                    countIndependents
+                    countListeners
                     shortDescription
                     teacher {
-                        id
                         fullName
                     }
-                    statistic {
-                        avgRating
-                    }
+                    avgRating
+                }
+            }
+            pageInfo {
+                endCursor
+                hasNextPage
+            }
+        }
+    `;
+}
+
+export const getMyCourses = () => {
+    return `
+        myCourses (first: $firstMyCourse, after: $afterMyCourse,
+                   search: $searchMyCourse, isCompleted: $isCompletedMyCourse,
+                   orderBy: $orderByMyCourse,) {
+            edges {
+                node {
+                    id
+                    title
+                    preview
+                    progress
                 }
             }
             pageInfo {
@@ -53,29 +78,44 @@ export const getCurrentCourses = () => {
             price
             duration
             preview
-            description
+            body
             countLectures
             countIndependents
+            countListeners
             learningFormat
+            discount {
+                percent
+                endDate
+            }
             teacher {
-                id
                 fullName
                 photo
                 description
+                avgRating
+                countReviews
             }
             category {
-                id
                 title
             }
-            statistic {
-                avgRating
-                countComments
-                countFiveRating
-                countFourRating
-                countThreeRating
-                countTwoRating
-                countOneRating
-            }
+            avgRating
         }
     `;
+}
+
+export const getMyCourse = () => {
+    return `
+        myCourse (id: $myCourseId) {
+            title
+        }
+    `;
+}
+
+export const getHasAccess = () => {
+    return gql`
+        query getHasAccess ($hasAccessCourseId: ID!) {
+            course (id: $hasAccessCourseId) {
+                progress
+            }
+        }
+    `
 }

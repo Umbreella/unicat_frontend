@@ -1,8 +1,8 @@
-import {publicHost} from "./index";
+import {authHost, publicHost} from "./index";
 import jwtDecode from "jwt-decode";
 
 export const loginUser = async (data) => {
-    const url = 'user/signin';
+    const url = 'user/signin/';
 
     return await publicHost.post(url, data).catch(error => {
         return error.response
@@ -10,7 +10,7 @@ export const loginUser = async (data) => {
 }
 
 export const registerUser = async (data) => {
-    const url = 'user/signup';
+    const url = 'user/signup/';
 
     return await publicHost.post(url, data).catch(error => {
         return error.response
@@ -18,35 +18,127 @@ export const registerUser = async (data) => {
 }
 
 export const logoutUser = async () => {
-    const url = 'user/token/destroy';
+    const url = 'user/token/destroy/';
 
-    return await publicHost.post(url, {});
+    return await publicHost.post(url, {})
+        .then((response) => {
+            return response;
+        })
+        .catch((errors) => {
+            return errors.response;
+        });
+}
+
+export const postEmailForResetPassword = async (data) => {
+    const url = 'user/password/reset/';
+
+    return await publicHost.post(url, data)
+        .then((response) => {
+            return response;
+        })
+        .catch((errors) => {
+            return errors.response;
+        });
+}
+
+export const postNewPassword = async (data) => {
+    const url = 'user/password/update/';
+
+    return await publicHost.post(url, data)
+        .then((response) => {
+            return response;
+        })
+        .catch((errors) => {
+            return errors.response;
+        });
+}
+
+export const postConfirmEmail = async (data) => {
+    const url = 'user/email/confirm/';
+
+    return await publicHost.post(url, data)
+        .then((response) => {
+            return response;
+        })
+        .catch((errors) => {
+            return errors.response;
+        });
+}
+
+export const postConfirmNewEmail = async (data) => {
+    const url = 'user/email/update/';
+
+    return await publicHost.post(url, data)
+        .then((response) => {
+            return response;
+        })
+        .catch((errors) => {
+            return errors.response;
+        });
+}
+
+export const getMyProfile = async () => {
+    const url = 'user/profile/';
+
+    return await authHost.get(url, {})
+        .then((response) => {
+            return response;
+        })
+        .catch((errors) => {
+            return errors.response;
+        });
+}
+
+export const updateMyProfile = async (data) => {
+    const url = 'user/profile/';
+
+    return await authHost.patch(url, data)
+        .then((response) => {
+            return response;
+        })
+        .catch((errors) => {
+            return errors.response;
+        });
 }
 
 export const checkUserIsAuthed = async () => {
-    const token_access = localStorage.getItem("access");
+    const tokenAccess = localStorage.getItem("access");
+    let response;
+    let newTokenAccess;
 
-    if (token_access !== null) {
-        const token_access_decoded = jwtDecode(token_access);
+    if (tokenAccess !== null) {
+        const token_access_decoded = jwtDecode(tokenAccess);
         const exp_date = new Date(token_access_decoded.exp * 1000);
         const date = new Date();
 
         if (date > exp_date) {
-            const url = 'user/token/refresh';
-            await publicHost.post(url, {})
-                .then((response) => {
-                    if (response.status === 200) {
-                        localStorage.setItem("access", response.data.access);
-                    }
-                })
-                .catch(() => {
-                    localStorage.removeItem("access");
-                    return false;
-                });
+            response = await getNewAccessToken();
         }
-
-        return true;
+    } else {
+        response = await getNewAccessToken();
     }
 
-    return false;
+    if (response?.status === 200) {
+        newTokenAccess = response.data.access;
+        localStorage.setItem("access", newTokenAccess);
+    }
+
+    if (response?.status >= 400) {
+        localStorage.removeItem("access");
+        return false;
+    }
+
+    return Boolean(tokenAccess || newTokenAccess);
+}
+
+const getNewAccessToken = async () => {
+    const url = 'user/token/refresh/';
+
+    return await publicHost.post(url, {})
+        .then((response) => {
+            return response;
+        })
+        .catch((errors) => {
+            return errors.response;
+        });
 }

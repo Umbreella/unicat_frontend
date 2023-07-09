@@ -1,9 +1,9 @@
 import {authHost} from "./index";
 
-export const postCourseComment = async (data) => {
-    const url = 'comments/course/';
+export const getActiveAttempt = async (lessonId) => {
+    const url = `lessons/${lessonId}/attempt/`;
 
-    return await authHost.post(url, data)
+    return await authHost.get(url)
         .then((response) => {
             return response;
         })
@@ -12,10 +12,10 @@ export const postCourseComment = async (data) => {
         });
 }
 
-export const postNewsComment = async (data) => {
-    const url = 'comments/news/';
+export const createActiveAttempt = async (lessonId) => {
+    const url = `lessons/${lessonId}/attempt/`;
 
-    return await authHost.post(url, data)
+    return await authHost.post(url, {})
         .then((response) => {
             return response;
         })
@@ -24,8 +24,8 @@ export const postNewsComment = async (data) => {
         });
 }
 
-export const postEventComment = async (data) => {
-    const url = 'comments/event/';
+export const refreshActiveAttempt = async ({lessonId, data}) => {
+    const url = `lessons/${lessonId}/attempt/refresh/`;
 
     return await authHost.post(url, data)
         .then((response) => {

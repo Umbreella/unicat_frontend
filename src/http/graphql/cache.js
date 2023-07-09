@@ -13,6 +13,10 @@ function createMergeForKeyArgs(keyArgs) {
                 edges = edges.concat(incoming.edges);
             }
 
+            if (JSON.stringify(existing) === JSON.stringify(incoming)) {
+                return existing;
+            }
+
             return {
                 ...incoming,
                 edges,
@@ -31,6 +35,7 @@ export const cacheGraphQL = new InMemoryCache({
                 allNews: createMergeForKeyArgs(["first"]),
                 allCourses: createMergeForKeyArgs(["first"]),
                 allEvents: createMergeForKeyArgs(["first"]),
+                myAttempts: createMergeForKeyArgs(["lessonId"]),
             },
         },
     },

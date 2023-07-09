@@ -1,4 +1,3 @@
-
 export const getEvents = () => {
     return `
         allEvents (first: $firstEvent, after: $afterEvent) {
@@ -33,6 +32,25 @@ export const getCurrentEvents = () => {
             startTime
             endTime
             place
+        }
+    `;
+}
+
+export const getSmallEvents = () => {
+    return `
+        allEvents (first: $firstEvent, after: $afterEvent) {
+            edges {
+                node {
+                    id
+                    title
+                    date
+                    place
+                }
+            }
+            pageInfo {
+                endCursor
+                hasNextPage
+            }
         }
     `;
 }
