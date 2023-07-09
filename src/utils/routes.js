@@ -7,11 +7,14 @@ import {
     HOME_ROUTE,
     CERTIFICATES,
     MY_COURSES,
-    LESSON_COURSE,
     SETTINGS,
     RESET_PASSWORD,
     ENTER_EMAIL,
-    NEWS_ROUTE, LAST_BREADCRUMBS, EVENTS_ROUTE
+    NEWS_ROUTE,
+    LAST_BREADCRUMBS,
+    EVENTS_ROUTE,
+    MY_COURSES_CONTENT_LESSONS,
+    MY_COURSES_CONTENT, ADMIN_PATH, CONFIRM_EMAIL, CHANGE_EMAIL, MY_PAYMENTS
 } from "./consts";
 import Home from "../pages/main/Home";
 import Blog from "../pages/main/Blog";
@@ -28,88 +31,113 @@ import Settings from "../pages/profile/Settings";
 import ResetPassword from "../pages/technical/ResetPassword";
 import EnterEmail from "../pages/technical/EnterEmail";
 import CurrentEvent from "../pages/main/CurrentEvent";
+import MyCourseContent from "../pages/profile/MyCourseContent";
+import ConfirmEmail from "../pages/technical/ConfirmEmail";
+import ConfirmNewEmail from "../pages/technical/ConfirmNewEmail";
+import MyPayments from "../pages/profile/MyPayments";
 
 export const authRoutes = [
     {
         path: PROFILE,
-        Component: MyEducation
+        Component: MyEducation,
     },
     {
         path: CERTIFICATES,
-        Component: MyCertificates
+        Component: MyCertificates,
     },
     {
         path: SETTINGS,
-        Component: Settings
+        Component: Settings,
     },
     {
         path: MY_COURSES,
-        Component: MyCourses
+        Component: MyCourses,
     },
     {
-        path: LESSON_COURSE,
-        Component: LessonCourse
-    }
+        path: MY_COURSES_CONTENT,
+        Component: MyCourseContent,
+    },
+    {
+        path: MY_COURSES_CONTENT_LESSONS,
+        Component: MyCourseContent,
+    },
+    {
+        path: MY_COURSES_CONTENT_LESSONS + ":id",
+        Component: LessonCourse,
+    },
+    {
+        path: MY_PAYMENTS,
+        Component: MyPayments,
+    },
 ]
+
+export const mainPage = {
+    path: HOME_ROUTE,
+    Component: Home,
+    breadcrumb: "Главная",
+}
 
 export const publicRoutes = [
     {
-        path: HOME_ROUTE,
-        Component: Home,
-        breadcrumb: "Главная"
-    },
-    {
         path: ABOUT_ROUTE,
         Component: About,
-        breadcrumb: "О нас"
+        breadcrumb: "О нас",
     },
     {
         path: BLOG_ROUTE,
         Component: Blog,
-        breadcrumb: "Блог"
+        breadcrumb: "Блог",
     },
     {
         path: NEWS_ROUTE,
-        breadcrumb: "Новости"
+        breadcrumb: "Новости",
     },
     {
-        path: NEWS_ROUTE + "/:id",
+        path: NEWS_ROUTE + ":id",
         Component: CurrentNews,
-        breadcrumb: LAST_BREADCRUMBS
+        breadcrumb: LAST_BREADCRUMBS,
     },
     {
         path: EVENTS_ROUTE,
-        breadcrumb: "Мероприятия"
+        breadcrumb: "Мероприятия",
     },
     {
-        path: EVENTS_ROUTE + "/:id",
+        path: EVENTS_ROUTE + ":id",
         Component: CurrentEvent,
-        breadcrumb: LAST_BREADCRUMBS
+        breadcrumb: LAST_BREADCRUMBS,
     },
     {
         path: CONTACTS_ROUTE,
         Component: Contacts,
-        breadcrumb: "Контакты"
+        breadcrumb: "Контакты",
     },
     {
         path: COURSES_ROUTE,
         Component: Courses,
-        breadcrumb: "Курсы"
+        breadcrumb: "Курсы",
     },
     {
-        path: COURSES_ROUTE + "/:id",
+        path: COURSES_ROUTE + ":id",
         Component: CurrentCourse,
-        breadcrumb: LAST_BREADCRUMBS
-    }
+        breadcrumb: LAST_BREADCRUMBS,
+    },
 ]
 
 export const technicalRoutes = [
     {
         path: RESET_PASSWORD,
-        Component: ResetPassword
+        Component: ResetPassword,
     },
     {
         path: ENTER_EMAIL,
-        Component: EnterEmail
-    }
+        Component: EnterEmail,
+    },
+    {
+        path: CONFIRM_EMAIL,
+        Component: ConfirmEmail,
+    },
+    {
+        path: CHANGE_EMAIL,
+        Component: ConfirmNewEmail,
+    },
 ]
