@@ -1,65 +1,126 @@
-import React, {useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {NavLink, useLocation} from "react-router-dom";
 import ProfileMenuSidebar from "../../components/header/ProfileMenuSidebar";
 import ResizeObserver from "rc-resize-observer";
 import ProfileRouter from "../../components/routes/ProfileRouter";
-import {Col, Container, Row} from "react-bootstrap";
+import {Card, Col, Container, Row} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
     faArrowRightFromBracket,
     faBars
 } from "@fortawesome/free-solid-svg-icons";
-import {HOME_ROUTE, PROFILE} from "../../utils/consts";
+import {HOME_ROUTE} from "../../utils/consts";
+import {observer} from "mobx-react-lite";
+import AuthForm from "../../components/forms/AuthForm";
+import {checkUserIsAuthed} from "../../http/api/UserApi";
+import {Context} from "../../index";
+import PageLoader from "../../components/loader/PageLoader";
+import {useMediaQuery} from "react-responsive";
 
-const IndexProfile = () => {
-    const [isToggle, setIsToggle] = useState(false);
+const IndexProfile = observer(() => {
+    const {user} = useContext(Context);
+    const location = useLocation();
+    const [isChecked, setIsChecked] = useState(false);
+    const [isVisibleSibeBarMenu, setIsVisibleSibeBarMenu] = useState(true);
+    const isMediumScreen = useMediaQuery({query: '(max-width: 768px)'});
 
-    const url = useLocation().pathname;
+    useEffect(() => {
+        checkUserIsAuthed().then((isAuth) => {
+            user.setIsAuth(isAuth);
+            setIsChecked(true);
+        });
+    }, [location]);
 
-    if (!(url.includes(PROFILE) || url.includes("/lesson")))
-        return null;
+    if (!isChecked) {
+        return <PageLoader/>
+    }
 
     return (
         <>
-            <ResizeObserver onResize={() => setIsToggle(false)}>
-                <div className="vh-100 d-flex overflow-hidden">
-                    <ProfileMenuSidebar isToggle={isToggle} setIsToggle={setIsToggle}/>
-
-                    <div className="flex-grow-1">
-                        <div className="header_container">
-                            <Container>
-                                <Row>
-                                    <div className="header_content d-flex align-items-center justify-content-between"
-                                         style={{ height: 54 }}>
-                                        <Col className="col-1 text-center" >
-                                            <FontAwesomeIcon className="d-md-none"
-                                                             icon={faBars}
-                                                             style={{
-                                                                 color: "#0000008c",
-                                                                 fontSize: 20
-                                                             }}
-                                                             onClick={() => setIsToggle(!isToggle)}/>
-                                        </Col>
-
-                                        <Col className="col-1 text-center" >
-                                            <NavLink to={HOME_ROUTE}>
-                                                <FontAwesomeIcon icon={faArrowRightFromBracket} />
-                                            </NavLink>
-                                        </Col>
+            {
+                !user.isAuth ?
+                    <div className="vh-100 d-flex align-content-center">
+                        <Card className="col-11 m-auto"
+                              style={{maxWidth: 500}}>
+                            <Card.Body>
+                                <Card.Title className="text-center">
+                                    <div className="navbar-brand"
+                                         style={{padding: 20}}>
+                                        <NavLink to="/">
+                                            Unic<span>at</span>
+                                        </NavLink>
                                     </div>
-                                </Row>
-                            </Container>
-                        </div>
+                                </Card.Title>
+                                <AuthForm/>
+                            </Card.Body>
+                        </Card>
+                    </div> :
+                    <ResizeObserver onResize={() => {
+                        setIsVisibleSibeBarMenu(!isMediumScreen)
+                    }}>
+                        <div className="vh-100 d-flex overflow-hidden">
+                            <ProfileMenuSidebar data={{
+                                isVisibleSibeBarMenu: isVisibleSibeBarMenu,
+                                setIsVisibleSibeBarMenu: setIsVisibleSibeBarMenu,
+                            }}/>
+                            <div className="flex-grow-1">
+                                <div className="header_container">
+                                    <Container>
+                                        <Row>
+                                            <div
+                                                className="header_content d-flex align-items-center justify-content-between"
+                                                style={{height: 54}}>
+                                                <Col
+                                                    className="col-1 text-center">
+                                                    <FontAwesomeIcon
+                                                        className="d-md-none"
+                                                        icon={faBars}
+                                                        style={{
+                                                            color: "#0000008c",
+                                                            fontSize: 20
+                                                        }}
+                                                        onClick={() => setIsVisibleSibeBarMenu(!isVisibleSibeBarMenu)}
+                                                    />
+                                                </Col>
 
-                        <div className="profile_page"
-                             style={{ height: "calc(100% - 55px)" }}>
-                            <ProfileRouter />
+                                                <Col
+                                                    className="col-1 text-center">
+                                                    <NavLink to={HOME_ROUTE}>
+                                                        <FontAwesomeIcon
+                                                            icon={faArrowRightFromBracket}/>
+                                                    </NavLink>
+                                                </Col>
+                                            </div>
+                                        </Row>
+                                    </Container>
+                                </div>
+
+                                <div className="profile_page"
+                                     style={{
+                                         height: "calc(100% - 55px)",
+                                         paddingBottom: 100,
+                                     }}
+                                     onScroll={
+                                         ({
+                                              target: {
+                                                  scrollTop,
+                                                  scrollHeight,
+                                                  clientHeight
+                                              }
+                                          }) => {
+                                             if (Math.round(scrollTop + clientHeight) === scrollHeight) {
+
+                                             }
+                                         }
+                                     }>
+                                    <ProfileRouter/>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </ResizeObserver>
+                    </ResizeObserver>
+            }
         </>
     );
-};
+});
 
 export default IndexProfile;

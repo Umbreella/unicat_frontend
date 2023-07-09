@@ -62,26 +62,6 @@ const CoursesWithFilters = (props) => {
                             }
                         </>
                 }
-
-
-                {/*<Row className="pagination_row">*/}
-                {/*    <Col>*/}
-                {/*        <div*/}
-                {/*            className="pagination_container d-flex flex-row align-items-center justify-content-start">*/}
-                {/*            <Pagination className="mx-auto">*/}
-                {/*                <Pagination.Prev/>*/}
-                {/*                <Pagination.Item>*/}
-                {/*                    {numberCurrentPage}*/}
-                {/*                </Pagination.Item>*/}
-                {/*                {*/}
-                {/*                    data?.pageInfo.hasNextPage ?*/}
-                {/*                        <Pagination.Next onClick={() => setEndCursor(data?.pageInfo.endCursor)}/> :*/}
-                {/*                        <></>*/}
-                {/*                }*/}
-                {/*            </Pagination>*/}
-                {/*        </div>*/}
-                {/*    </Col>*/}
-                {/*</Row>*/}
             </div>
         </>
     );

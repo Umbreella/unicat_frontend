@@ -12,7 +12,7 @@ import {
 import Comments from "../../components/comments/Comments";
 import {getLatestCourses} from "../../http/graphql/CourseGQL";
 import {gql, useQuery} from "@apollo/client";
-import {getCurrentNews} from "../../http/graphql/NewsGQL";
+import {getCurrentNews, getSmallNews} from "../../http/graphql/NewsGQL";
 import {Interweave} from "interweave";
 import {getNewsComments} from "../../http/graphql/CommentGQL";
 import PageLoader from "../../components/loader/PageLoader";
@@ -23,6 +23,10 @@ import CommentLoader from "../../components/loader/CommentLoader";
 import GallerySidebar from "../../components/sidebar/GallerySidebar";
 import TagsSidebar from "../../components/sidebar/TagsSidebar";
 import DownloadSidebar from "../../components/sidebar/DownloadSidebar";
+import NewsSidebar from "../../components/sidebar/NewsSidebar";
+import EventsSidebar from "../../components/sidebar/EventsSidebar";
+import {getSmallEvents} from "../../http/graphql/EventGQL";
+import ErrorQuery from "../../components/errors/ErrorQuery";
 
 const CurrentNews = () => {
     const params = useParams();
@@ -32,19 +36,26 @@ const CurrentNews = () => {
     const currentNewsQuery = getCurrentNews();
     const newCoursesQuery = getLatestCourses();
     const commentCourseQuery = getNewsComments();
+    const newNewsQuery = getSmallNews();
+    const newEventQuery = getSmallEvents();
 
     const [isLoadingMore, setIsLoadingMore] = useState(false);
     const resultQuery = gql`
         query CurrentBlogPage($currentNewsId: ID!,
                               $newsId: String, $afterNewsComment: String,
-                              $firstLatestCourse: Int) {
+                              $firstLatestCourse: Int,
+                              $firstNews: Int, $afterNews: String,
+                              $firstEvent: Int, $afterEvent: String,
+                              ) {
             ${currentNewsQuery}
             ${commentCourseQuery}
             ${newCoursesQuery}
+            ${newNewsQuery}
+            ${newEventQuery}
         }
     `;
 
-    const {loading, data, refetch, fetchMore} = useQuery(resultQuery, {variables: {
+    const {error, loading, data, refetch, fetchMore} = useQuery(resultQuery, {variables: {
             currentNewsId: params.id,
             newsId: params.id,
             firstLatestCourse: 4,
@@ -74,6 +85,10 @@ const CurrentNews = () => {
         setIsLoadingMore(false);
     }
 
+    if (error) {
+        return <ErrorQuery/>;
+    }
+
     return (
         <div className="blog">
             <Container>
@@ -88,11 +103,7 @@ const CurrentNews = () => {
                                     </div>
                                     <div className="blog_meta">
                                         <ul>
-                                            <li>
-                                                <NavLink to="#">
-                                                    {data.news.createdAt}
-                                                </NavLink>
-                                            </li>
+                                            <li>{data.news.createdAt}</li>
                                             <li>{data.news.author}</li>
                                         </ul>
                                     </div>
@@ -100,30 +111,8 @@ const CurrentNews = () => {
                                         <Image src={data.news.preview}
                                                className="w-100"/>
                                     </div>
-
-                                    <Interweave content={data.news.description}/>
-                                </div>
-                                <div
-                                    className="blog_extra d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
-                                    <div className="blog_social ml-lg-auto">
-                                        <span>Поделиться: </span>
-                                        <ul>
-                                            <li>
-                                                <NavLink to="#">
-                                                    <FontAwesomeIcon icon={faFacebook}/>
-                                                </NavLink>
-                                            </li>
-                                            <li>
-                                                <NavLink to="#">
-                                                    <FontAwesomeIcon icon={faTwitter}/>
-                                                </NavLink>
-                                            </li>
-                                            <li>
-                                                <NavLink to="#">
-                                                    <FontAwesomeIcon icon={faGoogle}/>
-                                                </NavLink>
-                                            </li>
-                                        </ul>
+                                    <div className="blog_text">
+                                        <Interweave content={data.news.description}/>
                                     </div>
                                 </div>
 
@@ -151,9 +140,15 @@ const CurrentNews = () => {
                                         }
                                     </div>
                                     <div className="comments_title">
-                                        Комментариев: <span>30</span>
+                                        Комментариев: <span>{data.allNewsComments.totalCount}</span>
                                     </div>
                                     <ul className="comments_list">
+                                        {
+                                            data.allNewsComments.totalCount === 0 &&
+                                            <div className="text-center mt-4" style={{fontSize: 16}}>
+                                                Ваш комментарий будет первым
+                                            </div>
+                                        }
                                         {
                                             data.allNewsComments.edges.map(({node}) =>
                                                 <Comments key={node.id} data={node}/>
@@ -184,16 +179,12 @@ const CurrentNews = () => {
                                         body: <CoursesSidebar data={data.latestCourses}/>
                                     }}/>
                                     <SidebarSection section={{
-                                        title: "Instagram",
-                                        body: <GallerySidebar/>
+                                        title: "Последние новости",
+                                        body: <NewsSidebar data={data.allNews}/>
                                     }}/>
                                     <SidebarSection section={{
-                                        title: "Теги",
-                                        body: <TagsSidebar/>
-                                    }}/>
-                                    <SidebarSection section={{
-                                        title: null,
-                                        body: <DownloadSidebar/>
+                                        title: "Предстоящие события",
+                                        body: <EventsSidebar data={data.allEvents}/>
                                     }}/>
                                 </div>
                             </div>

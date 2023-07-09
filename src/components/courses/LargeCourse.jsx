@@ -5,6 +5,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faStar, faUserGraduate} from "@fortawesome/free-solid-svg-icons";
 import {COURSES_ROUTE} from "../../utils/consts";
 import {Context} from "../../index";
+import Countdown from "react-countdown";
 
 const LargeCourse = (props) => {
     const item = props.item;
@@ -17,7 +18,7 @@ const LargeCourse = (props) => {
                 </div>
                 <div className="course_body">
                     <h3 className="course_title">
-                        <NavLink to={COURSES_ROUTE + "/" + item.id}>
+                        <NavLink to={COURSES_ROUTE + item.id}>
                             {item.title}
                         </NavLink>
                     </h3>
@@ -36,20 +37,22 @@ const LargeCourse = (props) => {
                         <div className="course_info">
                             <FontAwesomeIcon icon={faUserGraduate}
                                              style={{marginRight: 6}}/>
-                            <span>{item.countIndependents}</span>
+                            <span>{item.countListeners}</span>
                         </div>
                         <div className="course_info">
                             <FontAwesomeIcon icon={faStar}
                                              style={{marginRight: 6}}/>
-                            <span>{item.statistic.avgRating}</span>
+                            <span>{item.avgRating}</span>
                         </div>
                         <div className="course_price ms-auto">
                             {
-                                item.discount ?
-                                    <>
-                                        <span>{item.price}</span>
-                                        {item.discount}₽
-                                    </> :
+                                item.discount !== null ?
+                                    <div
+                                        className="d-flex justify-content-end align-items-end">
+                                            <span
+                                                className="course_price_span">{item.price}</span>
+                                        {item.price * (100 - item.discount.percent) / 100}₽
+                                    </div> :
                                     <>
                                         {item.price}₽
                                     </>

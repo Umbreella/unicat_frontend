@@ -1,8 +1,8 @@
-import React, {useContext, useReducer} from 'react';
+import React, {useContext, useEffect, useReducer} from 'react';
 import {Col, Container, Row} from "react-bootstrap";
 import {Link, NavLink, useLocation} from "react-router-dom";
 import useBreadcrumbs from 'use-react-router-breadcrumbs';
-import {publicRoutes} from "../../utils/routes";
+import {mainPage, publicRoutes} from "../../utils/routes";
 import {Context} from "../../index";
 import {
     BLOG_ROUTE,
@@ -13,10 +13,14 @@ import {
 import {HashLink} from "react-router-hash-link";
 
 const Breadcrumbs = () => {
-    const breadcrumbs = useBreadcrumbs(publicRoutes);
+    const allPublicRoutes = [
+        mainPage,
+        ...publicRoutes
+    ]
+    const breadcrumbs = useBreadcrumbs(allPublicRoutes);
     const context = useContext(Context);
-    const [lastBreadcrumb, changeLastBreadcrumb] = useReducer((state, action) => action, null);
-    context.setLastBreadcrumbs = changeLastBreadcrumb;
+    const [lastBreadcrumb, setLastBreadcrumb] = useReducer((state, action) => action, null);
+    context.setLastBreadcrumbs = setLastBreadcrumb;
 
     if (useLocation().pathname === "/")
         return <></>

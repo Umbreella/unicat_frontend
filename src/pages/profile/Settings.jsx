@@ -9,10 +9,11 @@ const Settings = () => {
                 <Col className="col-lg-8">
                     <div className="single_course_title"
                          style={{
-                             padding: "30px 0" }}>
+                             padding: "30px 0"
+                         }}>
                         Настройки
                     </div>
-                    <ProfileForm />
+                    <ProfileForm/>
                 </Col>
             </Row>
         </Container>

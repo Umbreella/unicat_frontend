@@ -36,6 +36,7 @@
 24. Contact
 25. ProfileHeader
 26. Other
+27. React-Admin
 
 
 ******************************/
@@ -129,11 +130,11 @@ p a:hover::after
 }
 ::selection
 {
-	
+
 }
 p::selection
 {
-	
+
 }
 h1{font-size: 48px;}
 h2{font-size: 36px;}
@@ -150,14 +151,14 @@ h1, h2, h3, h4, h5, h6
 	color: #384158;
 	margin-bottom: 0;
 }
-h1::selection, 
-h2::selection, 
-h3::selection, 
-h4::selection, 
-h5::selection, 
+h1::selection,
+h2::selection,
+h3::selection,
+h4::selection,
+h5::selection,
 h6::selection
 {
-	
+
 }
 .form-control
 {
@@ -509,7 +510,6 @@ section
 .fa-cart-shopping,
 .fa-user
 {
-	margin-left: 23px;
 	cursor: pointer;
 }
 .fa-magnifying-glass,
@@ -783,9 +783,9 @@ section
 	font-size: 14px !important;
 	font-weight: 400 !important;
 	color: rgba(0,0,0,0.4) !important;
-} 
+}
 .menu .search_input:-ms-input-placeholder
-{ 
+{
 	font-family: 'Roboto', sans-serif;
 	font-size: 14px !important;
 	font-weight: 400 !important;
@@ -954,9 +954,9 @@ section
 	font-size: 14px !important;
 	font-weight: 400 !important;
 	color: #b5b8be !important;
-} 
+}
 .home_search_input:-ms-input-placeholder
-{ 
+{
 	font-family: 'Roboto', sans-serif;
 	font-size: 14px !important;
 	font-weight: 400 !important;
@@ -1110,7 +1110,8 @@ section
 .single_course_image img,
 .blog_image img,
 .news_post_image img,
-.event_image img
+.event_image img,
+.my_course img
 {
 	width: 100%;
 	aspect-ratio: 5/3;
@@ -1190,7 +1191,7 @@ section
 	font-weight: 700;
 	color: #14bdee;
 }
-.course_price span
+.course_price_span
 {
 	font-family: 'Roboto Slab', serif;
 	font-size: 14px;
@@ -1385,10 +1386,10 @@ section
 	font-size: 14px !important;
 	font-weight: 400 !important;
 	color: #b5b8be !important;
-} 
+}
 .counter_input:-ms-input-placeholder,
 .counter_text_input:-ms-input-placeholder
-{ 
+{
 	font-size: 14px !important;
 	font-weight: 400 !important;
 	color: #b5b8be !important;
@@ -1474,7 +1475,7 @@ section
 }
 .event_date > div
 {
-	width: 60px;
+	min-width: 60px;
 	height: 60px;
 }
 .event_day
@@ -1698,6 +1699,11 @@ section
 {
 	margin-top: 55px;
 }
+.news_post_large,
+.news_post_small
+{
+	border-bottom: solid 1px #e5e5e5;
+}
 .news_post_large
 {
 	width: 100%;
@@ -1897,9 +1903,9 @@ section
 	font-size: 14px !important;
 	font-weight: 400 !important;
 	color: #FFFFFF !important;
-} 
+}
 .newsletter_input:-ms-input-placeholder
-{ 
+{
 	font-size: 14px !important;
 	font-weight: 400 !important;
 	color: #FFFFFF !important;
@@ -2348,6 +2354,11 @@ section
 	-ms-transition: all 200ms ease;
 	-o-transition: all 200ms ease;
 	transition: all 200ms ease;
+	border-bottom: 1px solid #dee2e6;
+}
+.accordion:only-child
+{
+	border-bottom: none;
 }
 .accordion button,
 .accordion button:active,
@@ -2806,6 +2817,14 @@ section
 	padding-top: 30px;
 	padding-bottom: 25px;
 }
+.tab-pane img
+{
+	width: 100%;
+}
+.tab-pane p
+{
+	font-size: 16px;
+}
 /* Fade in tabs */
 @-webkit-keyframes fadeEffect {
 	from {opacity: 0;}
@@ -3060,7 +3079,7 @@ section
 	padding-left: 20px;
 	margin-top: -7px;
 }
-.comment_author a
+.comment_author div
 {
 	font-family: 'Roboto Slab', serif;
 	font-size: 18px;
@@ -3442,7 +3461,7 @@ section
 	color: #76777a;
 	margin-top: 4px;
 }
-.teacher_name a
+.teacher_name
 {
 	font-family: 'Roboto Slab', serif;
 	font-size: 24px;
@@ -3453,10 +3472,6 @@ section
 	-ms-transition: all 200ms ease;
 	-o-transition: all 200ms ease;
 	transition: all 200ms ease;
-}
-.teacher_name a:hover
-{
-	color: #14bdee;
 }
 .teacher_meta_container
 {
@@ -3855,6 +3870,10 @@ section
 {
 	color: #14bdee;
 }
+.blog_body img
+{
+	width: 100%;
+}
 .comments_container
 {
 	margin-top: 51px;
@@ -3874,30 +3893,11 @@ section
 {
 	border-bottom: solid 1px #e5e5e5;
 }
-.comment_image div
-{
-	width: 80px;
-	height: 80px;
-	border-radius: 50%;
-	overflow: hidden;
-}
 .comment_content
 {
 	width: 100%;
 	padding-left: 20px;
 	margin-top: -7px;
-}
-.comment_author a
-{
-	font-family: 'Roboto Slab', serif;
-	font-size: 18px;
-	font-weight: 700;
-	color: #384158;
-	-webkit-transition: all 200ms ease;
-	-moz-transition: all 200ms ease;
-	-ms-transition: all 200ms ease;
-	-o-transition: all 200ms ease;
-	transition: all 200ms ease;
 }
 .comment_author a:hover
 {
@@ -4050,26 +4050,6 @@ section
 	vertical-align: middle;
 	margin-left: 3px;
 }
-.comment_button
-{
-	width: 150px;
-	height: 46px;
-	background: #14bdee;
-	text-transform: uppercase;
-	font-size: 14px;
-	font-weight: 500;
-	color: #FFFFFF;
-	cursor: pointer;
-	border: none;
-	outline: none;
-	border-radius: 3px;
-	margin-top: 34px;
-}
-.comment_button:hover
-{
-	box-shadow: 0px 5px 40px rgba(0,0,0,0.25);
-}
-
 /*********************************
 24. Contact
 *********************************/
@@ -4164,7 +4144,7 @@ section
 .comment_button:hover,
 .comment_button:focus
 {
-	box-shadow: 0px 5px 40px rgba(0,0,0,0.25);
+	/*box-shadow: 0px 5px 40px rgba(0,0,0,0.25);*/
 	background: #14bdee !important;
 }
 .contact_info
@@ -4204,7 +4184,6 @@ section
 /*********************************
 25. ProfileHeader
 *********************************/
-
 .pro-sidebar
 {
 	padding-left: 0;
@@ -4212,95 +4191,138 @@ section
 .pro-sidebar > .pro-sidebar-inner
 {
 	color: #384158;
-	background: rgb(242, 244, 245);
+    background: rgb(242, 244, 245);
+}
+.pro-sidebar .pro-menu > ul > .pro-sub-menu > .pro-inner-list-item > div > ul
+{
+    padding: 0;
+}
+.pro-sidebar .pro-menu .pro-menu-item.pro-sub-menu .pro-inner-list-item .pro-inner-item
+{
+    padding: 8px 35px 8px 20px
 }
 .pro-sidebar .pro-menu > ul > .pro-sub-menu > .pro-inner-list-item
 {
-	color: #dcdcdc;
-	background: #384158;
+    color: #dcdcdc;
+    background: #384158;
 }
 .pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item:hover,
 .pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item:focus,
 .pro-sidebar.collapsed .pro-menu > ul > .pro-menu-item.pro-sub-menu:hover
 {
-	color: #384158;
-	background: #dcdcdc;
+    color: #384158;
+    background: #dcdcdc;
 }
 .pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item a,
 .pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item a:hover
 {
-	color: #384158;
+    color: #384158;
 }
 .pro-sub-menu ul .pro-item-content a
 {
-	color: #dcdcdc !important;
+    color: #dcdcdc !important;
 }
 .pro-sub-menu ul .pro-item-content a:hover
 {
-	color: #384158 !important;
+    color: #384158 !important;
 }
-.popper-inner .pro-menu-item
+.pro-sidebar .pro-menu .pro-menu-item.pro-sub-menu .pro-inner-list-item
 {
-	padding-right: 20px !important;
+    padding-left: 0;
+}
+.pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item > .pro-item-content
+{
+	white-space: pre-wrap !important;
+}
+.popper-inner
+{
+	padding-left: 0 !important;
+}
+.popper-inner .pro-menu-item .pro-inner-item
+{
+	padding-left: 20px !important;
 }
 .profile_page,
 .pro-sidebar > .pro-sidebar-inner > .pro-sidebar-layout .pro-sidebar-content
 {
-	overflow-y: scroll !important;
+    overflow-y: scroll !important;
 }
 .profile_page::-webkit-scrollbar
 {
-	width: 5px;
+    width: 5px;
 }
 .pro-sidebar > .pro-sidebar-inner > .pro-sidebar-layout .pro-sidebar-content::-webkit-scrollbar
 {
-	width: 2px;
+    width: 2px;
 }
 .profile_page::-webkit-scrollbar-thumb,
 .pro-sidebar > .pro-sidebar-inner > .pro-sidebar-layout .pro-sidebar-content::-webkit-scrollbar-thumb
 {
-	background: #384158;
+    background: #384158;
 }
 .progress-bar
 {
-	background-color: #14bdee;
+    background-color: #14bdee;
 }
 .card-body
 {
-	color: #384158 !important;
+    color: #384158 !important;
 }
 .lesson p
 {
-	font-size: 18px;
+    font-size: 18px;
+}
+.lesson img
+{
+    width: 100%;
+}
+.my_lessons .accordion:not(:last-child)
+{
+	border-bottom: 1px solid #384158;
 }
 
+.my_lessons .accordion-body
+{
+	padding-left: 2rem!important;
+}
 
 .fade-enter
 {
-	opacity: 0;
+    opacity: 0;
 }
-.fade-enter.fade-enter-active {
-	opacity: 1;
-	transition: opacity 0.5s ease-in-out;
+.fade-enter.fade-enter-active
+{
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
 }
-.fade-leave {
-	opacity: 1;
+.fade-leave
+{
+    opacity: 1;
 }
-.fade-leave.fade-leave-active {
-	opacity: 0;
-	transition: opacity 0.5s ease-in-out;
+.fade-leave.fade-leave-active
+{
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
 }
 
 
 /*********************************
 26. Other
 *********************************/
-.loader {
-	width: 210px;
+.table-attempts th,
+.table-attempts td
+{
+	vertical-align: middle;
+	text-align: center;
+}
+.loader
+{
+	max-width: 210px;
 	margin: 0 auto;
 	height: 6px;
 }
-.loader .loaderBar {
+.loader .loaderBar
+{
 	position: absolute;
 	border-radius: 3px;
 	top: 0;
@@ -4310,7 +4332,8 @@ section
 	animation: borealisBar 2s linear infinite;
 }
 
-@keyframes borealisBar {
+@keyframes borealisBar
+{
 	0% {
 		left: 0;
 		right: 100%;
@@ -4331,4 +4354,112 @@ section
 		right: 0;
 		width: 0;
 	}
+}
+
+.slider {
+	position: relative;
+	min-width: 100%;
+}
+
+.slider__track,
+.slider__range,
+.slider__left-value,
+.slider__right-value {
+	position: absolute;
+}
+
+.slider__track,
+.slider__range {
+	border-radius: 3px;
+	height: 5px;
+}
+
+.slider__track {
+	background-color: #ced4da;
+	width: 100%;
+	z-index: 1;
+}
+
+.slider__range {
+	background-color: #14bdee;
+	z-index: 2;
+}
+
+.slider__left-value,
+.slider__right-value {
+	margin-top: 20px;
+}
+
+.slider__left-value {
+	left: 6px;
+}
+
+.slider__right-value {
+	right: -4px;
+}
+
+/* Removing the default appearance */
+.thumb,
+.thumb::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	-webkit-tap-highlight-color: transparent;
+}
+
+.thumb {
+	pointer-events: none;
+	position: absolute;
+	height: 0;
+	min-width: 100%;
+	outline: none;
+}
+
+.thumb--zindex-3 {
+	z-index: 3;
+}
+
+.thumb--zindex-4 {
+	z-index: 4;
+}
+
+.thumb--zindex-5 {
+	z-index: 5;
+}
+
+/* For Chrome browsers */
+.thumb::-webkit-slider-thumb {
+	background-color: #f1f5f7;
+	border: none;
+	border-radius: 50%;
+	box-shadow: 0 0 1px 1px #ced4da;
+	cursor: pointer;
+	height: 18px;
+	width: 18px;
+	margin-top: 4px;
+	pointer-events: all;
+	position: relative;
+}
+
+/* For Firefox browsers */
+.thumb::-moz-range-thumb {
+	background-color: #f1f5f7;
+	border: none;
+	border-radius: 50%;
+	box-shadow: 0 0 1px 1px #ced4da;
+	cursor: pointer;
+	height: 18px;
+	width: 18px;
+	margin-top: 4px;
+	pointer-events: all;
+	position: relative;
+}
+
+
+
+/*********************************
+27. React-Admin
+*********************************/
+
+.RaRichTextInput-editorContent img
+{
+	width: 100%;
 }

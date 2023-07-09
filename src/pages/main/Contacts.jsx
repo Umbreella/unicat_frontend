@@ -1,8 +1,10 @@
 import React, {useEffect} from 'react';
-import { YMaps, Map } from "react-yandex-maps";
+import {YMaps, Map, Placemark} from "react-yandex-maps";
 import ContactForm from "../../components/forms/ContactForm";
 
 const Contacts = () => {
+    const coordinates = [54.987787, 73.376913];
+
     useEffect(() => {
         window.scrollTo(0, 0);
     });
@@ -16,14 +18,15 @@ const Contacts = () => {
                         height: 500
                     }}>
                         <Map
-                            state={{
-                                center: [55.76, 37.64],
-                                zoom: 10,
-                                controls: []
+                            defaultState={{
+                                center: coordinates,
+                                zoom: 12,
                             }}
                             width="100%"
                             height="500px"
-                        />
+                        >
+                            <Placemark geometry={coordinates} />
+                        </Map>
                     </div>
                 </YMaps>
             </div>

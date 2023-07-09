@@ -12,8 +12,8 @@ const SmallCourse = (props) => {
 
     return (
         <div
-            className="latest d-flex flex-row align-items-start
-            justify-content-start">
+            className="latest d-flex flex-row align-items-start justify-content-start pb-4"
+            style={{borderBottom: "solid 1px #e5e5e5"}}>
             <div className="latest_image">
                 <div>
                     <Image src={item.preview}/>
@@ -21,7 +21,7 @@ const SmallCourse = (props) => {
             </div>
             <div className="latest_content">
                 <div className="latest_title">
-                    <NavLink to={COURSES_ROUTE + "/" + item.id}>
+                    <NavLink to={COURSES_ROUTE + item.id}>
                         {item.title}
                     </NavLink>
                 </div>

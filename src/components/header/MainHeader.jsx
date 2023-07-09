@@ -27,9 +27,11 @@ import {useMediaQuery} from "react-responsive";
 import {Context} from "../../index";
 import {logoutUser} from "../../http/api/UserApi";
 import {observer} from "mobx-react-lite";
+import {useApolloClient} from "@apollo/client";
 
 const MainHeader = observer(() => {
     const {user, setVisibleAuthForm} = useContext(Context);
+    const client = useApolloClient();
     const navigate = useNavigate();
     const [isVisibleMenu, setVisibleMenu] = useState(false);
     const isLargeScreen = useMediaQuery({query: '(min-width: 992px)'});
@@ -45,6 +47,7 @@ const MainHeader = observer(() => {
                 if (response.status === 200) {
                     user.setIsAuth(false);
                     localStorage.removeItem("access");
+                    client.resetStore();
                     toggleMenu();
                 }
             });

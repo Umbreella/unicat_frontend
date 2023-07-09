@@ -26,7 +26,7 @@ const LargeEvent = (props) => {
                 </div>
                 <div className="event_content">
                     <div className="event_title">
-                        <NavLink to={EVENTS_ROUTE + "/" + data.id}>
+                        <NavLink to={EVENTS_ROUTE + data.id}>
                             {data.title}
                         </NavLink>
                         <div className="event_info_container">

@@ -1,14 +1,19 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Button, Card, Col, Row} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faDownload} from "@fortawesome/free-solid-svg-icons";
 import {downloadUserCertificate} from "../../http/api/UserCertificateApi";
+import HorizontalLoader from "../loader/HorizontalLoader";
 
-const LargeCertiicates = (props) => {
+const LargeCertificate = (props) => {
     const {node: data, className} = props.data;
+    const [Downloading, setDownloading] = useState(false);
 
     const downloadFile = async () => {
+        setDownloading(true);
+
         const response = await downloadUserCertificate(data.course);
+        setDownloading(false);
 
         if (response.status !== 200) {
             return null;
@@ -32,21 +37,28 @@ const LargeCertiicates = (props) => {
                     <div className="mt-2 mb-2">
                         Дата получения: {data.createdAt}
                     </div>
-                    <Button
-                        className="col-12"
-                        style={{
-                            background: "#14bdee",
-                            borderColor: "#14bdee",
-                        }}
-                        onClick={() => downloadFile()}>
-                        Скачать
-                        <FontAwesomeIcon icon={faDownload}
-                                         style={{paddingLeft: 10}}/>
-                    </Button>
+                    {
+                        Downloading ?
+                            <div className="p-3">
+                                <HorizontalLoader/>
+                            </div> :
+                            <Button
+                                className="col-12"
+                                style={{
+                                    borderRadius: 0,
+                                    background: "#198654",
+                                    borderColor: "#198654",
+                                }}
+                                onClick={() => downloadFile()}>
+                                Скачать
+                                <FontAwesomeIcon icon={faDownload}
+                                                 style={{paddingLeft: 10}}/>
+                            </Button>
+                    }
                 </Card.Body>
             </Card>
         </Col>
     );
 };
 
-export default LargeCertiicates;
+export default LargeCertificate;

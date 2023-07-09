@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container, Row} from "react-bootstrap";
+import {Col, Container, Row} from "react-bootstrap";
 import SidebarSection from "../../components/sidebar/SidebarSection";
 import CoursesSidebar from "../../components/sidebar/CoursesSidebar";
 import CategoriesSidebar from "../../components/sidebar/CategoriesSidebar";
@@ -11,6 +11,7 @@ import {getCategories} from "../../http/graphql/CategoryGQL";
 import PageLoader from "../../components/loader/PageLoader";
 import TagsSidebar from "../../components/sidebar/TagsSidebar";
 import GallerySidebar from "../../components/sidebar/GallerySidebar";
+import ErrorQuery from "../../components/errors/ErrorQuery";
 
 const Courses = () => {
     const coursesQuery = getCourses();
@@ -20,18 +21,23 @@ const Courses = () => {
     const resultQuery = gql`
         query CoursePage($firstCourse: Int, $afterCourse: String, 
                          $searchCourse: String,
-                         $categoryIdFilter: String, $orderByCourse: String,
+                         $categoryIdFilter: String, 
+                         $orderByCourse: String,
+                         $minRatingCourse: Decimal, $maxRatingCourse: Decimal,
+                         $minPriceCourse: Decimal, $maxPriceCourse: Decimal,
+                         
                          $firstCategory: Int,
+                         
                          $firstLatestCourse: Int) {
             ${coursesQuery}
             ${categoriesQuery}
             ${newCoursesQuery}
         }
     `;
-    const {loading, data, fetchMore, refetch} = useQuery(resultQuery, {
+    const {error, loading, data, fetchMore, refetch} = useQuery(resultQuery, {
         variables: {
             firstCourse: 8,
-            firstLatestCourse: 4,
+            firstLatestCourse: 3,
         }
     });
 
@@ -48,6 +54,10 @@ const Courses = () => {
         })
     }
 
+    if (error) {
+        return <ErrorQuery/>;
+    }
+
     return (
         <>
             <div className="courses">
@@ -56,7 +66,7 @@ const Courses = () => {
                         loading ?
                             <PageLoader/> :
                             <Row>
-                                <div className="col-lg-8">
+                                <Col>
                                     <CoursesWithFilters
                                         data={{
                                             allCourses: data.allCourses,
@@ -66,33 +76,33 @@ const Courses = () => {
                                             loadMoreCourse: loadMoreCourse,
                                             updateFilteredData: updateFilteredData
                                         }}/>
-                                </div>
-                                <div className="col-lg-4">
-                                    <div className="sidebar">
-                                        <SidebarSection section={{
-                                            title: "Категории",
-                                            body: <CategoriesSidebar
-                                                data={data.allCategories.edges.slice(0, 5)}/>
-                                        }}/>
-                                        <SidebarSection section={{
-                                            title: "Новые курсы",
-                                            body: <CoursesSidebar
-                                                data={data.latestCourses}/>
-                                        }}/>
-                                        <SidebarSection section={{
-                                            title: "Галерея",
-                                            body: <GallerySidebar/>
-                                        }}/>
-                                        <SidebarSection section={{
-                                            title: "Теги",
-                                            body: <TagsSidebar/>
-                                        }}/>
-                                        <SidebarSection section={{
-                                            title: null,
-                                            body: <DownloadSidebar/>
-                                        }}/>
-                                    </div>
-                                </div>
+                                </Col>
+                                {/*<div className="col-lg-4">*/}
+                                {/*    <div className="sidebar">*/}
+                                {/*        <SidebarSection section={{*/}
+                                {/*            title: "Категории",*/}
+                                {/*            body: <CategoriesSidebar*/}
+                                {/*                data={data.allCategories.edges.slice(0, 5)}/>*/}
+                                {/*        }}/>*/}
+                                {/*        <SidebarSection section={{*/}
+                                {/*            title: "Новые курсы",*/}
+                                {/*            body: <CoursesSidebar*/}
+                                {/*                data={data.latestCourses}/>*/}
+                                {/*        }}/>*/}
+                                {/*        <SidebarSection section={{*/}
+                                {/*            title: "Галерея",*/}
+                                {/*            body: <GallerySidebar/>*/}
+                                {/*        }}/>*/}
+                                {/*        <SidebarSection section={{*/}
+                                {/*            title: "Теги",*/}
+                                {/*            body: <TagsSidebar/>*/}
+                                {/*        }}/>*/}
+                                {/*        <SidebarSection section={{*/}
+                                {/*            title: null,*/}
+                                {/*            body: <DownloadSidebar/>*/}
+                                {/*        }}/>*/}
+                                {/*    </div>*/}
+                                {/*</div>*/}
                             </Row>
                     }
                 </Container>

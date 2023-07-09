@@ -3,20 +3,18 @@ import {Accordion} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faFileLines} from "@fortawesome/free-regular-svg-icons";
 
-const CurriculumAccordion = (props) => {
+const PublicLessonAccordion = (props) => {
     const data = props.data;
 
-    if (!('children' in data)) {
+    if (data.children === undefined || data.children?.length === 0) {
         return (
-            <div style={{
+            <div className="accordion" style={{
+                fontSize: 16,
                 paddingTop: 16,
                 paddingBottom: 16,
             }}>
-                <div className="accordion"
-                     style={{
-                         cursor: "auto",
-                         fontSize: 16,
-                     }}>
+                <div
+                >
                     <FontAwesomeIcon icon={faFileLines}
                                      style={{paddingRight: 10}}/>
                     {data.title}
@@ -54,7 +52,7 @@ const CurriculumAccordion = (props) => {
                                             paddingTop: 0,
                                             paddingBottom: 0,
                                         }}>
-                            <CurriculumAccordion data={value}/>
+                            <PublicLessonAccordion data={value}/>
                         </Accordion.Body>
                     )
                 }
@@ -63,4 +61,4 @@ const CurriculumAccordion = (props) => {
     );
 };
 
-export default CurriculumAccordion;
+export default PublicLessonAccordion;

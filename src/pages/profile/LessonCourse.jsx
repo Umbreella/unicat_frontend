@@ -1,185 +1,249 @@
-import React, {useState} from 'react';
-import ReactMarkdown from "react-markdown";
-import {Col, Container, Row} from "react-bootstrap";
-import {NavLink} from "react-router-dom";
-import ReactCSSTransitionGroup from "react-addons-css-transition-group";
-import QuestionsForm from "../../components/forms/QuestionsForm";
+import React, {
+    forwardRef,
+    useContext,
+    useEffect, useImperativeHandle,
+    useReducer,
+    useRef,
+    useState
+} from 'react';
+import {Card, Col, Container, Row, Table} from "react-bootstrap";
+import {useLocation, useParams} from "react-router-dom";
+import {Context} from "../../index";
+import {gql, useLazyQuery, useQuery} from "@apollo/client";
+import {Interweave} from "interweave";
+import {
+    createActiveAttempt,
+    getActiveAttempt
+} from "../../http/api/AttemptApi";
+import {
+    getCurrentLesson, getPrivateLessons,
+} from "../../http/graphql/LessonsGQL";
+import HorizontalLoader from "../../components/loader/HorizontalLoader";
+import {postLessonComplete} from "../../http/api/LessonApi";
+import Attempt from "../../components/questions/Attempt";
+import TableAttempts from "../../components/tables/TableAttempts";
+import {getMyAttempts} from "../../http/graphql/AttemptsGQL";
 
 const LessonCourse = () => {
-    const lesson = {
-        title: "Введение",
-        type_lesson: "test",
-        body: "" +
-            "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas " +
-            "porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, " +
-            "purus lectus malesuada libero, sit amet commodo magna eros quis urna.\n\n" +
-            "Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.\n\n" +
-            "Pellentesque habitant morbi tristique senectus et netus et malesuada " +
-            "fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.\n\n" +
-            "Aenean nec lorem. In porttitor. Donec laoreet nonummy augue.\n\n" +
-            "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis," +
-            " nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.\n\n"
+    const lessonPageRef = useRef();
+    const {courseId, id} = useParams();
+    const {pathname} = useLocation();
+    const {setCourseMenuItems} = useContext(Context);
+    const [activeAttempt, setActiveAttempt] = useState();
+    const [isNewAttempt, setIsNewAttempt] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    let isPosted = false;
+
+    const courseMenuItemsQuery = getPrivateLessons();
+    const lessonQuery = getCurrentLesson();
+    const resultQuery = gql`
+        query LessonPage($courseId: String!, 
+                         $lessonId: ID!) {
+            ${courseMenuItemsQuery}
+            ${lessonQuery}
+        }
+    `;
+    const {loading, data, error} = useQuery(resultQuery, {
+        variables: {
+            courseId: courseId,
+            lessonId: id,
+            attemptLessonId: id,
+        },
+    });
+
+    const myAttemptsQuery = getMyAttempts();
+    const resultQueryAttempt = gql`
+            query LessonPageMyAttempts($attemptLessonId: String!, $firstUserAttempt: Int, $afterUserAttempt: String) {
+                ${myAttemptsQuery}
+            }
+        `;
+    const [loadAttempts, {
+        loading: loadingAttempt,
+        data: dataMyAttempts,
+        refetch: refetchAttempt,
+        fetchMore: fetchMoreAttempt,
+    }] = useLazyQuery(resultQueryAttempt, {
+        variables: {
+            attemptLessonId: id,
+            firstUserAttempt: 10,
+        },
+    });
+
+    useEffect(() => {
+        if (data?.lesson.lessonType === "test") {
+            updateLessonPage();
+        }
+    }, [pathname]);
+
+    const updateLessonPage = () => {
+        setActiveAttempt(undefined);
+        refetchAttempt();
     }
 
-    const questions = [
-        {
-            body: "111111 Lorem ipsum dolor sit amet, consectetuer" +
-                " adipiscing elit. Maecenas " +
-                "porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, " +
-                "purus lectus malesuada libero, sit amet commodo magna eros" +
-                " quis urna.",
-            count_options: 2,
-            options: [
-                {
-                    id: 1,
-                    body: "Да"
-                },
-                {
-                    id: 2,
-                    body: "Нет"
-                },
-                {
-                    id: 3,
-                    body: "Не знаю"
-                }
-            ]
-        },
-        {
-            body: "222222 Lorem ipsum dolor sit amet, consectetuer" +
-                " adipiscing elit. Maecenas " +
-                "porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, " +
-                "purus lectus malesuada libero, sit amet commodo magna eros" +
-                " quis urna.",
-            count_options: 1,
-            options: [
-                {
-                    id: 1,
-                    body: "Да"
-                },
-                {
-                    id: 2,
-                    body: "Нет"
-                },
-                {
-                    id: 3,
-                    body: "Не знаю"
-                }
-            ]
-        },
-        {
-            body: "222222 Lorem ipsum dolor sit amet, consectetuer" +
-                " adipiscing elit. Maecenas " +
-                "porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, " +
-                "purus lectus malesuada libero, sit amet commodo magna eros" +
-                " quis urna.",
-            count_options: 3,
-            options: [
-                {
-                    id: 1,
-                    body: "Да"
-                },
-                {
-                    id: 2,
-                    body: "Нет"
-                },
-                {
-                    id: 3,
-                    body: "Не знаю"
-                }
-            ]
-        },
-        {
-            body: "222222 Lorem ipsum dolor sit amet, consectetuer" +
-                " adipiscing elit. Maecenas " +
-                "porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, " +
-                "purus lectus malesuada libero, sit amet commodo magna eros" +
-                " quis urna.",
-            count_options: 1,
-            options: [
-                {
-                    id: 1,
-                    body: "Да"
-                },
-                {
-                    id: 2,
-                    body: "Нет"
-                },
-                {
-                    id: 3,
-                    body: "Не знаю"
-                }
-            ]
+    useEffect(() => {
+        const lessonPage = lessonPageRef.current;
+        const profilePage = lessonPage.offsetParent.offsetParent;
+
+        if (data !== undefined) {
+            setCourseMenuItems({
+                courseId: courseId,
+                lessons: data.lessonsWithProgress,
+            });
+
+            if (lessonPage.clientHeight <= profilePage.clientHeight) {
+                postCompleteAndChangeIsPosted();
+            }
+
+            if (data.lesson.lessonType === "Тест") {
+                loadAttempts();
+            }
         }
-    ]
+        const postCompleteListener = (
+            {target: {scrollTop, scrollHeight, clientHeight}}
+        ) => {
+            if (Math.round(scrollTop + clientHeight) === scrollHeight) {
+                postCompleteAndChangeIsPosted();
+            }
+        };
 
-    const [count_question, set_countQuestion] = useState(0);
+        profilePage.addEventListener('scroll', postCompleteListener);
+        return () => {
+            profilePage.removeEventListener('scroll', postCompleteListener);
+        };
+    }, [data]);
 
-    const next_question = () => {
-        set_countQuestion(count_question + 1);
+    const postCompleteAndChangeIsPosted = async () => {
+        if (data?.lesson?.lessonType !== 'Теория' || data?.lesson?.isCompleted || isPosted)
+            return;
+
+        const response = await postLessonComplete(id);
+        isPosted = true;
+    }
+
+    const checkActiveAttempt = async () => {
+        let response = await getActiveAttempt(id);
+        if (response.status !== 200) {
+            return;
+        }
+
+        if (response.data?.data === "No active attempt.") {
+            response = await createActiveAttempt(id);
+            if (response.status === 201) {
+                setIsNewAttempt(true);
+                setActiveAttempt(response.data);
+            }
+        } else {
+            setActiveAttempt(response.data);
+        }
+    }
+
+    const loadMoreMyAttempts = async () => {
+        setIsLoading(true);
+        await fetchMoreAttempt({
+            variables: {
+                afterUserAttempt: dataMyAttempts.myAttempts.pageInfo.endCursor,
+            },
+        });
+        setIsLoading(false);
     }
 
     return (
-        <Container>
-            <Row>
-                <Col>
-                    <div className="single_course_title text-center"
-                         style={{
-                             padding: "30px 0" }}>
-                        {lesson.title}
-                    </div>
+        <div ref={lessonPageRef}>
+            {
+                loading ?
+                    <div className="d-flex align-items-center"
+                         style={{minHeight: "50vh"}}>
+                        <HorizontalLoader/>
+                    </div> :
+                    <Container>
+                        <Row>
+                            <Col>
+                                <div
+                                    className="single_course_title text-center"
+                                    style={{
+                                        padding: "30px 0"
+                                    }}>
+                                    {data.lesson.title}
+                                </div>
 
-                    <div className="lesson">
-                        {
-                            Math.random() > 1 ?
-                                <ReactMarkdown children={eval('`' + lesson.body + '`')} /> :
-
-                                count_question !== questions.length ?
-                                    <ReactCSSTransitionGroup className="container"
-                                                             component="div"
-                                                             transitionName="fade"
-                                                             transitionEnterTimeout={800}
-                                                             transitionLeaveTimeout={500}
-                                                             transitionAppearTimeout={500} >
-                                        <div key={count_question}>
-                                            <div>
-                                                Вопрос: {count_question + 1} из {questions.length}
-                                            </div>
-
-                                            <QuestionsForm question={questions[count_question]}
-                                                           next_question={next_question}/>
-                                        </div>
-                                    </ReactCSSTransitionGroup> :
-
-                                    <div>
-                                        Тест окончен
-                                    </div>
-                        }
-                    </div>
-                </Col>
-            </Row>
-
-            <Row style={{ paddingTop: 30 }}>
-                <Col className="col-6">
-                    <div className="d-flex flex-row">
-                        <div className="courses_button w-50 mt-3 ms-0">
-                            <NavLink to="#">
-                                Предыдущий урок
-                            </NavLink>
-                        </div>
-                    </div>
-                </Col>
-
-                <Col className="col-6">
-                    <div className="d-flex flex-row-reverse">
-                        <div className="courses_button w-50 mt-3 me-0">
-                            <NavLink to="#">
-                                Следующий урок
-                            </NavLink>
-                        </div>
-                    </div>
-                </Col>
-            </Row>
-        </Container>
+                                <div className="lesson"
+                                     style={{
+                                         fontSize: 16,
+                                     }}>
+                                    {
+                                        data.lesson.lessonType === "Тема" &&
+                                        <Interweave
+                                            content={data.lesson.description}/>
+                                    }
+                                    {
+                                        data.lesson.lessonType === "Теория" &&
+                                        <Interweave
+                                            content={data.lesson.body}/>
+                                    }
+                                    {
+                                        data.lesson.lessonType === "Тест" &&
+                                        <>
+                                            {
+                                                activeAttempt === undefined ?
+                                                    <div
+                                                        className="d-flex flex-column align-items-center">
+                                                        <p>
+                                                            {data.lesson.description}
+                                                        </p>
+                                                        <p>
+                                                            Всего
+                                                            вопросов: {data.lesson.countQuestions}
+                                                        </p>
+                                                        {
+                                                            data.lesson.timeLimit &&
+                                                            <p>
+                                                                Время на
+                                                                выполнение: {data.lesson.timeLimit}
+                                                            </p>
+                                                        }
+                                                        <div
+                                                            className="courses_button mt-3"
+                                                            onClick={() => checkActiveAttempt()}>
+                                                            <div>
+                                                                Начать
+                                                            </div>
+                                                        </div>
+                                                        <Card
+                                                            className="mt-5 w-100">
+                                                            <Card.Body>
+                                                                <Card.Title>
+                                                                    Список
+                                                                    результатов
+                                                                </Card.Title>
+                                                                <TableAttempts
+                                                                    data={{
+                                                                        loading: loadingAttempt,
+                                                                        data: dataMyAttempts,
+                                                                        isLoading: isLoading,
+                                                                    }}
+                                                                    func={{
+                                                                        fetchMore: loadMoreMyAttempts,
+                                                                    }}/>
+                                                            </Card.Body>
+                                                        </Card>
+                                                    </div> :
+                                                    <Attempt data={{
+                                                        lessonId: id,
+                                                        countAllQuestions: data.lesson.countQuestions,
+                                                        isNewAttempt: isNewAttempt,
+                                                        activeAttempt: activeAttempt,
+                                                    }} func={{
+                                                        updateLesson: updateLessonPage,
+                                                    }}/>
+                                            }
+                                        </>
+                                    }
+                                </div>
+                            </Col>
+                        </Row>
+                    </Container>
+            }
+        </div>
     );
 };
 

@@ -18,7 +18,7 @@ import {
 } from "../../http/graphql/CommentGQL";
 import PageLoader from "../../components/loader/PageLoader";
 import {Context} from "../../index";
-import {getCurrentEvents} from "../../http/graphql/EventGQL";
+import {getCurrentEvents, getSmallEvents} from "../../http/graphql/EventGQL";
 import BlogCommentForm from "../../components/forms/BlogCommentForm";
 import CommentLoader from "../../components/loader/CommentLoader";
 import GallerySidebar from "../../components/sidebar/GallerySidebar";
@@ -26,6 +26,10 @@ import TagsSidebar from "../../components/sidebar/TagsSidebar";
 import DownloadSidebar from "../../components/sidebar/DownloadSidebar";
 import {EVENT_TYPE} from "../../utils/consts";
 import {faClock, faMapMarker} from "@fortawesome/free-solid-svg-icons";
+import NewsSidebar from "../../components/sidebar/NewsSidebar";
+import {getSmallNews} from "../../http/graphql/NewsGQL";
+import EventsSidebar from "../../components/sidebar/EventsSidebar";
+import ErrorQuery from "../../components/errors/ErrorQuery";
 
 const CurrentEvent = () => {
     const params = useParams();
@@ -35,22 +39,30 @@ const CurrentEvent = () => {
     const currentEventQuery = getCurrentEvents();
     const newCoursesQuery = getLatestCourses();
     const commentCourseQuery = getEventComments();
+    const newNewsQuery = getSmallNews();
+    const newEventQuery = getSmallEvents();
 
     const [isLoadingMore, setIsLoadingMore] = useState(false);
     const resultQuery = gql`
         query CurrentEventPage($currentEventId: ID!,
                                $eventId: String, $afterEventComment: String,
-                               $firstLatestCourse: Int) {
+                               $firstLatestCourse: Int,
+                               $firstNews: Int, $afterNews: String,
+                               $firstEvent: Int, $afterEvent: String,
+                               ) {
             ${currentEventQuery}
             ${commentCourseQuery}
             ${newCoursesQuery}
+            ${newNewsQuery}
+            ${newEventQuery}
         }
     `;
-    const {loading, data, refetch, fetchMore} = useQuery(resultQuery, {
+    const {error, loading, data, refetch, fetchMore} = useQuery(resultQuery, {
         variables: {
             currentEventId: params.id,
             eventId: params.id,
             firstLatestCourse: 4,
+            firstNews: 4,
         }
     });
 
@@ -78,6 +90,10 @@ const CurrentEvent = () => {
         setIsLoadingMore(false);
     }
 
+    if (error) {
+        return <ErrorQuery/>;
+    }
+
     return (
         <div className="blog">
             <Container>
@@ -96,7 +112,7 @@ const CurrentEvent = () => {
                                     </div>
                                     <div className="blog_meta d-flex align-items-center">
                                         <div className="event_date" style={{
-                                            width: 60,
+                                            minWidth: 60,
                                             height: 60,
                                             background: "#14bdee",
                                         }}>
@@ -104,9 +120,9 @@ const CurrentEvent = () => {
                                                 className="d-flex flex-column align-items-center justify-content-center trans_200">
                                                 <div className="event_day"
                                                      style={{
-                                                         color: "#ffffff"
+                                                         color: "#ffffff",
                                                      }}>
-                                                    {1} / {1}
+                                                    {new Date(data.event.date).getDate()} / {new Date(data.event.date).getMonth() + 1}
                                                 </div>
                                             </div>
                                         </div>
@@ -135,33 +151,9 @@ const CurrentEvent = () => {
                                         </div>
                                     </div>
 
-                                    <Interweave
-                                        content={data.event.description}/>
-                                </div>
-                                <div
-                                    className="blog_extra d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
-                                    <div className="blog_social ml-lg-auto">
-                                        <span>Поделиться: </span>
-                                        <ul>
-                                            <li>
-                                                <NavLink to="#">
-                                                    <FontAwesomeIcon
-                                                        icon={faFacebook}/>
-                                                </NavLink>
-                                            </li>
-                                            <li>
-                                                <NavLink to="#">
-                                                    <FontAwesomeIcon
-                                                        icon={faTwitter}/>
-                                                </NavLink>
-                                            </li>
-                                            <li>
-                                                <NavLink to="#">
-                                                    <FontAwesomeIcon
-                                                        icon={faGoogle}/>
-                                                </NavLink>
-                                            </li>
-                                        </ul>
+                                    <div className="blog_body">
+                                        <Interweave
+                                            content={data.event.description}/>
                                     </div>
                                 </div>
 
@@ -190,7 +182,7 @@ const CurrentEvent = () => {
                                         }
                                     </div>
                                     <div className="comments_title">
-                                        Комментариев: <span>30</span>
+                                        Комментариев: <span>{data.allEventComments.totalCount}</span>
                                     </div>
                                     <ul className="comments_list">
                                         {
@@ -224,16 +216,12 @@ const CurrentEvent = () => {
                                         body: <CoursesSidebar data={data.latestCourses}/>
                                     }}/>
                                     <SidebarSection section={{
-                                        title: "Instagram",
-                                        body: <GallerySidebar/>
+                                        title: "Последние новости",
+                                        body: <NewsSidebar data={data.allNews}/>
                                     }}/>
                                     <SidebarSection section={{
-                                        title: "Теги",
-                                        body: <TagsSidebar/>
-                                    }}/>
-                                    <SidebarSection section={{
-                                        title: null,
-                                        body: <DownloadSidebar/>
+                                        title: "Предстоящие события",
+                                        body: <EventsSidebar data={data.allEvents}/>
                                     }}/>
                                 </div>
                             </div>

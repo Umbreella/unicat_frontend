@@ -6,10 +6,7 @@ import {Context} from "../../index";
 import {observer} from "mobx-react-lite";
 
 const TopBar = observer(() => {
-    const {user, setVisibleAuthForm} = useContext(Context);
-
-    if (user.isAuth)
-        return <></>
+    const {setVisibleAuthForm} = useContext(Context);
 
     return (
         <div className="top_bar">

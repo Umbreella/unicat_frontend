@@ -1,9 +1,8 @@
 import React from 'react';
 import {NavLink} from "react-router-dom";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faHeart} from "@fortawesome/free-solid-svg-icons";
 import {Image} from "react-bootstrap";
 import {Rating} from "react-simple-star-rating";
+import avatarDefault from '../../images/avatarDefault.png'
 
 const Comments = (props) => {
     const data = props.data;
@@ -15,7 +14,7 @@ const Comments = (props) => {
                 className="comment_item d-flex flex-row align-items-start jutify-content-start">
                 <div className="comment_image">
                     <div>
-                        <Image src={author.photo}/>
+                        <Image src={author.photo !== null ? author.photo : avatarDefault}/>
                     </div>
                 </div>
                 <div className="comment_content">
@@ -23,9 +22,9 @@ const Comments = (props) => {
                         className="comment_title_container d-flex flex-row align-items-center justify-content-between">
                         <div className="d-flex flex-md-row flex-column">
                             <div className="comment_author">
-                                <NavLink to="#">
+                                <div>
                                     {author.name}
-                                </NavLink>
+                                </div>
                             </div>
                             {
                                 data.rating ?
@@ -45,15 +44,6 @@ const Comments = (props) => {
                     </div>
                     <div className="comment_text">
                         <p>{data.body}</p>
-                    </div>
-                    <div
-                        className="comment_extras d-flex flex-row align-items-center justify-content-start">
-                        <div className="comment_extra">
-                            <NavLink to="#">
-                                <FontAwesomeIcon icon={faHeart} />
-                                <span>{data.countLike}</span>
-                            </NavLink>
-                        </div>
                     </div>
                 </div>
             </div>

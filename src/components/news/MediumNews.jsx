@@ -14,7 +14,7 @@ const MediumNews = (props) => {
             </div>
             <div className="blog_post_body">
                 <div className="blog_post_title">
-                    <NavLink to={NEWS_ROUTE + "/" + data.id}>
+                    <NavLink to={NEWS_ROUTE + data.id}>
                         {data.title}
                     </NavLink>
                 </div>

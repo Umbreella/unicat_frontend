@@ -4,13 +4,13 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
     faAward,
     faBookOpen, faGear,
-    faHouse
+    faHouse, faMoneyBill
 } from "@fortawesome/free-solid-svg-icons";
 import {NavLink} from "react-router-dom";
 import {
     MY_COURSES,
     PROFILE,
-    CERTIFICATES, SETTINGS
+    CERTIFICATES, SETTINGS, MY_PAYMENTS
 } from "../../utils/consts";
 
 const ProfileMenu = (props) => {
@@ -31,6 +31,11 @@ const ProfileMenu = (props) => {
             <MenuItem icon={<FontAwesomeIcon icon={faAward} />}>
                 <NavLink to={CERTIFICATES} onClick={hideSideBar}>
                     Сертификаты
+                </NavLink>
+            </MenuItem>
+            <MenuItem icon={<FontAwesomeIcon icon={faMoneyBill} />}>
+                <NavLink to={MY_PAYMENTS} onClick={hideSideBar}>
+                    Платежи
                 </NavLink>
             </MenuItem>
             <MenuItem icon={<FontAwesomeIcon icon={faGear} />}>

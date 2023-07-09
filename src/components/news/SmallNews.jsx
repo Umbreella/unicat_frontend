@@ -6,14 +6,14 @@ const SmallNews = (props) => {
     const data = props.data;
 
     return (
-        <div className="news_post_small">
+        <div className="news_post_small pb-4">
             <NavLink className="news_post_small_title"
-                     to={BLOG_ROUTE + "/news/" + data.id}>
+                     to={BLOG_ROUTE + "news/" + data.id}>
                 {data.title}
             </NavLink>
             <div className="news_post_meta">
                 <NavLink to="/">
-                    admin
+                    {data.author}
                 </NavLink>
                 <NavLink to="/">
                     {data.createdAt}

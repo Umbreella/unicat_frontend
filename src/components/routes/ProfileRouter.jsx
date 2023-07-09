@@ -14,7 +14,7 @@ const ProfileRouter = () => {
             <Routes>
                 {
                     authRoutes.map(({path, Component}) =>
-                        <Route exact key={path} path={path} element={<Component />} />
+                        <Route key={path} path={path} element={<Component/>}/>
                     )
                 }
             </Routes>

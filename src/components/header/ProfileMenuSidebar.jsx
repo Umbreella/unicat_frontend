@@ -8,33 +8,38 @@ import {
 import 'react-pro-sidebar/dist/css/styles.css';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
+    faAngleDown,
     faAngleLeft,
-    faAngleRight
+    faAngleRight, faCheck
 } from "@fortawesome/free-solid-svg-icons";
 import {NavLink, useLocation} from "react-router-dom";
 import {useMediaQuery} from "react-responsive";
+import SidebarMenu from 'react-bootstrap-sidebar-menu';
 import ContentCourseMenu from "../menu/ContentCourseMenu";
 import ProfileMenu from "../menu/ProfileMenu";
+import {LESSON_COURSE, MY_COURSES} from "../../utils/consts";
 
-const ProfileMenuSidebar = ({isToggle, setIsToggle}) => {
+const ProfileMenuSidebar = (props) => {
+    const {isVisibleSibeBarMenu, setIsVisibleSibeBarMenu} = props.data;
+
     const [isCollapsed, setIsCollapsed] = useState(false);
-    const isMediumScreen = useMediaQuery({ query: '(max-width: 768px)' })
+    const isMediumScreen = useMediaQuery({query: '(max-width: 768px)'})
 
     const hideSideBar = () => {
         if (isMediumScreen)
-            setIsToggle(!isToggle);
+            setIsVisibleSibeBarMenu(!isVisibleSibeBarMenu);
     }
 
     return (
         <ProSidebar
             collapsed={isCollapsed}
-            toggled={isToggle}
+            toggled={isVisibleSibeBarMenu}
             breakPoint="md"
             onToggle={hideSideBar}
         >
             <SidebarHeader>
                 <FontAwesomeIcon
-                    icon={isCollapsed? faAngleRight : faAngleLeft}
+                    icon={isCollapsed ? faAngleRight : faAngleLeft}
                     style={{
                         width: 20,
                         height: 20,
@@ -44,17 +49,17 @@ const ProfileMenuSidebar = ({isToggle, setIsToggle}) => {
                 />
             </SidebarHeader>
 
-            <SidebarContent style={{ overflow: "hidden" }}>
+            <SidebarContent style={{overflow: "hidden"}}>
                 {
-                    useLocation().pathname.includes("user") ?
-                        <ProfileMenu hideSideBar={hideSideBar}/> :
-                        <ContentCourseMenu hideSideBar={hideSideBar}/>
+                    useLocation().pathname.match(MY_COURSES + "/.+" + LESSON_COURSE + "/.+") !== null ?
+                        <ContentCourseMenu hideSideBar={hideSideBar}/> :
+                        <ProfileMenu hideSideBar={hideSideBar}/>
                 }
             </SidebarContent>
 
-            <SidebarFooter style={{ textAlign: "center" }}>
+            <SidebarFooter style={{textAlign: "center"}}>
                 <div className="navbar-brand"
-                     style={{ padding: 20}}>
+                     style={{padding: 20}}>
                     <NavLink to="/">
                         {
                             isCollapsed ?
@@ -65,6 +70,7 @@ const ProfileMenuSidebar = ({isToggle, setIsToggle}) => {
                 </div>
             </SidebarFooter>
         </ProSidebar>
+
     );
 };
 

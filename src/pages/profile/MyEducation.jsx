@@ -11,61 +11,19 @@ import {
     Tooltip,
     Legend,
 } from 'chart.js';
-import { Line } from 'react-chartjs-2';
-
+import {Line} from 'react-chartjs-2';
 import CourseInProfile from "../../components/courses/CourseInProfile";
-import LargeCertiicates from "../../components/certificates/LargeCertiicates";
+import LargeCertificate from "../../components/certificates/LargeCertificate";
+import {getMyCourses} from "../../http/graphql/CourseGQL";
+import {gql, useQuery} from "@apollo/client";
+import PageLoader from "../../components/loader/PageLoader";
+import {getMyCertificates} from "../../http/graphql/CertificateGQL";
+import YouDontHaveCourses from "../../components/courses/YouDontHaveCourses";
+import YouDontHaveCertificates
+    from "../../components/certificates/YouDontHaveCertificates";
+import {getMyLessonHistory} from "../../http/graphql/LessonsGQL";
 
 const MyEducation = () => {
-    const my_courses = [
-        {
-            title: "Some quick example",
-            text: "Text to build on the card title and make up the bulk of" +
-                " the card's content.",
-            progress: 100
-        },
-        {
-            title: "Some quick example",
-            text: "Text to build on the card title and make up the bulk of" +
-                " the card's content.",
-            progress: 10
-        },
-        {
-            title: "Some quick example",
-            text: "Text to build on the card title and make up the bulk of" +
-                " the card's content.",
-            progress: 10
-        }
-    ]
-
-    const my_sertificates = [
-        {
-            title: "Мобильная разработка",
-            date: "12.10.2022"
-        },
-        {
-            title: "Мобильная разработка",
-            date: "12.10.2022"
-        },
-        {
-            title: "Мобильная разработка",
-            date: "12.10.2022"
-        }
-    ]
-
-    const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-
-    const data = {
-        labels,
-        datasets: [
-            {
-                data: labels.map(() => Math.random() * (10 - 1) - 1),
-                borderColor: 'rgb(53, 162, 235)',
-                backgroundColor: 'rgba(53, 162, 235, 0.5)',
-            },
-        ],
-    };
-
     ChartJS.register(
         CategoryScale,
         LinearScale,
@@ -76,19 +34,62 @@ const MyEducation = () => {
         Legend
     );
 
+    const myCourseQuery = getMyCourses();
+    const myCertificatesQuery = getMyCertificates();
+    const myLessonHistory = getMyLessonHistory();
+    const resultQuery = gql`
+        query ProfilePage($firstMyCourse: Int, $afterMyCourse: String,
+                          $searchMyCourse: String, 
+                          $isCompletedMyCourse: Boolean,
+                          $orderByMyCourse: String,
+                          
+                          $firstMyCertificate: Int, $afterMyCertificate: String) {
+            ${myCourseQuery}
+            ${myCertificatesQuery}
+            ${myLessonHistory}
+        }
+    `;
+    const {loading, data, error, refetch} = useQuery(resultQuery, {
+        variables: {
+            firstMyCourse: 3,
+            firstMyCertificate: 3,
+        }
+    });
+
+    if (error) {
+        console.log(error);
+    }
+
+    if (loading || error)
+        return <PageLoader/>;
+
+    const labels = data.myLessonHistory.map((item) => item.completedAt);
+
+    const chartData = {
+        labels,
+        datasets: [
+            {
+                data: data.myLessonHistory.map((item) => item.countLesson),
+                borderColor: 'rgb(53, 162, 235)',
+                backgroundColor: 'rgba(53, 162, 235, 0.5)',
+            },
+        ],
+    };
+
     return (
         <Container>
             <Row>
-                <Col>
+                <Col style={{marginBottom: 100}}>
                     <div className="single_course_title"
                          style={{
-                             padding: "30px 0" }}>
+                             padding: "30px 0"
+                         }}>
                         Мое обучение
                     </div>
 
                     <Card className="col-12">
                         <Card.Body>
-                            <div style={{ width: "95%", margin: "auto" }}>
+                            <div style={{width: "95%", margin: "auto"}}>
                                 <Line options={{
                                     responsive: true,
                                     maintainAspectRatio: true,
@@ -104,37 +105,60 @@ const MyEducation = () => {
                                                 size: 20
                                             }
                                         },
-                                    }
-                                }} data={data} />
+                                    },
+                                    scales: {
+                                        y: {
+                                            min: 0,
+                                            ticks: {
+                                                stepSize: 1,
+                                            },
+                                        },
+                                    },
+                                }} data={chartData}/>
                             </div>
                         </Card.Body>
                     </Card>
 
                     <div className="single_course_title"
-                         style={{
-                             padding: "30px 0", fontSize: 24}}>
+                         style={{padding: "30px 0", fontSize: 24}}>
                         Последние курсы
                     </div>
 
                     <Row>
                         {
-                            my_courses.map((value, index, array) =>
-                                <CourseInProfile key={index} course={value}/>
-                            )
+                            data.myCourses.edges.length > 0 ?
+                                <>
+                                    {
+                                        data.myCourses.edges.map(({node}) =>
+                                            <CourseInProfile key={node.id}
+                                                             data={node}/>
+                                        )
+                                    }
+                                </> :
+                                <YouDontHaveCourses/>
                         }
                     </Row>
 
                     <div className="single_course_title"
-                         style={{
-                             padding: "30px 0", fontSize: 24}}>
+                         style={{padding: "30px 0", fontSize: 24}}>
                         Последние сертификаты
                     </div>
 
                     <Row>
                         {
-                            my_sertificates.map((value, index, array) =>
-                                <LargeCertiicates key={index} certificate={value}/>
-                            )
+                            data.myCertificates.edges.length > 0 ?
+                                <>
+                                    {
+                                        data.myCertificates.edges.map(({node}) =>
+                                            <LargeCertificate key={node.id}
+                                                              data={{
+                                                                  node: node,
+                                                                  className: "col-lg-4",
+                                                              }}/>
+                                        )
+                                    }
+                                </> :
+                                <YouDontHaveCertificates/>
                         }
                     </Row>
                 </Col>

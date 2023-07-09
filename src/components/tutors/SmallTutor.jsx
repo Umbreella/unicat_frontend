@@ -2,7 +2,12 @@ import React from 'react';
 import {Image} from "react-bootstrap";
 import {NavLink} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faFacebook, faGooglePlus, faTwitter} from "@fortawesome/free-brands-svg-icons";
+import {
+    faFacebook,
+    faGooglePlus,
+    faTwitter,
+    faVk
+} from "@fortawesome/free-brands-svg-icons";
 
 const SmallTutor = (props) => {
     const item = props.item;
@@ -17,9 +22,6 @@ const SmallTutor = (props) => {
                     <NavLink className="team_title" to="/">
                         {item.fullName}
                     </NavLink>
-                    {/*<div className="team_subtitle">*/}
-                    {/*    Marketing & Management*/}
-                    {/*</div>*/}
                     <div className="social_list">
                         <ul>
                             <li>
@@ -39,7 +41,6 @@ const SmallTutor = (props) => {
                                             <FontAwesomeIcon icon={faTwitter} />
                                         </a> : null
                                 }
-
                             </li>
                             <li>
                                 {
@@ -47,6 +48,15 @@ const SmallTutor = (props) => {
                                         <a href={item.googlePlus}
                                            target="_blank" rel="noreferrer">
                                             <FontAwesomeIcon icon={faGooglePlus} />
+                                        </a> : null
+                                }
+                            </li>
+                            <li>
+                                {
+                                    item.vk ?
+                                        <a href={item.vk}
+                                           target="_blank" rel="noreferrer">
+                                            <FontAwesomeIcon icon={faVk} />
                                         </a> : null
                                 }
                             </li>

@@ -7,10 +7,14 @@ const FeaturesSidebarLine = (props) => {
     return (
         <div
             className="d-flex flex-row align-items-center justify-content-between"
-            style={{marginTop: 20}} >
-            <div >
+            style={{marginTop: 20}}>
+            <div>
                 <FontAwesomeIcon icon={feature.icon}
-                                 style={{marginRight: 10, color: "#14bdee"}} />
+                                 style={{
+                                     width: 20,
+                                     marginRight: 10,
+                                     color: "#14bdee"
+                                 }}/>
                 <span>{feature.title}</span>
             </div>
             <div className="feature_text ml-auto">

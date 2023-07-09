@@ -8,18 +8,21 @@ import HorizontalLoader from "../loader/HorizontalLoader";
 import CommentLoader from "../loader/CommentLoader";
 import {observer} from "mobx-react-lite";
 import {Context} from "../../index";
+import ErrorLazyQuery from "../errors/ErrorLazyQuery";
 
 
-const ReviewsCourse = observer ((props) => {
-    const {course, rating} = props.data;
+const ReviewsCourse = observer((props) => {
+    const {
+        course, query: {error, loading, data, refetch, fetchMore}
+    } = props.data;
     const {user, setVisibleAuthForm} = useContext(Context);
 
-    const {query: {loading, data, refetch, fetchMore}} = props.func;
     const [isLoadingMore, setIsLoadingMore] = useState(false);
 
     const updateCourseComments = () => {
         refetch({
             courseId: course.id,
+            statisticCourseId: course.id,
         });
     }
 
@@ -33,13 +36,23 @@ const ReviewsCourse = observer ((props) => {
         setIsLoadingMore(false);
     }
 
+    if (error) {
+        return <ErrorLazyQuery/>
+    }
+
+    if (loading) {
+        return <HorizontalLoader/>
+    }
+
+    const rating = data?.statistic;
+
     return (
         <>
             <div className="tab_panel_title">
                 Отзывы о курсе "{course.title}"
             </div>
             {
-                rating ?
+                rating &&
                     <Container className="review_rating_container">
                         <Row>
                             <div className="review_rating col-md-4">
@@ -95,8 +108,7 @@ const ReviewsCourse = observer ((props) => {
                                 </ul>
                             </div>
                         </Row>
-                    </Container> :
-                    <></>
+                    </Container>
             }
 
             <div className="comments_container">
@@ -117,8 +129,9 @@ const ReviewsCourse = observer ((props) => {
                                     <>
                                         {
                                             data?.allCourseComments.pageInfo.hasNextPage &&
-                                            <div className="courses_button trans_200"
-                                                 onClick={() => loadMoreComments()}>
+                                            <div
+                                                className="courses_button trans_200"
+                                                onClick={() => loadMoreComments()}>
                                                 Загрузить ещё
                                             </div>
                                         }
@@ -132,8 +145,8 @@ const ReviewsCourse = observer ((props) => {
                 {
                     user.isAuth ?
                         <CourseCommentForm data={{
-                                               commented_id: course.id,
-                                           }}
+                            commented_id: course.id,
+                        }}
                                            func={{
                                                refetchData: updateCourseComments,
                                            }}/> :

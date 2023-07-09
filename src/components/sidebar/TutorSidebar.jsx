@@ -15,44 +15,34 @@ const TutorSidebar = (props) => {
     const metaParams = [
         {
             title: "Средний рейтинг",
-            value: "4.6",
+            value: data.avgRating,
             icon: faStar
         },
         {
             title: "Отзывов",
-            value: "10 тыс.",
+            value: data.countReviews,
             icon: faComment
         },
-        {
-            title: "Выпускников",
-            value: "600",
-            icon: faUsers
-        }
     ]
 
     return (
         <div className="sidebar_teacher">
             <div
                 className="teacher_title_container d-flex flex-row align-items-center justify-content-start"
-                >
-                <div className="teacher_image">
-                    <Image src={data.photo} />
+            >
+                <div className="teacher_image d-flex">
+                    <Image src={data.photo}/>
                 </div>
                 <div className="teacher_title">
                     <div className="teacher_name">
-                        <NavLink to="#">
-                            {data.fullName}
-                        </NavLink>
-                    </div>
-                    <div className="teacher_position">
-                        Marketing & Management
+                        {data.fullName}
                     </div>
                 </div>
             </div>
             <div className="teacher_meta_container">
                 {
                     metaParams.map((value, index, array) =>
-                        <TutorMetaLine key={index} tutorMeta={value} />
+                        <TutorMetaLine key={index} tutorMeta={value}/>
                     )
                 }
             </div>

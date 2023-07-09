@@ -292,10 +292,10 @@
 	{
 		display: none;
 	}
-	.news_col:not(:last-child)
-	{
-		margin-bottom: 80px;
-	}
+	/*.news_col:not(:last-child)*/
+	/*{*/
+	/*	margin-bottom: 80px;*/
+	/*}*/
 	.newsletter_container
 	{
 		height: auto;
