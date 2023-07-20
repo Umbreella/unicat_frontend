@@ -11,7 +11,7 @@ const TechnicalRouter = () => {
                     let regPath = path;
 
                     if (path === RESET_PASSWORD || path === CHANGE_EMAIL || path === CONFIRM_EMAIL) {
-                        regPath += '/:uuid';
+                        regPath += ':uuid';
                     }
 
                     return (

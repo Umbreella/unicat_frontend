@@ -74,7 +74,10 @@ function App() {
                 </ApolloProvider>
             }
             {
-                isTechPage && <IndexTechnical/>
+                isTechPage &&
+                <ApolloProvider client={authGraphQLClient}>
+                    <IndexTechnical/>
+                </ApolloProvider>
             }
             {
                 isAdmin &&
