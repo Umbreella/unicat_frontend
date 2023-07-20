@@ -1,11 +1,8 @@
 import React from 'react';
-import teacher from "../../images/teacher.jpg";
 import {Image} from "react-bootstrap";
-import {NavLink} from "react-router-dom";
 import {
     faComment,
     faStar,
-    faUsers
 } from "@fortawesome/free-solid-svg-icons";
 import TutorMetaLine from "../tutors/TutorMetaLine";
 

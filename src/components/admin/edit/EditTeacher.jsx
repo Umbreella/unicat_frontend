@@ -1,14 +1,11 @@
 import React from 'react';
 import {
     Edit,
-    NumberInput,
     ReferenceInput,
     SelectInput,
     TextInput,
-    ImageInput,
     SimpleForm,
     required,
-    TabbedForm,
 } from 'react-admin';
 
 const EditTeacher = (props) => {

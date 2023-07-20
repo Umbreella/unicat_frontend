@@ -2,13 +2,8 @@ import React, {useContext, useEffect, useState} from 'react';
 import {Col, Container, Image, Row} from "react-bootstrap";
 import SidebarSection from "../../components/sidebar/SidebarSection";
 import CoursesSidebar from "../../components/sidebar/CoursesSidebar";
-import {NavLink, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {
-    faFacebook,
-    faGoogle,
-    faTwitter
-} from "@fortawesome/free-brands-svg-icons";
 import Comments from "../../components/comments/Comments";
 import {getLatestCourses} from "../../http/graphql/CourseGQL";
 import {gql, useQuery} from "@apollo/client";
@@ -21,9 +16,6 @@ import {Context} from "../../index";
 import {getCurrentEvents, getSmallEvents} from "../../http/graphql/EventGQL";
 import BlogCommentForm from "../../components/forms/BlogCommentForm";
 import CommentLoader from "../../components/loader/CommentLoader";
-import GallerySidebar from "../../components/sidebar/GallerySidebar";
-import TagsSidebar from "../../components/sidebar/TagsSidebar";
-import DownloadSidebar from "../../components/sidebar/DownloadSidebar";
 import {EVENT_TYPE} from "../../utils/consts";
 import {faClock, faMapMarker} from "@fortawesome/free-solid-svg-icons";
 import NewsSidebar from "../../components/sidebar/NewsSidebar";

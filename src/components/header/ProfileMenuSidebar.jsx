@@ -8,13 +8,11 @@ import {
 import 'react-pro-sidebar/dist/css/styles.css';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
-    faAngleDown,
     faAngleLeft,
-    faAngleRight, faCheck
+    faAngleRight,
 } from "@fortawesome/free-solid-svg-icons";
 import {NavLink, useLocation} from "react-router-dom";
 import {useMediaQuery} from "react-responsive";
-import SidebarMenu from 'react-bootstrap-sidebar-menu';
 import ContentCourseMenu from "../menu/ContentCourseMenu";
 import ProfileMenu from "../menu/ProfileMenu";
 import {LESSON_COURSE, MY_COURSES} from "../../utils/consts";

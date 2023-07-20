@@ -49,7 +49,7 @@ const MyEducation = () => {
             ${myLessonHistory}
         }
     `;
-    const {loading, data, error, refetch} = useQuery(resultQuery, {
+    const {loading, data, error} = useQuery(resultQuery, {
         variables: {
             firstMyCourse: 3,
             firstMyCertificate: 3,

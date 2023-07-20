@@ -1,7 +1,7 @@
 import React, {useContext, useEffect} from 'react';
 import {Container, Image, Row, Tab, Tabs} from "react-bootstrap";
 import FeatureSidebar from "../../components/sidebar/FeatureSidebar";
-import {NavLink, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import CurriculumCourse from "../../components/tabs/CurriculumCourse";
 import ReviewsCourse from "../../components/tabs/ReviewsCourse";
 import SidebarSection from "../../components/sidebar/SidebarSection";

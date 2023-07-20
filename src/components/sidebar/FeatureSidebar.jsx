@@ -1,7 +1,7 @@
 import React, {useContext, useState} from 'react';
 import {
     faClock,
-    faFileText, faListAlt,
+    faFileText,
     faQuestionCircle, faUserGraduate,
 } from "@fortawesome/free-solid-svg-icons";
 import FeaturesSidebarLine from "../features/FeaturesSidebarLine";

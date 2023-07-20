@@ -1,12 +1,8 @@
 import React, {useState} from 'react';
 import {
-    Edit,
-    TabbedForm,
     FunctionField,
     TextInput,
     FormDataConsumer,
-    ReferenceInput,
-    SelectInput,
     required,
     ReferenceManyField,
     Datagrid,
@@ -14,7 +10,11 @@ import {
     RichTextField,
     ReferenceField,
     Pagination,
-    SimpleForm, useEditController, Button, useRefresh, NumberInput,
+    SimpleForm,
+    useEditController,
+    Button,
+    useRefresh,
+    NumberInput,
 } from 'react-admin';
 import {RichTextInput} from "ra-input-rich-text";
 import RichTextToolbar from "../toolbars/RichTextToolbar";
@@ -75,7 +75,10 @@ const EditLesson = (props) => {
                                        paddingBottom: 4,
                                        background: "#e0e0e0",
                                    }}>
-                                       <div style={{fontSize: 12, lineHeight: "23px"}}>
+                                       <div style={{
+                                           fontSize: 12,
+                                           lineHeight: "23px"
+                                       }}>
                                            Lesson Type
                                        </div>
                                        <div style={{fontSize: 16,}}>
@@ -95,7 +98,10 @@ const EditLesson = (props) => {
                                        paddingBottom: 4,
                                        background: "#e0e0e0",
                                    }}>
-                                       <div style={{fontSize: 12, lineHeight: "23px"}}>
+                                       <div style={{
+                                           fontSize: 12,
+                                           lineHeight: "23px"
+                                       }}>
                                            Parent
                                        </div>
                                        <div style={{fontSize: 16,}}>

@@ -14,7 +14,7 @@ import {
     LAST_BREADCRUMBS,
     EVENTS_ROUTE,
     MY_COURSES_CONTENT_LESSONS,
-    MY_COURSES_CONTENT, ADMIN_PATH, CONFIRM_EMAIL, CHANGE_EMAIL, MY_PAYMENTS
+    MY_COURSES_CONTENT, CONFIRM_EMAIL, CHANGE_EMAIL, MY_PAYMENTS
 } from "./consts";
 import Home from "../pages/main/Home";
 import Blog from "../pages/main/Blog";

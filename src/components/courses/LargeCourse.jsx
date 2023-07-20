@@ -1,11 +1,9 @@
-import React, {useContext, useEffect} from 'react';
+import React from 'react';
 import {Image} from "react-bootstrap";
-import {NavLink, useNavigate} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faStar, faUserGraduate} from "@fortawesome/free-solid-svg-icons";
 import {COURSES_ROUTE} from "../../utils/consts";
-import {Context} from "../../index";
-import Countdown from "react-countdown";
 
 const LargeCourse = (props) => {
     const item = props.item;

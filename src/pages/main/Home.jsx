@@ -11,7 +11,6 @@ import {gql, useQuery} from "@apollo/client";
 import {getEvents} from "../../http/graphql/EventGQL";
 import {getNews} from "../../http/graphql/NewsGQL";
 import PageLoader from "../../components/loader/PageLoader";
-import {Col, Container, Row} from "react-bootstrap";
 import ErrorQuery from "../../components/errors/ErrorQuery";
 
 const Home = () => {

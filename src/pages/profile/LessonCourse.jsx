@@ -1,12 +1,10 @@
 import React, {
-    forwardRef,
     useContext,
-    useEffect, useImperativeHandle,
-    useReducer,
+    useEffect,
     useRef,
     useState
 } from 'react';
-import {Card, Col, Container, Row, Table} from "react-bootstrap";
+import {Card, Col, Container, Row} from "react-bootstrap";
 import {useLocation, useParams} from "react-router-dom";
 import {Context} from "../../index";
 import {gql, useLazyQuery, useQuery} from "@apollo/client";

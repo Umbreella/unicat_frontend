@@ -1,10 +1,11 @@
 import React from 'react';
 import {
     Create,
-    ReferenceInput,
-    SelectInput,
     TextInput,
-    required, TabbedForm, ImageInput, ImageField, SimpleForm,
+    required,
+    ImageInput,
+    ImageField,
+    SimpleForm,
 } from 'react-admin';
 import {
     RichTextInput,

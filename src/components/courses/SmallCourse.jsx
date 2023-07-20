@@ -1,8 +1,7 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {Image} from "react-bootstrap";
 import {NavLink} from "react-router-dom";
 import {COURSES_ROUTE} from "../../utils/consts";
-import {Context} from "../../index";
 
 const SmallCourse = (props) => {
     const item = props.item;

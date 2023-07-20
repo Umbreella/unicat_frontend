@@ -1,7 +1,6 @@
 import React from 'react';
 import {technicalRoutes} from "../../utils/routes";
-import {Route, Routes, useParams} from "react-router-dom";
-import ResetPassword from "../../pages/technical/ResetPassword";
+import {Route, Routes} from "react-router-dom";
 import {CHANGE_EMAIL, CONFIRM_EMAIL, RESET_PASSWORD} from "../../utils/consts";
 
 const TechnicalRouter = () => {

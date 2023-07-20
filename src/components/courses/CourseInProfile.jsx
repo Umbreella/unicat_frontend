@@ -1,10 +1,9 @@
 import React from 'react';
-import {Card, Col, Image, ProgressBar} from "react-bootstrap";
+import {Card, Col, ProgressBar} from "react-bootstrap";
 import {NavLink} from "react-router-dom";
 import {
     LESSON_COURSE,
     CERTIFICATES,
-    COURSES_ROUTE,
     MY_COURSES
 } from "../../utils/consts";
 

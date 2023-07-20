@@ -1,7 +1,6 @@
 import React from 'react';
 import {
     BooleanInput,
-    Edit,
     SimpleForm,
     TextInput,
     useEditController

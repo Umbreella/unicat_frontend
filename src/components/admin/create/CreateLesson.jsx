@@ -1,38 +1,23 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {
-    Datagrid,
     Create,
     FormDataConsumer,
-    Pagination,
-    ReferenceField,
     ReferenceInput,
-    ReferenceManyField,
     required,
-    RichTextField,
     SelectInput,
-    TabbedForm,
-    TextField,
     TextInput,
-    useEditController,
     useCreate,
     useNotify,
-    useRefresh,
-    useRedirect,
     Button, SimpleForm, NumberInput,
 } from "react-admin";
 import {RichTextInput} from "ra-input-rich-text";
 import RichTextToolbar from "../toolbars/RichTextToolbar";
-import CreateQuestion from "./CreateQuestion";
-import DeleteIcon from '@mui/icons-material/Delete';
-import DoneIcon from "@mui/icons-material/Done";
-import ClearIcon from "@mui/icons-material/Clear";
-import {Modal, Table} from "react-bootstrap";
-import {Interweave} from "interweave";
+import {Modal} from "react-bootstrap";
 import AddIcon from "@mui/icons-material/Add";
 
 const CreateLesson = (props) => {
     const selectedCourseId = props.data;
-    const [create, {loading}] = useCreate();
+    const [create,] = useCreate();
     const notify = useNotify();
     const [showDialog, setShowDialog] = useState(false);
 

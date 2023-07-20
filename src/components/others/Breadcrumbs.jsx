@@ -1,6 +1,6 @@
-import React, {useContext, useEffect, useReducer} from 'react';
+import React, {useContext, useReducer} from 'react';
 import {Col, Container, Row} from "react-bootstrap";
-import {Link, NavLink, useLocation} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import useBreadcrumbs from 'use-react-router-breadcrumbs';
 import {mainPage, publicRoutes} from "../../utils/routes";
 import {Context} from "../../index";

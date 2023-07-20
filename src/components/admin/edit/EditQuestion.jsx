@@ -1,11 +1,17 @@
 import React, {useState} from 'react';
 import {
     Datagrid,
-    Edit, Pagination,
-    ReferenceInput, ReferenceManyField,
-    required, SelectInput,
-    SimpleForm, TextField,
-    TextInput, BooleanField, useEditController, Button, useRefresh,
+    Pagination,
+    ReferenceInput,
+    ReferenceManyField,
+    required,
+    SelectInput,
+    SimpleForm,
+    TextField,
+    BooleanField,
+    useEditController,
+    Button,
+    useRefresh,
 } from 'react-admin';
 import {RichTextInput} from "ra-input-rich-text";
 import RichTextToolbar from "../toolbars/RichTextToolbar";

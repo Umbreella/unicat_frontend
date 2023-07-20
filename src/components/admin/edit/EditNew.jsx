@@ -1,7 +1,10 @@
 import React from 'react';
 import {
     DateTimeInput,
-    Edit, ImageField, ImageInput, ReferenceInput, required, SelectInput,
+    Edit,
+    ImageField,
+    ImageInput,
+    required,
     SimpleForm,
     TextInput,
 } from "react-admin";

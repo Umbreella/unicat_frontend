@@ -1,5 +1,4 @@
 import React from 'react';
-import {NavLink} from "react-router-dom";
 import {Image} from "react-bootstrap";
 import {Rating} from "react-simple-star-rating";
 import avatarDefault from '../../images/avatarDefault.png'

@@ -1,13 +1,11 @@
 import React from 'react';
 import {Col, Container, Image, Row} from "react-bootstrap";
-import {NavLink, useLocation} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faFacebook, faGooglePlus, faInstagram, faTwitter} from "@fortawesome/free-brands-svg-icons";
 import googleStore_app from "../../images/mobile_1.png";
 import appStore_app from "../../images/mobile_2.png";
 import galaxyStore_app from "../../images/mobile_3.png";
-import {ABOUT_ROUTE} from "../../utils/consts";
-import NewsLetterSection from "../others/NewsLetterSection";
 
 const MainFooter = () => {
     return (

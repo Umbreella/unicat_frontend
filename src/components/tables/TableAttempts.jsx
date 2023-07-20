@@ -1,13 +1,6 @@
-import React, {
-    forwardRef,
-    useEffect,
-    useImperativeHandle,
-    useState
-} from 'react';
+import React from 'react';
 import {Table} from "react-bootstrap";
 import HorizontalLoader from "../loader/HorizontalLoader";
-import {gql, useQuery} from "@apollo/client";
-import {getMyAttempts} from "../../http/graphql/AttemptsGQL";
 
 const TableAttempts = (props) => {
     const {loading, data, isLoading} = props.data;

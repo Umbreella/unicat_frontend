@@ -1,22 +1,10 @@
 import React from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleDown, faCheck} from "@fortawesome/free-solid-svg-icons";
-import {NavLink} from "react-router-dom";
 import SidebarMenu from 'react-bootstrap-sidebar-menu';
 
 const RecursiveSubMenu = (props) => {
     const {data, subMenuCount} = props.data;
-
-    const getIcon = (item) => {
-        return <div style={{fontSize: 15}}>1.</div>;
-        // return <div style={{fontSize: 15}}>{item.icon}.</div>;
-    }
-
-    const getSuffix = (item) => {
-        return <FontAwesomeIcon icon={faCheck}/>
-        return item.isComplete ? <FontAwesomeIcon icon={faCheck}/> : <></>;
-    }
-
 
     return (
         <>

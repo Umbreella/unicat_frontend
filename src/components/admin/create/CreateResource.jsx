@@ -1,12 +1,12 @@
 import React, {useCallback, useState} from 'react';
 import {
     Create,
-    SaveButton,
     SimpleForm,
     TextInput,
     useCreate,
     useNotify,
-    Form, ImageInput, ImageField, required,
+    ImageInput,
+    ImageField,
 } from 'react-admin';
 import {Modal} from 'react-bootstrap';
 import {ToggleButton} from "@mui/material";
@@ -16,7 +16,7 @@ import {imageToBase64} from "../../../http/dataProviders/functions";
 
 const CreateResource = () => {
     const [showDialog, setShowDialog] = useState(false);
-    const [create, {loading}] = useCreate();
+    const [create,] = useCreate();
     const notify = useNotify();
     const editor = useTiptapEditor();
 

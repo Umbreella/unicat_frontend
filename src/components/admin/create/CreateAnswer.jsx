@@ -1,19 +1,12 @@
 import React, {useCallback, useState} from 'react';
 import {
-    BooleanField, BooleanInput,
+    BooleanInput,
     Button,
     Create,
-    Datagrid,
-    FormDataConsumer,
-    Pagination,
-    ReferenceInput,
-    ReferenceManyField,
-    required,
-    SelectInput,
-    SimpleForm, TextField,
+    SimpleForm,
     TextInput,
     useCreate,
-    useNotify, useRefresh
+    useNotify,
 } from "react-admin";
 import AddIcon from "@mui/icons-material/Add";
 import {Modal} from "react-bootstrap";
@@ -22,7 +15,7 @@ const CreateAnswer = (props) => {
     const selectedQuestionId = props.data;
     const addAnswer = props.func;
     const [showDialog, setShowDialog] = useState(false);
-    const [create, {loading}] = useCreate();
+    const [create,] = useCreate();
     const notify = useNotify();
 
     const handleClick = () => {

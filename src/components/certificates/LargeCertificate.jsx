@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Button, Card, Col, Row} from "react-bootstrap";
+import {Button, Card, Col} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faDownload} from "@fortawesome/free-solid-svg-icons";
 import {downloadUserCertificate} from "../../http/api/UserCertificateApi";

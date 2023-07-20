@@ -1,16 +1,10 @@
 import React from 'react';
 import {Col, Container, Row} from "react-bootstrap";
-import SidebarSection from "../../components/sidebar/SidebarSection";
-import CoursesSidebar from "../../components/sidebar/CoursesSidebar";
-import CategoriesSidebar from "../../components/sidebar/CategoriesSidebar";
-import DownloadSidebar from "../../components/sidebar/DownloadSidebar";
 import {getCourses, getLatestCourses} from "../../http/graphql/CourseGQL";
 import {gql, useQuery} from "@apollo/client";
 import CoursesWithFilters from "../../components/courses/CoursesWithFilters";
 import {getCategories} from "../../http/graphql/CategoryGQL";
 import PageLoader from "../../components/loader/PageLoader";
-import TagsSidebar from "../../components/sidebar/TagsSidebar";
-import GallerySidebar from "../../components/sidebar/GallerySidebar";
 import ErrorQuery from "../../components/errors/ErrorQuery";
 
 const Courses = () => {

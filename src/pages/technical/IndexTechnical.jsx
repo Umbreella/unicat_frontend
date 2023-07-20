@@ -1,7 +1,7 @@
 import React from 'react';
 import TechnicalRouter from "../../components/routes/TechnicalRouter";
 import {Col, Container, Row} from "react-bootstrap";
-import {NavLink, useLocation} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import {HOME_ROUTE} from "../../utils/consts";
 
 const IndexTechnical = () => {

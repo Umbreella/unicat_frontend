@@ -1,12 +1,7 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
     Admin,
     Resource,
-    ListGuesser,
-    EditGuesser,
-    ShowGuesser,
-    useLogin,
-    useNotify,
 } from "react-admin";
 import {
     loginUser, checkUserIsAuthed, logoutUser,

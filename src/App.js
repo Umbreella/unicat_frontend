@@ -10,7 +10,7 @@ import {
     technicalRoutes
 } from "./utils/routes";
 import {ApolloClient, ApolloProvider, createHttpLink} from "@apollo/client";
-import {ADMIN_PATH, HOME_ROUTE, LESSON_COURSE} from "./utils/consts";
+import {ADMIN_PATH, LESSON_COURSE} from "./utils/consts";
 import AuthModal from "./components/modal/AuthModal";
 import {setContext} from "@apollo/client/link/context";
 import {checkUserIsAuthed} from "./http/api/UserApi";

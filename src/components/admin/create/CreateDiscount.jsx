@@ -3,21 +3,11 @@ import {
     Create,
     ReferenceInput,
     SelectInput,
-    TextInput,
     required,
-    TabbedForm,
-    ImageInput,
-    ImageField,
     DateTimeInput,
-    DateInput,
-    TimeInput, SimpleForm, NumberInput,
+    SimpleForm,
+    NumberInput,
 } from 'react-admin';
-import {
-    RichTextInput,
-} from 'ra-input-rich-text';
-import RichTextToolbar from "../toolbars/RichTextToolbar";
-import {Col} from "react-bootstrap";
-import {formatImage} from "../../../http/dataProviders/functions";
 
 const CreateDiscount = () => {
     return (

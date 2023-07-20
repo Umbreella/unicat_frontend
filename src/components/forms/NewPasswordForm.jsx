@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Button, Form} from "react-bootstrap";
-import {ENTER_EMAIL, HOME_ROUTE} from "../../utils/consts";
+import {ENTER_EMAIL} from "../../utils/consts";
 import {useNavigate, useParams} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
@@ -8,7 +8,6 @@ import {
     faEyeSlash
 } from "@fortawesome/free-solid-svg-icons";
 import {
-    postEmailForResetPassword,
     postNewPassword
 } from "../../http/api/UserApi";
 import {object, string} from "yup";

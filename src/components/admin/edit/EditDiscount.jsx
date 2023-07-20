@@ -1,9 +1,12 @@
 import React from 'react';
 import {
     DateTimeInput,
-    Edit, NumberInput, ImageInput, ReferenceInput, required, SelectInput,
+    Edit,
+    NumberInput,
+    ReferenceInput,
+    required,
+    SelectInput,
     SimpleForm,
-    TextInput,
 } from "react-admin";
 
 const EditDiscount = (props) => {
@@ -16,9 +19,9 @@ const EditDiscount = (props) => {
                     <SelectInput optionText="title" optionValue="id"
                                  validate={required()}/>
                 </ReferenceInput>
-                <NumberInput source="percent" />
-                <DateTimeInput source="start_date" />
-                <DateTimeInput source="end_date" />
+                <NumberInput source="percent"/>
+                <DateTimeInput source="start_date"/>
+                <DateTimeInput source="end_date"/>
             </SimpleForm>
         </Edit>
     );

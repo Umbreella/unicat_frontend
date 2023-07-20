@@ -1,7 +1,5 @@
 import React, {useState} from 'react';
 import {Button, Form} from "react-bootstrap";
-import {NavLink, useNavigate} from "react-router-dom";
-import {ENTER_EMAIL, RESET_PASSWORD} from "../../utils/consts";
 import {object, string} from "yup";
 import {Formik} from "formik";
 import {postEmailForResetPassword} from "../../http/api/UserApi";

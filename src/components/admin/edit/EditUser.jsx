@@ -5,7 +5,7 @@ import {
     ImageInput,
     TabbedForm,
     TextInput,
-    BooleanInput, ReferenceArrayInput, AutocompleteArrayInput, required,
+    BooleanInput, ReferenceArrayInput, AutocompleteArrayInput,
 } from "react-admin";
 import {formatImage} from "../../../http/dataProviders/functions";
 

@@ -12,7 +12,6 @@ import {
     Pagination,
     Datagrid,
     TextField,
-    RichTextField,
     ReferenceField,
     ReferenceManyField, Button, useRefresh,
 } from 'react-admin';

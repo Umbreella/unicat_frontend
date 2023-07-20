@@ -1,14 +1,11 @@
 import React from 'react';
 import {
     Create,
-    ReferenceInput,
-    SelectInput,
     TextInput,
     required,
     TabbedForm,
     ImageInput,
     ImageField,
-    DateTimeInput,
     DateInput,
     TimeInput,
 } from 'react-admin';

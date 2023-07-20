@@ -2,10 +2,9 @@ import React, {useContext, useReducer} from 'react';
 import {Menu, MenuItem, SubMenu} from "react-pro-sidebar";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowLeft, faCheck} from "@fortawesome/free-solid-svg-icons";
-import {NavLink, useParams} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import {LESSON_COURSE, MY_COURSES} from "../../utils/consts";
 import {Context} from "../../index";
-import RecursiveSubMenu from "./RecursiveSubMenu";
 
 const ContentCourseMenu = (props) => {
     const hideSideBar = props.hideSideBar;

@@ -1,5 +1,4 @@
 import React from 'react';
-import SmallCourse from "../courses/SmallCourse";
 import SmallNews from "../news/SmallNews";
 
 const NewsSidebar = (props) => {

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Modal, Tab, Tabs} from "react-bootstrap";
 import AuthForm from "../forms/AuthForm";
 import RegForm from "../forms/RegForm";

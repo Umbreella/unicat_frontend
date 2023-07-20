@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {
     Button,
     Create,
@@ -6,25 +6,19 @@ import {
     required,
     SelectInput,
     SimpleForm,
-    TextInput,
     useCreate,
     useNotify,
-    FormDataConsumer,
 } from "react-admin";
 import AddIcon from '@mui/icons-material/Add';
-import ClearIcon from '@mui/icons-material/Clear';
-import DoneIcon from '@mui/icons-material/Done';
 import {RichTextInput} from "ra-input-rich-text";
-import {Modal, Table} from "react-bootstrap";
+import {Modal} from "react-bootstrap";
 import RichTextToolbar from "../toolbars/RichTextToolbar";
-import CreateAnswer from "./CreateAnswer";
-import DeleteIcon from "@mui/icons-material/Delete";
 
 const CreateQuestion = (props) => {
     const selectedLesson = props.data;
     const setQuestion = props.func;
     const [showDialog, setShowDialog] = useState(false);
-    const [create, {loading}] = useCreate();
+    const [create,] = useCreate();
     const notify = useNotify();
 
     const handleClick = () => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Col, Container, Row} from "react-bootstrap";
 import {NavLink} from "react-router-dom";
-import {COURSES_ROUTE, HOME_ROUTE} from "../../utils/consts";
+import {HOME_ROUTE} from "../../utils/consts";
 
 const NotFound = () => {
     return (

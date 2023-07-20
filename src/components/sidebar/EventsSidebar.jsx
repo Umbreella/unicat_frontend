@@ -1,5 +1,4 @@
 import React from 'react';
-import SmallCourse from "../courses/SmallCourse";
 import SmallEvent from "../events/SmallEvent";
 
 const EventsSidebar = (props) => {

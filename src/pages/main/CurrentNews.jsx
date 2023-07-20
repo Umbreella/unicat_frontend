@@ -2,13 +2,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import {Col, Container, Image, Row} from "react-bootstrap";
 import SidebarSection from "../../components/sidebar/SidebarSection";
 import CoursesSidebar from "../../components/sidebar/CoursesSidebar";
-import {NavLink, useParams} from "react-router-dom";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {
-    faFacebook,
-    faGoogle,
-    faTwitter
-} from "@fortawesome/free-brands-svg-icons";
+import {useParams} from "react-router-dom";
 import Comments from "../../components/comments/Comments";
 import {getLatestCourses} from "../../http/graphql/CourseGQL";
 import {gql, useQuery} from "@apollo/client";
@@ -20,9 +14,6 @@ import {Context} from "../../index";
 import BlogCommentForm from "../../components/forms/BlogCommentForm";
 import {NEWS_TYPE} from "../../utils/consts";
 import CommentLoader from "../../components/loader/CommentLoader";
-import GallerySidebar from "../../components/sidebar/GallerySidebar";
-import TagsSidebar from "../../components/sidebar/TagsSidebar";
-import DownloadSidebar from "../../components/sidebar/DownloadSidebar";
 import NewsSidebar from "../../components/sidebar/NewsSidebar";
 import EventsSidebar from "../../components/sidebar/EventsSidebar";
 import {getSmallEvents} from "../../http/graphql/EventGQL";

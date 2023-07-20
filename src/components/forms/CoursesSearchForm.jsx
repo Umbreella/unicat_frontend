@@ -1,7 +1,7 @@
-import React, {useCallback, useRef, useState} from 'react';
-import {Button, Col, Container, Form, Row} from "react-bootstrap";
+import React, {useState} from 'react';
+import {Button, Col, Form, Row} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faArrowUp, faSliders} from "@fortawesome/free-solid-svg-icons";
+import {faSliders} from "@fortawesome/free-solid-svg-icons";
 import MultiRangeSlider from "../sliders/MultiRangeSlider";
 
 const CoursesSearchForm = (props) => {

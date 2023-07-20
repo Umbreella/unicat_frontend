@@ -1,7 +1,5 @@
 import React, {useContext, useState} from 'react';
 import {Button, Form} from "react-bootstrap";
-import {PROFILE} from "../../utils/consts";
-import {useNavigate} from "react-router-dom";
 import {Context} from "../../index";
 import {object, string} from "yup";
 import {Formik} from "formik";
@@ -9,8 +7,7 @@ import {registerUser} from "../../http/api/UserApi";
 import HorizontalLoader from "../loader/HorizontalLoader";
 
 const AuthForm = (props) => {
-    const {user, setVisibleAuthForm} = useContext(Context);
-    const navigate = useNavigate();
+    const {setVisibleAuthForm} = useContext(Context);
     const [isLoading, setIsLoading] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
 

@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
 import {Button, Form} from "react-bootstrap";
 import {object, string} from "yup";
-import {NavLink} from "react-router-dom";
-import {ENTER_EMAIL} from "../../utils/consts";
 import {Formik} from "formik";
 import HorizontalLoader from "../loader/HorizontalLoader";
 import {postFeedback} from "../../http/api/FeedbackApi";
