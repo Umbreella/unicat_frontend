@@ -12,12 +12,12 @@ const SmallNews = (props) => {
                 {data.title}
             </NavLink>
             <div className="news_post_meta">
-                <NavLink to="/">
+                <div>
                     {data.author}
-                </NavLink>
-                <NavLink to="/">
+                </div>
+                <div>
                     {data.createdAt}
-                </NavLink>
+                </div>
             </div>
         </div>
     );

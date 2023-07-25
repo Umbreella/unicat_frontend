@@ -17,19 +17,19 @@ const LargeNews = (props) => {
                     {data.title}
                 </NavLink>
                 <div className="news_post_meta">
-                    <NavLink to="/">
-                        admin
-                    </NavLink>
-                    <NavLink to="/">
+                    <div>
+                        {data.author}
+                    </div>
+                    <div>
                         {data.createdAt}
-                    </NavLink>
+                    </div>
                 </div>
                 <div className="news_post_text">
                     {data.shortDescription}
                 </div>
                 <div className="news_post_link">
                     <NavLink to={full_news_url}>
-                        read more
+                        читать далее
                     </NavLink>
                 </div>
             </div>

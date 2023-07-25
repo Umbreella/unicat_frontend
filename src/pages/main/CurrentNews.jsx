@@ -46,11 +46,15 @@ const CurrentNews = () => {
         }
     `;
 
-    const {error, loading, data, refetch, fetchMore} = useQuery(resultQuery, {variables: {
+    const {error, loading, data, refetch, fetchMore} = useQuery(resultQuery, {
+        variables: {
             currentNewsId: params.id,
             newsId: params.id,
             firstLatestCourse: 4,
-        }});
+            firstNews: 4,
+            firstEvent: 4,
+        }
+    });
 
     useEffect(() => {
         if (data !== undefined) {
@@ -103,7 +107,8 @@ const CurrentNews = () => {
                                                className="w-100"/>
                                     </div>
                                     <div className="blog_text">
-                                        <Interweave content={data.news.description}/>
+                                        <Interweave
+                                            content={data.news.description}/>
                                     </div>
                                 </div>
 
@@ -122,8 +127,9 @@ const CurrentNews = () => {
                                                     func={{
                                                         refetchData: updateNewsComments
                                                     }}/> :
-                                                <div className="courses_button trans_200"
-                                                     onClick={() => setVisibleAuthForm(true)}>
+                                                <div
+                                                    className="courses_button trans_200"
+                                                    onClick={() => setVisibleAuthForm(true)}>
                                                     <div>
                                                         Войти
                                                     </div>
@@ -136,13 +142,15 @@ const CurrentNews = () => {
                                     <ul className="comments_list">
                                         {
                                             data.allNewsComments.totalCount === 0 &&
-                                            <div className="text-center mt-4" style={{fontSize: 16}}>
+                                            <div className="text-center mt-4"
+                                                 style={{fontSize: 16}}>
                                                 Ваш комментарий будет первым
                                             </div>
                                         }
                                         {
                                             data.allNewsComments.edges.map(({node}) =>
-                                                <Comments key={node.id} data={node}/>
+                                                <Comments key={node.id}
+                                                          data={node}/>
                                             )
                                         }
                                         {
@@ -167,15 +175,18 @@ const CurrentNews = () => {
                                 <div className="sidebar_current_course">
                                     <SidebarSection section={{
                                         title: "Новые курсы",
-                                        body: <CoursesSidebar data={data.latestCourses}/>
+                                        body: <CoursesSidebar
+                                            data={data.latestCourses}/>
                                     }}/>
                                     <SidebarSection section={{
                                         title: "Последние новости",
-                                        body: <NewsSidebar data={data.allNews}/>
+                                        body: <NewsSidebar
+                                            data={data.allNews}/>
                                     }}/>
                                     <SidebarSection section={{
                                         title: "Предстоящие события",
-                                        body: <EventsSidebar data={data.allEvents}/>
+                                        body: <EventsSidebar
+                                            data={data.allEvents}/>
                                     }}/>
                                 </div>
                             </div>

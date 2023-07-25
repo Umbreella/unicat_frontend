@@ -55,6 +55,7 @@ const CurrentEvent = () => {
             eventId: params.id,
             firstLatestCourse: 4,
             firstNews: 4,
+            firstEvent: 4,
         }
     });
 

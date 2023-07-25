@@ -25,7 +25,18 @@ const SmallCourse = (props) => {
                     </NavLink>
                 </div>
                 <div className="latest_price">
-                    {item.price}
+                    {
+                        item.discount !== null ?
+                            <>
+                                <span className="course_price_span">
+                                    {item.price}
+                                </span>
+                                {item.price * (1 - item.discount.percent / 100)}₽
+                            </> :
+                            <>
+                                {item.price}₽
+                            </>
+                    }
                 </div>
             </div>
         </div>

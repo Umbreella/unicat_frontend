@@ -95,10 +95,10 @@ const FeatureSidebar = observer((props) => {
                             </div>
                             <div
                                 className="d-flex align-items-end">
-                                {data.price * (100 - data.discount.percent) / 100}₽
                                 <span className="course_price_span ms-1">
-                                {data.price}
-                            </span>
+                                    {data.price}
+                                </span>
+                                {data.price * (100 - data.discount.percent) / 100}₽
                             </div>
                         </>
                         :

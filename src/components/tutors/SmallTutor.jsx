@@ -19,8 +19,10 @@ const SmallTutor = (props) => {
                     <Image src={item.photo}/>
                 </div>
                 <div className="team_body">
-                    <NavLink className="team_title" to="/">
+                    <div className="team_title">
                         {item.fullName}
+                    </div>
+                    <NavLink className="team_title" to="/">
                     </NavLink>
                     <div className="social_list">
                         <ul>

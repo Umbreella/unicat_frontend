@@ -49,7 +49,7 @@ const Breadcrumbs = () => {
                                                                 <>{breadcrumb}</> :
                                                                 <>
                                                                     {
-                                                                        pathname === EVENTS_ROUTE ?
+                                                                        pathname + "/" === EVENTS_ROUTE ?
                                                                             <HashLink
                                                                                 to={BLOG_ROUTE + "#events"}
                                                                                 scroll={(el) => el.scrollIntoView({
@@ -58,13 +58,13 @@ const Breadcrumbs = () => {
                                                                                 })}>
                                                                                 {breadcrumb}
                                                                             </HashLink> :
-                                                                            pathname === NEWS_ROUTE ?
+                                                                            pathname + "/" === NEWS_ROUTE ?
                                                                                 <Link
                                                                                     to={BLOG_ROUTE}>
                                                                                     {breadcrumb}
                                                                                 </Link> :
                                                                                 <Link
-                                                                                    to={pathname}>
+                                                                                    to={pathname + "/"}>
                                                                                     {breadcrumb}
                                                                                 </Link>
                                                                     }

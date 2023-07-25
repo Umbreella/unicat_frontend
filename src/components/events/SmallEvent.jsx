@@ -4,6 +4,7 @@ import {BLOG_ROUTE} from "../../utils/consts";
 
 const SmallEvent = (props) => {
     const data = props.data;
+    const date = new Date(data.date);
 
     return (
         <div className="news_post_small pb-4">
@@ -12,12 +13,12 @@ const SmallEvent = (props) => {
                 {data.title}
             </NavLink>
             <div className="news_post_meta">
-                <NavLink to="/">
-                    {data.date}
-                </NavLink>
-                <NavLink to="/">
+                <div>
+                    {date.getDate()} / {date.getMonth() + 1} / {date.getFullYear()}
+                </div>
+                <div>
                     {data.place}
-                </NavLink>
+                </div>
             </div>
         </div>
     );

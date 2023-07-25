@@ -63,6 +63,9 @@ export const getLatestCourses = () => {
                     id
                     title
                     price
+                    discount {
+                        percent
+                    }
                     preview
                 }
             }

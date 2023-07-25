@@ -1626,10 +1626,6 @@ section
 	-o-transition: all 200ms ease;
 	transition: all 200ms ease;
 }
-.team_title:hover
-{
-	color: #14bdee;
-}
 .team_subtitle
 {
 	font-size: 14px;
@@ -1739,12 +1735,12 @@ section
 {
 	margin-top: 11px;
 }
-.news_post_meta a
+.news_post_meta div
 {
 	display: inline-block;
 	position: relative;
 }
-.news_post_meta a:not(:last-of-type)::after
+.news_post_meta div:not(:last-of-type)::after
 {
 	display: inline-block;
 	position: relative;
@@ -1752,7 +1748,7 @@ section
 	margin-left: 14px;
 	margin-right: 11px;
 }
-.news_post_meta a
+.news_post_meta div
 {
 	font-size: 14px;
 	font-weight: 400;
