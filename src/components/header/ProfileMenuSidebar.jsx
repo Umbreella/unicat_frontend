@@ -49,7 +49,7 @@ const ProfileMenuSidebar = (props) => {
 
             <SidebarContent style={{overflow: "hidden"}}>
                 {
-                    useLocation().pathname.match(MY_COURSES + "/.+" + LESSON_COURSE + "/.+") !== null ?
+                    useLocation().pathname.match(MY_COURSES + ".+" + LESSON_COURSE + ".+") !== null ?
                         <ContentCourseMenu hideSideBar={hideSideBar}/> :
                         <ProfileMenu hideSideBar={hideSideBar}/>
                 }
