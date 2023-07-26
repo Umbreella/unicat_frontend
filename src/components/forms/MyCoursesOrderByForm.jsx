@@ -43,7 +43,7 @@ const MyCoursesOrderByForm = (props) => {
               action="/" id="courses_search_form">
             <div className="w-100">
                 <Row>
-                    <Col className="d-flex">
+                    <Col className="d-flex flex-column flex-sm-row">
                         <Form.Control className="courses_search_input" type="search"
                                       placeholder="Название курса ..." required
                                       onChange={({target: {value}}) => {
