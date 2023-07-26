@@ -5,10 +5,9 @@ import {
     useStripe
 } from "@stripe/react-stripe-js";
 import {Form} from "react-bootstrap";
-import {MY_COURSES} from "../../utils/consts";
+import {PAYMENT_IS_SUCCESS} from "../../utils/consts";
 
-const CheckoutPaymentForm = (props) => {
-    const {courseId} = props.data;
+const CheckoutPaymentForm = () => {
     const stripe = useStripe();
     const elements = useElements();
 
@@ -71,7 +70,7 @@ const CheckoutPaymentForm = (props) => {
         const { error } = await stripe.confirmPayment({
             elements,
             confirmParams: {
-                return_url: "http://localhost:3000" + MY_COURSES + courseId,
+                return_url: "https://unicat.umbreella-dev.ru" + PAYMENT_IS_SUCCESS,
             },
         });
 

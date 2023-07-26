@@ -23,6 +23,7 @@ export const RESET_PASSWORD = '/password/reset/'
 export const ENTER_EMAIL = '/email/'
 export const CONFIRM_EMAIL = '/email/confirm/'
 export const CHANGE_EMAIL = '/email/change/'
+export const PAYMENT_IS_SUCCESS = '/payment/success/'
 
 export const LAST_BREADCRUMBS = '-'
 export const ADMIN_PATH = '/admin'

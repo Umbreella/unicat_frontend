@@ -14,7 +14,11 @@ import {
     LAST_BREADCRUMBS,
     EVENTS_ROUTE,
     MY_COURSES_CONTENT_LESSONS,
-    MY_COURSES_CONTENT, CONFIRM_EMAIL, CHANGE_EMAIL, MY_PAYMENTS
+    MY_COURSES_CONTENT,
+    CONFIRM_EMAIL,
+    CHANGE_EMAIL,
+    MY_PAYMENTS,
+    PAYMENT_IS_SUCCESS
 } from "./consts";
 import Home from "../pages/main/Home";
 import Blog from "../pages/main/Blog";
@@ -35,6 +39,7 @@ import MyCourseContent from "../pages/profile/MyCourseContent";
 import ConfirmEmail from "../pages/technical/ConfirmEmail";
 import ConfirmNewEmail from "../pages/technical/ConfirmNewEmail";
 import MyPayments from "../pages/profile/MyPayments";
+import PaymentIsSuccess from "../pages/technical/PaymentIsSuccess";
 
 export const authRoutes = [
     {
@@ -139,5 +144,9 @@ export const technicalRoutes = [
     {
         path: CHANGE_EMAIL,
         Component: ConfirmNewEmail,
+    },
+    {
+        path: PAYMENT_IS_SUCCESS,
+        Component: PaymentIsSuccess,
     },
 ]
