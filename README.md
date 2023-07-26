@@ -18,44 +18,59 @@ Unicat Web-API.
 
 ### Dependencies
 
-[![api](https://img.shields.io/badge/API-092E20?style=for-the-badge&logo=django&logoColor=white)](https://github.com/Umbreella/unicat_backend)
+[![api](https://img.shields.io/badge/Unicat_APi-092E20?style=for-the-badge&logo=django&logoColor=white)](https://github.com/Umbreella/unicat_backend)
 
-### Environment variables
+* Clone project
 
-* To run the application, you should overwrite **[.env](.env)** file
+```git
+git clone https://github.com/Umbreella/unicat_frontend.git
+```
 
-### Docker
+* Set values in **[.env](.env)**
 
-* docker-compose.yml
+* Create **nginx.conf**
 
 ```
+server {
+    listen 80;
+
+    location / {
+        root /usr/share/nginx/html ;
+        index index.html index.htm ;
+        try_files $uri /index.html = 404 ;
+    }
+}
+```
+
+* Build and run Docker
+
+```yaml
 version: "3"
 
 services:
-  unicat_frontend:
-    image: umbreella/unicat_frontend:latest
+  frontend-unicat:
+    build: .
+    image: [ your_image_name ]
     ports:
-      - [your_open_port]:3000
-    env_file:
-      - [path_to_env_file]
-```
-
-* Docker-compose run
-
-```
-docker-compose up -d
+      - [ your_open_port ]:80
+    volumes:
+      - [ path_to_nginx.conf ]:/etc/nginx/conf.d/default.conf
 ```
 
 ## Endpoints
 
 * Main
 
-```
+```jsonpath
 [your_ip_address]/
 ```
 
 * Admin panel
 
-```
+```jsonpath
 [your_ip_address]/admin/
 ```
+
+## Live Demo
+
+* [https://unicat.umbreella-dev.ru/](https://unicat.umbreella-dev.ru/)
