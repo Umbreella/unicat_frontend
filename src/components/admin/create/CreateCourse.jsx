@@ -4,7 +4,7 @@ import {
     ReferenceInput,
     SelectInput,
     TextInput,
-    required, TabbedForm, ImageInput, ImageField,
+    required, TabbedForm, ImageInput, ImageField, BooleanInput,
 } from 'react-admin';
 import {
     RichTextInput,
@@ -36,6 +36,7 @@ const CreateCourse = (props) => {
                     </ReferenceInput>
                     <TextInput source="title" fullWidth validate={required()}/>
                     <TextInput source="price" validate={required()}/>
+                    <BooleanInput source="is_published" defaultValue={false}/>
                 </TabbedForm.Tab>
                 <TabbedForm.Tab label="Body">
                     <ImageInput format={formatImage}

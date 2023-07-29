@@ -13,7 +13,7 @@ import {
     Datagrid,
     TextField,
     ReferenceField,
-    ReferenceManyField, Button, useRefresh,
+    ReferenceManyField, Button, useRefresh, BooleanInput,
 } from 'react-admin';
 import {RichTextInput} from 'ra-input-rich-text';
 import RichTextToolbar from "../toolbars/RichTextToolbar";
@@ -66,6 +66,7 @@ const EditCourse = (props) => {
                                    validate={required()}/>
                         <TextInput source="price"
                                    validate={required()}/>
+                        <BooleanInput source="is_published" defaultValue={false}/>
                     </TabbedForm.Tab>
                     <TabbedForm.Tab label="Body">
                         <ImageInput format={formatImage}

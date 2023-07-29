@@ -4,6 +4,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faDownload} from "@fortawesome/free-solid-svg-icons";
 import {downloadUserCertificate} from "../../http/api/UserCertificateApi";
 import HorizontalLoader from "../loader/HorizontalLoader";
+import html2pdf from "html2pdf.js/src";
 
 const LargeCertificate = (props) => {
     const {node: data, className} = props.data;
@@ -19,11 +20,19 @@ const LargeCertificate = (props) => {
             return null;
         }
 
-        const url = window.URL.createObjectURL(response.data);
-        const link = document.createElement('a');
-        link.href = url;
-        link.setAttribute('download', `${data.title}.pdf`); //or any other extension
-        link.click();
+        const html = await response.data.text();
+
+        var opt = {
+            margin: 20,
+            filename: 'certificate.pdf',
+            jsPDF: {
+                orientation: "landscape",
+                unit: 'pt',
+                format: [842, 595],
+            }
+        };
+
+        html2pdf().set(opt).from(html).save();
     }
 
     return (

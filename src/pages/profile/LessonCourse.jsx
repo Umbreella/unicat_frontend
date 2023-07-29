@@ -31,6 +31,7 @@ const LessonCourse = () => {
     const [isNewAttempt, setIsNewAttempt] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     let isPosted = false;
+    let isPosting = false;
 
     const courseMenuItemsQuery = getPrivateLessons();
     const lessonQuery = getCurrentLesson();
@@ -89,7 +90,7 @@ const LessonCourse = () => {
             });
 
             if (lessonPage.clientHeight <= profilePage.clientHeight) {
-                postCompleteAndChangeIsPosted();
+                postCompleteAndChangeIsPosted().then();
             }
 
             if (data.lesson.lessonType === "Тест") {
@@ -99,8 +100,14 @@ const LessonCourse = () => {
         const postCompleteListener = (
             {target: {scrollTop, scrollHeight, clientHeight}}
         ) => {
-            if (Math.round(scrollTop + clientHeight) === scrollHeight) {
-                postCompleteAndChangeIsPosted();
+            if (isPosting) {
+                return null;
+            }
+
+            console.log(Math.round(scrollTop + clientHeight) >= (scrollHeight - 10))
+
+            if (Math.round(scrollTop + clientHeight) >= (scrollHeight - 10)) {
+                postCompleteAndChangeIsPosted().then();
             }
         };
 
@@ -111,11 +118,15 @@ const LessonCourse = () => {
     }, [data]);
 
     const postCompleteAndChangeIsPosted = async () => {
+        isPosting = true;
+
         if (data?.lesson?.lessonType !== 'Теория' || data?.lesson?.isCompleted || isPosted)
             return;
 
         const response = await postLessonComplete(id);
         isPosted = true;
+
+        isPosting = false;
     }
 
     const checkActiveAttempt = async () => {
