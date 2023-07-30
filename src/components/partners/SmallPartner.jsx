@@ -1,15 +1,13 @@
 import React from 'react';
 import {Image} from "react-bootstrap";
-import partner from '../../images/partner_1.png'
-import {NavLink} from "react-router-dom";
 
 const SmallPartner = (props) => {
+    const data = props.data;
+
     return (
-        <NavLink to='/'>
-            <div className="owl-item partner_item">
-                <Image src={partner}/>
-            </div>
-        </NavLink>
+        <div className="owl-item partner_item">
+            <Image src={data.image}/>
+        </div>
     );
 };
 

@@ -25,13 +25,15 @@ const TopBar = observer(() => {
                                     </li>
                                     <li>
                                         <FontAwesomeIcon icon={faPhone}/>
-                                        <div>001-1234-88888</div>
+                                        <div>
+                                            139(1154)426-98-52723
+                                        </div>
                                     </li>
                                     <li>
                                         <FontAwesomeIcon
                                             icon={faEnvelopeOpen}/>
                                         <div>
-                                            info.deercreative@gmail.com
+                                            xeipeittaffazu@umbreella-dev.ru
                                         </div>
                                     </li>
                                 </ul>

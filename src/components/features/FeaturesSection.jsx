@@ -13,21 +13,32 @@ const FeaturesSection = () => {
 
     const accordions = [
         {
-            eventKey: 0,
-            header: "Номинация «Лучшая школа 2019»",
-            body: "Lorem Ipsum has been the industry's standard dummy text " +
-                "ever since the 1500s, when an unknown printer took a " +
-                "galley of type and scrambled it to make a type specimen " +
-                "book."
+            header: "Солнечных дней всё меньше",
+            body: "Также как граница обучения кадров требует от нас анализа" +
+                " вывода текущих активов.",
         },
         {
-            eventKey: 1,
-            header: "Номинация «Лучшая школа 2019»",
-            body: "Lorem Ipsum has been the industry's standard dummy text " +
-                "ever since the 1500s, when an unknown printer took a " +
-                "galley of type and scrambled it to make a type specimen " +
-                "book."
-        }
+            header: "Финансовый мир очнулся: логотип крупнейшей компании по" +
+                " производству мыльных пузырей обнадёживает",
+            body: "Современные технологии достигли такого уровня, что новая" +
+                " модель организационной деятельности обеспечивает широкому" +
+                " кругу (специалистов) участие в формировании благоприятных" +
+                " перспектив.",
+        },
+        {
+            header: "Давайте не будем укрепляться в мысли, что обучение" +
+                " кадров — приоритетная задача",
+            body: "Равным образом, начало повседневной работы по" +
+                " формированию позиции играет определяющее значение для" +
+                " инновационных методов управления процессами.",
+        },
+        {
+            header: "Давайте не будем укрепляться в мысли, что обучение" +
+                " кадров — приоритетная задача",
+            body: "Равным образом, начало повседневной работы по" +
+                " формированию позиции играет определяющее значение для" +
+                " инновационных методов управления процессами.",
+        },
     ]
 
     return (
@@ -35,26 +46,22 @@ const FeaturesSection = () => {
             <div className="feature_background"/>
             <div className="container">
                 <TitleSection section={section}/>
-                <Row className="feature_row">
-                    <Col className="col-lg-6 feature_col">
-                        <div className="feature_content">
-                            <Accordion
-                                className="accordions"
-                                defaultActiveKey={0}>
-                                {
-                                    accordions.map((value, index, array) =>
-                                        <SmallAccordion key={index} item={value}/>
-                                    )
-                                }
-                            </Accordion>
-                        </div>
+                <Row className="feature_row d-flex justify-content-between">
+                    <Col className="col-12 col-lg-5">
+                        <Accordion className="accordions"
+                                   defaultActiveKey={ Math.floor(Math.random() * accordions.length)}>
+                            {
+                                accordions.map((value, index, array) =>
+                                    <SmallAccordion key={index} item={{
+                                        ...value,
+                                        eventKey: index,
+                                    }}/>
+                                )
+                            }
+                        </Accordion>
                     </Col>
-                    <Col className="col-lg-6 feature_col">
-                        <div
-                            className="feature_video d-flex flex-column
-                            align-items-center justify-content-center">
-                            <div className="feature_video_background" />
-                        </div>
+                    <Col className="col-12 col-lg-6 d-none d-lg-block">
+                        <div className="feature_video_background" style={{height: '75%'}}/>
                     </Col>
                 </Row>
             </div>

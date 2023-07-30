@@ -1,23 +1,20 @@
 import React from 'react';
 import {Col, Image} from "react-bootstrap";
-import {NavLink} from "react-router-dom";
-import about from "../../images/about_1.jpg";
 
-const LargeAbout = () => {
+const LargeAbout = (props) => {
+    const data = props.data;
+
     return (
         <Col className="col-lg-4 about_col">
             <div className="about_item">
                 <div className="about_item_image">
-                    <Image src={about}/>
+                    <Image src={data.image}/>
                 </div>
                 <div className="about_item_title">
-                    <NavLink to="/">
-                        Our Stories
-                    </NavLink>
+                    {data.title}
                 </div>
                 <div className="about_item_text">
-                    <p>Lorem ipsum dolor sit , consectet adipisi elit, sed do eiusmod tempor for enim en consectet
-                        adipisi elit, sed do consectet adipisi elit, sed doadesg.</p>
+                    {data.text}
                 </div>
             </div>
         </Col>

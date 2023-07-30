@@ -6,7 +6,7 @@ import {mainPage, publicRoutes} from "../../utils/routes";
 import {Context} from "../../index";
 import {
     BLOG_ROUTE,
-    EVENTS_ROUTE,
+    EVENTS_ROUTE, HOME_ROUTE,
     LAST_BREADCRUMBS,
     NEWS_ROUTE
 } from "../../utils/consts";
@@ -64,7 +64,7 @@ const Breadcrumbs = () => {
                                                                                     {breadcrumb}
                                                                                 </Link> :
                                                                                 <Link
-                                                                                    to={pathname + "/"}>
+                                                                                    to={pathname === HOME_ROUTE ? pathname : pathname + "/"}>
                                                                                     {breadcrumb}
                                                                                 </Link>
                                                                     }
@@ -72,7 +72,9 @@ const Breadcrumbs = () => {
                                                                         style={{
                                                                             margin: "0 8px",
                                                                             color: "#384158"
-                                                                        }}>/</span>
+                                                                        }}>
+                                                                        /
+                                                                    </span>
                                                                 </>
                                                     }
                                                 </>

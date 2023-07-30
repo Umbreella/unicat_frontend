@@ -887,15 +887,41 @@ section
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center center;
+}
+.home_slider_background:before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color:rgba(0, 0, 0, 0.4);
+}
+.home_slider_1 {
 	background-image: url("../images/home_slider_1.jpg");
+}
+.home_slider_2 {
+	background-image: url("../images/home_slider_2.jpg");
+}
+.home_slider_3 {
+	background-image: url("../images/home_slider_3.jpg");
+}
+.home_slider_4 {
+	background-image: url("../images/home_slider_4.jpg");
+}
+.home_slider_5 {
+	background-image: url("../images/home_slider_5.jpg");
 }
 .home_slider_title
 {
 	font-family: 'Roboto Slab', serif;
-	font-size: 60px;
+	font-size: 50px;
 	font-weight: 700;
 	line-height: 1.2;
-	color: #384158;
+	color: white;
 }
 .home_slider_subtitle
 {
@@ -2043,9 +2069,15 @@ section
 }
 .footer_contact_info ul li
 {
+	display: flex;
+	align-items: center;
 	font-size: 14px;
 	font-weight: 400;
 	color: #b5b8be;
+}
+.footer_contact_info ul li div
+{
+	margin-left: 10px;
 }
 .footer_contact_info ul li:not(:last-child)
 {
@@ -2262,23 +2294,16 @@ section
 }
 .about_item_title
 {
-	margin-top: 22px;
-}
-.about_item_title a
-{
 	font-family: 'Roboto Slab', serif;
 	font-size: 20px;
 	font-weight: 700;
 	color: #384158;
+	margin-top: 22px;
 	-webkit-transition: all 200ms ease;
 	-moz-transition: all 200ms ease;
 	-ms-transition: all 200ms ease;
 	-o-transition: all 200ms ease;
 	transition: all 200ms ease;
-}
-.about_item_title a:hover
-{
-	color: #14bdee;
 }
 .about_item_text
 {
@@ -2445,7 +2470,6 @@ section
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center center;
-	border-radius: 6px;
 	background-image: url("../images/home_slider_1.jpg");
 }
 .feature_video_button
@@ -4169,8 +4193,14 @@ section
 }
 .location_list li
 {
+	display: flex;
+	align-items: center;
 	font-size: 14px;
 	color: #5e6271;
+}
+.location_list li div
+{
+	margin-left: 10px;
 }
 .location_list li:not(:last-child)
 {

@@ -6,9 +6,11 @@ import LargeEvent from "./LargeEvent";
 const LatestEventsSection = (props) => {
     const section= {
         title: "Предстоящие события",
-        subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing" +
-            "elit. Donec vel gravida arcu. Vestibulum feugiat, sapien " +
-            "ultrices fermentum congue, quam velit venenatis sem"
+        subtitle: "Имеется спорная точка зрения, гласящая примерно" +
+            " следующее: предприниматели в сети интернет освещают" +
+            " чрезвычайно интересные особенности картины в целом, однако" +
+            " конкретные выводы, разумеется, указаны как претенденты на" +
+            " роль ключевых факторов.",
     }
 
     const data = props.data;

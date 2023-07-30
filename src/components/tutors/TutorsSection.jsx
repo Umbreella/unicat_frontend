@@ -6,9 +6,9 @@ import TitleSection from "../others/TitleSection";
 const TutorsSection = (props) => {
     const section = {
         title: "Наши преподаватели",
-        subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing" +
-            "elit. Donec vel gravida arcu. Vestibulum feugiat, sapien " +
-            "ultrices fermentum congue, quam velit venenatis sem"
+        subtitle: "Следует отметить, что глубокий уровень погружения" +
+            " прекрасно подходит для реализации инновационных методов" +
+            " управления процессами.",
     }
     const data = props.data;
 

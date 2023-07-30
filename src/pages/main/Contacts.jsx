@@ -1,6 +1,12 @@
 import React, {useEffect} from 'react';
 import {YMaps, Map, Placemark} from "react-yandex-maps";
 import ContactForm from "../../components/forms/ContactForm";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {
+    faEnvelopeOpen,
+    faLocation,
+    faPhone
+} from "@fortawesome/free-solid-svg-icons";
 
 const Contacts = () => {
     const coordinates = [54.987787, 73.376913];
@@ -12,7 +18,7 @@ const Contacts = () => {
     return (
         <div className="contact">
             <div className="contact_map">
-                <YMaps query={{ lang: 'en_RU' }}>
+                <YMaps query={{lang: 'en_RU'}}>
                     <div style={{
                         width: "100%",
                         height: 500
@@ -25,7 +31,7 @@ const Contacts = () => {
                             width="100%"
                             height="500px"
                         >
-                            <Placemark geometry={coordinates} />
+                            <Placemark geometry={coordinates}/>
                         </Map>
                     </div>
                 </YMaps>
@@ -38,47 +44,53 @@ const Contacts = () => {
                                 <div className="contact_info_title">
                                     Напишите нам
                                 </div>
-                                <ContactForm />
+                                <ContactForm/>
                             </div>
                         </div>
 
                         <div className="col-lg-6">
                             <div className="contact_info">
-                                <div className="contact_info_title">Contact
-                                    Info
+                                <div className="contact_info_title">
+                                    Контактная информация
                                 </div>
                                 <div className="contact_info_text">
-                                    <p>It is a long established fact that a
-                                        reader will be distracted by the
-                                        readable content of a page when looking
-                                        at its layout. The point of using Lorem
-                                        Ipsum is that it has a distribution of
-                                        letters.</p>
+                                    В рамках спецификации современных
+                                    стандартов, многие известные личности
+                                    формируют глобальную экономическую сеть и
+                                    при этом — функционально разнесены на
+                                    независимые элементы. Ясность нашей позиции
+                                    очевидна: сложившаяся структура организации
+                                    создаёт предпосылки для инновационных
+                                    методов управления процессами.
                                 </div>
                                 <div className="contact_info_location">
                                     <div
-                                        className="contact_info_location_title">New
-                                        York Office
+                                        className="contact_info_location_title">
+                                        Центральный офис
                                     </div>
                                     <ul className="location_list">
-                                        <li>T8/480 Collins St, Melbourne VIC
-                                            3000, New York
+                                        <li>
+                                            <FontAwesomeIcon
+                                                icon={faPhone}/>
+                                            <div>
+                                                139(1154)426-98-52723
+                                            </div>
                                         </li>
-                                        <li>1-234-567-89011</li>
-                                        <li>info.deercreative@gmail.com</li>
-                                    </ul>
-                                </div>
-                                <div className="contact_info_location">
-                                    <div
-                                        className="contact_info_location_title">Australia
-                                        Office
-                                    </div>
-                                    <ul className="location_list">
-                                        <li>Forrest Ray, 191-103 Integer Rd,
-                                            Corona Australia
+                                        <li>
+                                            <FontAwesomeIcon
+                                                icon={faEnvelopeOpen}/>
+                                            <div>
+                                                xeipeittaffazu@umbreella-dev.ru
+                                            </div>
                                         </li>
-                                        <li>1-234-567-89011</li>
-                                        <li>info.deercreative@gmail.com</li>
+                                        <li>
+                                            <FontAwesomeIcon
+                                                icon={faLocation}/>
+                                            <div>
+                                                Россия, г. Омск, проезд
+                                                Чехова, 73
+                                            </div>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>

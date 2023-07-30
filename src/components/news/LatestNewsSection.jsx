@@ -8,9 +8,9 @@ const LatestNewsSection = (props) => {
     const data = props.data;
     const section = {
         title: "Последние новости",
-        subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing" +
-            "elit. Donec vel gravida arcu. Vestibulum feugiat, sapien " +
-            "ultrices fermentum congue, quam velit venenatis sem"
+        subtitle: "С другой стороны, экономическая повестка сегодняшнего" +
+            " дня обеспечивает широкому кругу (специалистов) участие в" +
+            " формировании системы массового участия.",
     }
 
     const largeNews = data.edges[0];

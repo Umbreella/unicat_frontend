@@ -7,10 +7,11 @@ import {COURSES_ROUTE} from "../../utils/consts";
 
 const CoursesSection = (props) => {
     const section = {
-        title: "Популярные курсы",
-        subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing" +
-            "elit. Donec vel gravida arcu. Vestibulum feugiat, sapien " +
-            "ultrices fermentum congue, quam velit venenatis sem"
+        title: "Новые курсы",
+        subtitle: "Следует отметить, что граница обучения кадров создаёт" +
+            " необходимость включения в производственный план целого ряда" +
+            " внеочередных мероприятий с учётом комплекса экспериментов," +
+            " поражающих по своей масштабности и грандиозности.",
     }
     const data = props.data;
 
