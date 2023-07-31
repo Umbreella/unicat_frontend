@@ -31,10 +31,10 @@ const SmallCourse = (props) => {
                                 <span className="course_price_span">
                                     {item.price}
                                 </span>
-                                {item.price * (1 - item.discount.percent / 100)}₽
+                                {item.price * (1 - item.discount.percent / 100)} &#8381;
                             </> :
                             <>
-                                {item.price}₽
+                                {item.price} &#8381;
                             </>
                     }
                 </div>

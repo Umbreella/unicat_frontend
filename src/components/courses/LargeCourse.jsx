@@ -49,10 +49,10 @@ const LargeCourse = (props) => {
                                         className="d-flex justify-content-end align-items-end">
                                             <span
                                                 className="course_price_span">{item.price}</span>
-                                        {item.price * (100 - item.discount.percent) / 100}₽
+                                        {item.price * (100 - item.discount.percent) / 100} &#8381;
                                     </div> :
                                     <>
-                                        {item.price}₽
+                                        {item.price} &#8381;
                                     </>
                             }
 

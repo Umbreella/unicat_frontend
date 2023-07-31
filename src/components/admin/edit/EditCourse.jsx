@@ -58,7 +58,7 @@ const EditCourse = (props) => {
                         <ReferenceInput source="teacher"
                                         label="teacher"
                                         reference="user/teachers">
-                            <SelectInput optionText="id" optionValue="id"
+                            <SelectInput optionText="user" optionValue="id"
                                          validate={required()}/>
                         </ReferenceInput>
                         <TextInput source="title"

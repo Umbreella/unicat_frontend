@@ -55,7 +55,7 @@ const MyPayments = () => {
                                             <tr key={node.id}>
                                                 <td>{index + 1}</td>
                                                 <td>{node.course.title}</td>
-                                                <td>{node.amount}₽</td>
+                                                <td>{node.amount} &#8381;</td>
                                                 <td>{new Date(node.createdAt).toLocaleDateString()}</td>
                                             </tr>
                                         )

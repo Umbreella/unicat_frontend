@@ -94,15 +94,14 @@ const FeatureSidebar = observer((props) => {
                                 <span className="course_price_span ms-1">
                                     {data.price}
                                 </span>
-                                    {data.price * (100 - data.discount.percent) / 100}₽
+                                    {data.price * (100 - data.discount.percent) / 100} &#8381;
                                 </div>
                                 <div style={{fontSize: 16}}>
                                     <Countdown date={data.discount.endDate}/>
                                 </div>
-                            </>
-                            :
+                            </> :
                             <>
-                                {data.price}₽
+                                {data.price} &#8381;
                             </>
                     }
                 </div>
