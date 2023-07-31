@@ -21,13 +21,13 @@ const CreateEvent = () => {
         <Create>
             <TabbedForm>
                 <TabbedForm.Tab label="Main">
-                    <TextInput source="title" fullWidth/>
+                    <TextInput source="title" fullWidth inputProps={{maxLength: 255}}/>
                     <Col>
                         <DateInput source="date" className="me-5"/>
                         <TimeInput source="start_time" className="me-5"/>
                         <TimeInput source="end_time"/>
                     </Col>
-                    <TextInput source="place" fullWidth/>
+                    <TextInput source="place" fullWidth inputProps={{maxLength: 255}}/>
                 </TabbedForm.Tab>
                 <TabbedForm.Tab label="Body">
                     <ImageInput format={formatImage}
@@ -39,7 +39,7 @@ const CreateEvent = () => {
                         <ImageField source="src"/>
                     </ImageInput>
                     <TextInput source="short_description" fullWidth multiline
-                               rows={5}/>
+                               rows={5} inputProps={{maxLength: 255}}/>
                     <RichTextInput
                         source="description"
                         toolbar={<RichTextToolbar/>}

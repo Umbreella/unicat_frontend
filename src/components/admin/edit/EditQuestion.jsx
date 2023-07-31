@@ -60,7 +60,7 @@ const EditQuestion = (props) => {
             <RichTextInput
                 source="body"
                 toolbar={<RichTextToolbar/>}
-                validate={required()}/>
+                validate={required()} inputProps={{maxLength: 512}}/>
             {
                 record.question_type !== 3 &&
                 <Button

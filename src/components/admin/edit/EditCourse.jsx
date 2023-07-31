@@ -63,7 +63,7 @@ const EditCourse = (props) => {
                         </ReferenceInput>
                         <TextInput source="title"
                                    fullWidth
-                                   validate={required()}/>
+                                   validate={required()} inputProps={{maxLength: 128}}/>
                         <TextInput source="price"
                                    validate={required()}/>
                         <BooleanInput source="is_published" defaultValue={false}/>
@@ -80,7 +80,7 @@ const EditCourse = (props) => {
                         <TextInput label="short_description"
                                    source="short_description"
                                    validate={required()}
-                                   fullWidth multiline rows={3}/>
+                                   fullWidth multiline rows={3} inputProps={{maxLength: 255}}/>
                         <RichTextInput
                             source="body"
                             toolbar={<RichTextToolbar/>}

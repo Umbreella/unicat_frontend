@@ -79,7 +79,7 @@ const CreateQuestion = (props) => {
                             <RichTextInput
                                 source="body"
                                 toolbar={<RichTextToolbar/>}
-                                validate={required()}/>
+                                validate={required()} inputProps={{maxLength: 512}}/>
                             <ReferenceInput source="question_type"
                                             label="question_type"
                                             reference="lessons/questions/types">

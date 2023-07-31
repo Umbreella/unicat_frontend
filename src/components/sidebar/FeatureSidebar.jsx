@@ -1,6 +1,5 @@
 import React, {useContext, useState} from 'react';
 import {
-    faClock,
     faFileText,
     faQuestionCircle, faUserGraduate,
 } from "@fortawesome/free-solid-svg-icons";
@@ -59,11 +58,6 @@ const FeatureSidebar = observer((props) => {
 
     const features = [
         {
-            title: 'Длительность',
-            value: data.duration,
-            icon: faClock,
-        },
-        {
             title: 'Кол-во лекций',
             value: data.countLectures,
             icon: faFileText,
@@ -82,30 +76,36 @@ const FeatureSidebar = observer((props) => {
 
     return (
         <div className="sidebar_feature">
-            <div className="course_price d-flex align-items-center flex-column"
-                 style={{
-                     marginTop: 30,
-                     fontSize: 24,
-                 }}>
-                {
-                    data.discount ?
-                        <>
-                            <div style={{fontSize: 16}}>
-                                <Countdown date={data.discount.endDate}/>
-                            </div>
-                            <div
-                                className="d-flex align-items-end">
+            <div
+                className="course_price d-flex align-items-center justify-content-center"
+                style={{
+                    marginTop: 30,
+                    fontSize: 24,
+                }}>
+                <div className="me-5">
+                    Стоимость:
+                </div>
+                <div className="d-flex align-items-center flex-column">
+                    {
+                        data.discount ?
+                            <>
+                                <div
+                                    className="d-flex align-items-end">
                                 <span className="course_price_span ms-1">
                                     {data.price}
                                 </span>
-                                {data.price * (100 - data.discount.percent) / 100}₽
-                            </div>
-                        </>
-                        :
-                        <>
-                            {data.price}₽
-                        </>
-                }
+                                    {data.price * (100 - data.discount.percent) / 100}₽
+                                </div>
+                                <div style={{fontSize: 16}}>
+                                    <Countdown date={data.discount.endDate}/>
+                                </div>
+                            </>
+                            :
+                            <>
+                                {data.price}₽
+                            </>
+                    }
+                </div>
             </div>
             <div className="feature_list">
                 {

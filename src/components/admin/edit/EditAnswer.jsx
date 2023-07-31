@@ -26,7 +26,7 @@ const EditAnswer = (props) => {
 
     return (
         <SimpleForm record={record} onSubmit={(record) => overrideSave(record)}>
-            <TextInput source="value" fullWidth/>
+            <TextInput source="value" fullWidth inputProps={{maxLength: 128}}/>
             <BooleanInput source="is_true"/>
         </SimpleForm>
     );

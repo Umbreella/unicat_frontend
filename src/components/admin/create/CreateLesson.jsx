@@ -91,7 +91,7 @@ const CreateLesson = (props) => {
                                                         reference="lessons"
                                                         filter={{
                                                             parent_only: 1,
-                                                            course_id: selectedCourseId,
+                                                            course: selectedCourseId,
                                                         }}>
                                             <SelectInput optionText="title"
                                                          optionValue="id"
@@ -99,11 +99,13 @@ const CreateLesson = (props) => {
                                         </ReferenceInput>
                                 }
                             </FormDataConsumer>
-                            <NumberInput source="serial_number" min={1} step={1}/>
-                            <TextInput source="title" fullWidth/>
+                            <NumberInput source="serial_number" min={1}
+                                         step={1}/>
+                            <TextInput source="title" fullWidth
+                                       inputProps={{maxLength: 255}}/>
                             <TextInput source="description" fullWidth
-                                       multiline
-                                       rows={3}/>
+                                       multiline rows={3}
+                                       inputProps={{maxLength: 255}}/>
                             <FormDataConsumer>
                                 {({formData, ...rest}) =>
                                     <>

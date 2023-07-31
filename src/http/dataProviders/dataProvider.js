@@ -5,7 +5,7 @@ import {userDataProvider} from "./userDataProvider";
 import {eventDataProvider} from "./eventDataProvider";
 import {newsDataProvider} from "./newsDataProvider";
 
-const apiUrl = process.env.REACT_APP_API_BASE_URL;
+const apiUrl = process.env.REACT_APP_BASE_URL + "/api";
 
 const httpClient = (url, options = {}) => {
     options.credentials = 'include';

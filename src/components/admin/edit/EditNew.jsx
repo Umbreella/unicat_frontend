@@ -16,6 +16,7 @@ const EditNew = (props) => {
     return (
         <Edit {...props}>
             <SimpleForm>
+                <TextInput source="title" fullWidth inputProps={{maxLength: 255}}/>
                 <DateTimeInput source="created_at" disabled/>
                 <ImageInput format={formatImage}
                             minSize={5000}
@@ -26,7 +27,7 @@ const EditNew = (props) => {
                     <ImageField source="src"/>
                 </ImageInput>
                 <TextInput source="short_description" fullWidth multiline
-                           rows={5}/>
+                           rows={5} inputProps={{maxLength: 255}}/>
                 <RichTextInput source="description"
                                toolbar={<RichTextToolbar/>}
                                validate={required()}/>

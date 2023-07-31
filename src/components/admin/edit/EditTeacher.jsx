@@ -21,11 +21,11 @@ const EditTeacher = (props) => {
                 <TextInput source="description"
                            fullWidth
                            multiline
-                           rows={7}/>
-                <TextInput source={"facebook"} fullWidth/>
-                <TextInput source={"twitter"} fullWidth/>
-                <TextInput source={"google_plus"} fullWidth/>
-                <TextInput source={"vk"} fullWidth/>
+                           rows={7} inputProps={{maxLength: 255}}/>
+                <TextInput source={"facebook"} fullWidth inputProps={{maxLength: 255}}/>
+                <TextInput source={"twitter"} fullWidth inputProps={{maxLength: 255}}/>
+                <TextInput source={"google_plus"} fullWidth inputProps={{maxLength: 255}}/>
+                <TextInput source={"vk"} fullWidth inputProps={{maxLength: 255}}/>
             </SimpleForm>
         </Edit>
     );

@@ -34,7 +34,8 @@ const CreateCourse = (props) => {
                         <SelectInput optionText="user" optionValue="id"
                                      validate={required()}/>
                     </ReferenceInput>
-                    <TextInput source="title" fullWidth validate={required()}/>
+                    <TextInput source="title" fullWidth validate={required()}
+                               inputProps={{maxLength: 128}}/>
                     <TextInput source="price" validate={required()}/>
                     <BooleanInput source="is_published" defaultValue={false}/>
                 </TabbedForm.Tab>
@@ -47,9 +48,10 @@ const CreateCourse = (props) => {
                                 validate={required()}>
                         <ImageField source="src"/>
                     </ImageInput>
-                    <TextInput label={"short_description1111"}
+                    <TextInput label={"short_description"}
                                source={"short_description"}
                                validate={required()}
+                               inputProps={{maxLength: 255}}
                                fullWidth multiline rows={3}/>
                     <RichTextInput
                         source="body"

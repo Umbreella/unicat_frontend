@@ -5,7 +5,7 @@ const EditCategory = () => {
     return (
         <Edit>
             <SimpleForm>
-                <TextInput source="title"/>
+                <TextInput source="title" inputProps={{maxLength: 128}}/>
             </SimpleForm>
         </Edit>
     );

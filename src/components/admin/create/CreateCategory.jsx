@@ -9,7 +9,7 @@ const CreateCategory = () => {
     return (
         <Create>
             <SimpleForm>
-                <TextInput source="title"/>
+                <TextInput source="title" inputProps={{maxLength: 128}}/>
             </SimpleForm>
         </Create>
     );

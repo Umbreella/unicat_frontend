@@ -74,7 +74,7 @@ const CreateAnswer = (props) => {
                 <Modal.Body>
                     <Create>
                         <SimpleForm onSubmit={handleSubmit}>
-                            <TextInput source="value" fullWidth/>
+                            <TextInput source="value" fullWidth inputProps={{maxLength: 128}}/>
                             <BooleanInput source="is_true"/>
                         </SimpleForm>
                     </Create>

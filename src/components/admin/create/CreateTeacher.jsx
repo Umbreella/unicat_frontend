@@ -17,11 +17,11 @@ const CreateTeacher = (props) => {
                     <SelectInput optionText="first_name" optionValue="id"
                                  validate={required()}/>
                 </ReferenceInput>
-                <TextInput source="description" fullWidth multiline rows={7}/>
-                <TextInput source={"facebook"} fullWidth/>
-                <TextInput source={"twitter"} fullWidth/>
-                <TextInput source={"google_plus"} fullWidth/>
-                <TextInput source={"vk"} fullWidth/>
+                <TextInput source="description" fullWidth multiline rows={7} inputProps={{maxLength: 255}}/>
+                <TextInput source={"facebook"} fullWidth inputProps={{maxLength: 255}}/>
+                <TextInput source={"twitter"} fullWidth inputProps={{maxLength: 255}}/>
+                <TextInput source={"google_plus"} fullWidth inputProps={{maxLength: 255}}/>
+                <TextInput source={"vk"} fullWidth inputProps={{maxLength: 255}}/>
             </SimpleForm>
         </Create>
     );

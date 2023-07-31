@@ -110,7 +110,10 @@ const EditLesson = (props) => {
                                    </div>
                                }/>
             </ReferenceField>
-            <TextInput source="title" fullWidth/>
+            <TextInput source="title" fullWidth inputProps={{maxLength: 255}}/>
+            <TextInput source="description" fullWidth
+                       multiline rows={3}
+                       inputProps={{maxLength: 255}}/>
             <FormDataConsumer>
                 {({formData, ...rest}) =>
                     <>
