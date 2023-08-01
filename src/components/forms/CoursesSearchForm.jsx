@@ -36,11 +36,11 @@ const CoursesSearchForm = (props) => {
             displayValue: "По убыв. цены",
         },
         {
-            value: "statistic__avg_rating",
+            value: "avg_rating",
             displayValue: "По возр. рейтинга",
         },
         {
-            value: "-statistic__avg_rating",
+            value: "-avg_rating",
             displayValue: "По убыв. рейтинга",
         },
     ];
